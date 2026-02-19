@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atelier Impro & Éveil - Aix</title>
   <style>
     body {
@@ -12,8 +12,13 @@
       line-height: 1.6;
       color: #333;
       background-image: url("https://inspiration.org/wp-content/uploads/2019/12/18_1280x672.jpg");
+      /* Desktop: comme avant */
       background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 100vh;
     }
+
     header {
       background-color: #2a6efb;
       color: white;
@@ -24,6 +29,7 @@
       margin: 0;
       font-size: 2em;
     }
+
     nav {
       background-color: #1d4ed8;
       display: flex;
@@ -39,22 +45,25 @@
     nav a:hover {
       text-decoration: underline;
     }
+
     section {
       max-width: 900px;
       margin: 20px auto;
-      padding: 0 15px;
+      padding: 20px;
       background: white;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      padding: 20px;
     }
+
     h2 {
       color: #2a6efb;
       margin-top: 0;
     }
+
     ul {
       padding-left: 20px;
     }
+
     footer {
       text-align: center;
       padding: 15px 0;
@@ -62,163 +71,219 @@
       color: white;
       margin-top: 30px;
     }
+
     .highlight {
       color: #e67e22;
       font-weight: bold;
     }
+
+    /* ✅ OPTION 1 : NAV mobile en barre scrollable (swipe) */
+    @media (max-width: 768px) {
+      body {
+        /* évite l’étirement sur mobile */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* optionnel : parfois ça saccade sur certains téléphones, enlève si besoin */
+        background-attachment: fixed;
+      }
+
+      header {
+        padding: 16px 10px;
+      }
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      nav {
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 10px 10px;
+
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+
+      nav a {
+        flex: 0 0 auto;
+        display: inline-block;
+
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      section {
+        margin: 12px auto;
+        padding: 16px;
+        border-radius: 10px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <header>
+    <h1>Cours de Musique : Impro & Éveil</h1>
+    <p>Apprendre la musique autrement — Aix-en-Provence</p>
+  </header>
 
-<header>
-  <h1>Cours de Musique : Impro & Éveil</h1>
-  <p>Apprendre la musique autrement — Aix-en-Provence</p>
-</header>
+  <nav>
+    <a href="index.html">⬅ Retour à l’accueil</a>
+    <a href="#offre">Offre pédagogique</a>
+    <a href="#apropos">À propos</a>
+    <a href="#public">Public cible</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<nav>
-  <a href="index.html">⬅ Retour à l’accueil</a>
-  <a href="#offre">Offre pédagogique</a>
-  <a href="#apropos">À propos</a>
-  <a href="#public">Public cible</a>
-  <a href="#tarifs">Tarifs</a>
-  <a href="#contact">Contact</a>
-</nav>
-  
-<section id="offre">
-  <h2>Offre pédagogique</h2>
-  <h3>🌱 Éveil musical (4–7 ans)</h3>
-  <ul>
-    <li>Jeux rythmiques, chant, percussions simples</li>
-    <li>Découverte des instruments et du solphège progréssif</li>
-    <li>Développement de l’oreille & coordination</li>
-    <li>Petits groupes de 3-5 enfants</li>
-  </ul>
+  <section id="offre">
+    <h2>Offre pédagogique</h2>
 
-  <h3>🎹 Débutants (enfants/adultes)</h3>
-  <ul>
-    <li>Initiation aux bases théoriques appliquées sans surcharge solfégique</li>
-    <li>Travail de l’oreille, du rythme et devellopement des sens</li>
-    <li>Apprentissage des réflexes, gammes et suites d'accords standards</li>
-    <li>Instrument au choix : piano / guitare / basse / trompette /...</li>
-  </ul>
-
-  <h3>🎷 Improvisation & théorie (confirmés)</h3>
-  <ul>
-    <li>Impro modale, gammes et accords</li>
-    <li>Construction de solos</li>
-    <li>Tous instruments</li>
-  </ul>
-
-  <h3>🎵 Groupe jazz/pop/impro</h3>
-  <ul>
-    <li>Déffinition du répertoire avec le collectif</li>
-    <li>Répétitions et annimations d'évenements</li>
-    <li>Jeu collectif & écoute, apprentissage des codes d'ensembles</li>
-    <li>Mise en avant de l'expression et l’improvisation</li>
+    <h3>🌱 Éveil musical (4–7 ans)</h3>
+    <ul>
+      <li>Jeux rythmiques, chant, percussions simples</li>
+      <li>Découverte des instruments et du solphège progréssif</li>
+      <li>Développement de l’oreille & coordination</li>
+      <li>Petits groupes de 3-5 enfants</li>
     </ul>
-</section>
 
-<section id="apropos">
-  <h2>À propos</h2>
+    <h3>🎹 Débutants (enfants/adultes)</h3>
+    <ul>
+      <li>Initiation aux bases théoriques appliquées sans surcharge solfégique</li>
+      <li>Travail de l’oreille, du rythme et devellopement des sens</li>
+      <li>Apprentissage des réflexes, gammes et suites d'accords standards</li>
+      <li>Instrument au choix : piano / guitare / basse / trompette /...</li>
+    </ul>
 
-  <h3>🎺 Background</h3>
-  <p>
-    J'ai commencé la trompette très jeune au conservatoire, avec formation classique, orchestre et concerts.<br>
-    Neuro-divergent moi-même, j'ai beaucoup souffert de la rigidité de la méthode traditionnelle, mais j'ai continué par passion.<br>
-    J'ai ensuite vécu un an aux États-Unis où j'ai découvert le jazz et l'improvisation, avec une pédagogie centrée sur l'instrument, l'expression de soi et la compréhension de la musique plutôt que sur la performance et l'excellence académique.<br>
-    De retour en France, j'ai poursuivi mon apprentissage entre classique et jazz/impro, jusqu'au troisième cycle de conservatoire (9 ans). En parallèle, je me suis formé en autodidacte à piano, guitare, basse et ukulélé.
-  </p>
+    <h3>🎷 Improvisation & théorie (confirmés)</h3>
+    <ul>
+      <li>Impro modale, gammes et accords</li>
+      <li>Construction de solos</li>
+      <li>Tous instruments</li>
+    </ul>
 
-  <h3>🎵 Pédagogie</h3>
-  <p>
-    J'enseigne avec patience et passion, en adaptant chaque cours à l'élève.<br>
-    Je forme des musiciens autonomes et flexibles.<br>
-    Ma théorie musicale est universelle et transposable à tout instrument : l'élève choisit son médium et développe sa maîtrise pour s'exprimer de manière fluide.<br>
-    Je n'hésite jamais à reformuler et répéter pour renforcer l'apprentissage, et je cherche toujours à rendre la musique un moment de plaisir et de partage, sans frustration ni blocage.
-  </p>
+    <h3>🎵 Groupe jazz/pop/impro</h3>
+    <ul>
+      <li>Déffinition du répertoire avec le collectif</li>
+      <li>Répétitions et annimations d'évenements</li>
+      <li>Jeu collectif & écoute, apprentissage des codes d'ensembles</li>
+      <li>Mise en avant de l'expression et l’improvisation</li>
+    </ul>
+  </section>
 
-  <h3>🌟 Mission</h3>
-  <p>
-    J'ai trop souvent vu des personnes passionnées freinées par des méthodes inadaptées.<br>
-    Ma mission est de créer une pédagogie qui fonctionne pour tous, et particulièrement pour les neuro-divergents, afin que chacun puisse découvrir la musique autrement : expressive, accessible et joyeuse.<br>
-    Je veux que mes élèves quittent mes cours avec l'envie de jouer, de partager et de créer, sans regret ni douleur.<br>
-    Avec un diplôme d'ingénieur et un master en management, j'applique rigueur et méthode à la pédagogie tout en restant patient et passionné.
-  </p>
-</section>
+  <section id="apropos">
+    <h2>À propos</h2>
 
-<section id="public">
-  <h2>Public cible</h2>
-  <ul>
-    <li>Parents cherchant activités créatives pour 4–12 ans</li>
-    <li>Adultes débutants pour qui les méthodes académiques standard ne conviennent pas</li>
-    <li>Musiciens amateurs confirmés voulant apprendre à improviser</li>
-    <li>Écoles de musique, associations locales</li>
-  </ul>
-  <p class="highlight">Apprendre autrement — même si vous n’entrez pas dans les cases.</p>
-</section>
+    <h3>🎺 Background</h3>
+    <p>
+      J'ai commencé la trompette très jeune au conservatoire, avec formation classique, orchestre et concerts.<br />
+      Neuro-divergent moi-même, j'ai beaucoup souffert de la rigidité de la méthode traditionnelle, mais j'ai continué par passion.<br />
+      J'ai ensuite vécu un an aux États-Unis où j'ai découvert le jazz et l'improvisation, avec une pédagogie centrée sur l'instrument,
+      l'expression de soi et la compréhension de la musique plutôt que sur la performance et l'excellence académique.<br />
+      De retour en France, j'ai poursuivi mon apprentissage entre classique et jazz/impro, jusqu'au troisième cycle de conservatoire (9 ans).
+      En parallèle, je me suis formé en autodidacte à piano, guitare, basse et ukulélé.
+    </p>
 
-<section id="tarifs">
-  <h2 style="text-align:center;">Tarifs</h2>
-  <p style="text-align:center; max-width:600px; margin:0 auto 40px;">
-    Séances d’1h réservée (50 min effectives). 
-    Suivi personnalisé • Progression structurée • Tous niveaux
-  </p>
+    <h3>🎵 Pédagogie</h3>
+    <p>
+      J'enseigne avec patience et passion, en adaptant chaque cours à l'élève.<br />
+      Je forme des musiciens autonomes et flexibles.<br />
+      Ma théorie musicale est universelle et transposable à tout instrument : l'élève choisit son médium et développe sa maîtrise pour s'exprimer de manière fluide.<br />
+      Je n'hésite jamais à reformuler et répéter pour renforcer l'apprentissage, et je cherche toujours à rendre la musique un moment de plaisir et de partage, sans frustration ni blocage.
+    </p>
 
-  <div style="overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse; text-align:center; font-size:16px;">
-      <thead>
-        <tr style="border-bottom:1px solid #ddd;">
-          <th style="padding:15px;">Format</th>
-          <th style="padding:15px;">Séance</th>
-          <th style="padding:15px;">Mensuel<br>(4 séances)</th>
-          <th style="padding:15px;">Pack 10 séances</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom:1px solid #eee;">
-          <td style="padding:18px;"><strong>Individuel</strong></td>
-          <td>40 €</td>
-          <td>160 €</td>
-          <td>380 €</td>
-        </tr>
-        <tr style="border-bottom:1px solid #eee;">
-          <td style="padding:18px;"><strong>Duo</strong><br><small>(2 élèves)</small></td>
-          <td>25 € / pers</td>
-          <td>90 € / pers</td>
-          <td>220 € / pers</td>
-        </tr>
-        <tr style="border-bottom:1px solid #eee;">
-          <td style="padding:18px;"><strong>Trio</strong><br><small>(3 élèves)</small></td>
-          <td>22 € / pers</td>
-          <td>80 € / pers</td>
-          <td>200 € / pers</td>
-        </tr>
-        <tr>
-          <td style="padding:18px;"><strong>Quatuor+</strong><br><small>(4 élèves, ou +)</small></td>
-          <td>20 € / pers</td>
-          <td>75 € / pers</td>
-          <td>180 € / pers</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <h3>🌟 Mission</h3>
+    <p>
+      J'ai trop souvent vu des personnes passionnées freinées par des méthodes inadaptées.<br />
+      Ma mission est de créer une pédagogie qui fonctionne pour tous, et particulièrement pour les neuro-divergents, afin que chacun puisse découvrir la musique autrement : expressive, accessible et joyeuse.<br />
+      Je veux que mes élèves quittent mes cours avec l'envie de jouer, de partager et de créer, sans regret ni douleur.<br />
+      Avec un diplôme d'ingénieur et un master en management, j'applique rigueur et méthode à la pédagogie tout en restant patient et passionné.
+    </p>
+  </section>
 
-  <p style="text-align:center; margin-top:40px; font-size:14px; color:#666;">
-    Créneau hebdomadaire réservé pour les forfaits mensuels. 
-    Packs recommandés pour un objectif à moyen terme.
-  </p>
-</section>
+  <section id="public">
+    <h2>Public cible</h2>
+    <ul>
+      <li>Parents cherchant activités créatives pour 4–12 ans</li>
+      <li>Adultes débutants pour qui les méthodes académiques standard ne conviennent pas</li>
+      <li>Musiciens amateurs confirmés voulant apprendre à improviser</li>
+      <li>Écoles de musique, associations locales</li>
+    </ul>
+    <p class="highlight">Apprendre autrement — même si vous n’entrez pas dans les cases.</p>
+  </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>📧 Email : <a href="mailto:contact@atelierimpro.fr">martin@noriot.fr</a></p>
-  <p>📞 Téléphone : 06 66 80 92 89</p>
-  <p>📍 Aix-en-Provence (chez moi : 22 rue portalis ou à domicile)</p>
-</section>
+  <section id="tarifs">
+    <h2 style="text-align:center;">Tarifs</h2>
+    <p style="text-align:center; max-width:600px; margin:0 auto 40px;">
+      Séances d’1h réservée (50 min effectives).
+      Suivi personnalisé • Progression structurée • Tous niveaux
+    </p>
 
-<footer>
-  &copy; 2026 Atelier Impro & Éveil — Tous droits réservés
-</footer>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; text-align:center; font-size:16px;">
+        <thead>
+          <tr style="border-bottom:1px solid #ddd;">
+            <th style="padding:15px;">Format</th>
+            <th style="padding:15px;">Séance</th>
+            <th style="padding:15px;">Mensuel<br>(4 séances)</th>
+            <th style="padding:15px;">Pack 10 séances</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:18px;"><strong>Individuel</strong></td>
+            <td>40 €</td>
+            <td>160 €</td>
+            <td>380 €</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:18px;"><strong>Duo</strong><br /><small>(2 élèves)</small></td>
+            <td>25 € / pers</td>
+            <td>90 € / pers</td>
+            <td>220 € / pers</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:18px;"><strong>Trio</strong><br /><small>(3 élèves)</small></td>
+            <td>22 € / pers</td>
+            <td>80 € / pers</td>
+            <td>200 € / pers</td>
+          </tr>
+          <tr>
+            <td style="padding:18px;"><strong>Quatuor+</strong><br /><small>(4 élèves, ou +)</small></td>
+            <td>20 € / pers</td>
+            <td>75 € / pers</td>
+            <td>180 € / pers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <p style="text-align:center; margin-top:40px; font-size:14px; color:#666;">
+      Créneau hebdomadaire réservé pour les forfaits mensuels.
+      Packs recommandés pour un objectif à moyen terme.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email : <a href="mailto:contact@atelierimpro.fr">martin@noriot.fr</a></p>
+    <p>📞 Téléphone : 06 66 80 92 89</p>
+    <p>📍 Aix-en-Provence (chez moi : 22 rue portalis ou à domicile)</p>
+  </section>
+
+  <footer>
+    &copy; 2026 Atelier Impro & Éveil — Tous droits réservés
+  </footer>
 </body>
 </html>
