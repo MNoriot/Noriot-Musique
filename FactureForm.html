@@ -1,364 +1,682 @@
-import React, { useMemo, useState } from "react";
-import { Download, Mail, Music, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facture — Noriot Musique</title>
+  <meta name="description" content="Générez une facture pour vos cours de musique avec Noriot Musique.">
 
-export default function NoriotFactureSimple() {
-  const [invoice, setInvoice] = useState({
-    numero: "2026-001",
-    date: "2026-06-01",
-    clientNom: "",
-    clientEmail: "",
-    clientAdresse: "",
-    lignes: [
-      {
-        id: crypto.randomUUID(),
-        description: "Cours de musique",
-        details: "",
-        quantite: 1,
-        prix: 40,
-      },
-    ],
-  });
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-  const emetteur = {
-    nom: "Martin Noriot",
-    commercial: "Noriot Musique",
-    adresse: "22 rue Portalis\n13100 Aix-en-Provence",
-    siren: "105 074 496",
-    codeApe: "85.52Z",
-    email: "martin@noriot.fr",
-    telephone: "06 66 80 92 89",
-    site: "mnoriot.github.io/Noriot-Musique",
-    iban: "FR76 1831 5100 0004 3576 6406 957",
-    bic: "CEPAFRPP831",
-  };
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8f4f0 0%, #fce4ec 50%, #fcf3cf 100%);
+      min-height: 100vh;
+    }
 
-  const total = useMemo(() => {
-    return invoice.lignes.reduce(
-      (sum, line) => sum + Number(line.quantite || 0) * Number(line.prix || 0),
-      0
-    );
-  }, [invoice.lignes]);
+    .facture-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+    }
 
-  const updateField = (field, value) => {
-    setInvoice((prev) => ({ ...prev, [field]: value }));
-  };
+    .facture-card {
+      background: rgba(255,255,255,0.98);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
 
-  const updateLine = (id, field, value) => {
-    setInvoice((prev) => ({
-      ...prev,
-      lignes: prev.lignes.map((line) =>
-        line.id === id ? { ...line, [field]: value } : line
-      ),
-    }));
-  };
+    .facture-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-  const addLine = () => {
-    setInvoice((prev) => ({
-      ...prev,
-      lignes: [
-        ...prev.lignes,
-        {
-          id: crypto.randomUUID(),
-          description: "Cours de musique",
-          details: "",
-          quantite: 1,
-          prix: 40,
-        },
-      ],
-    }));
-  };
+    .facture-card > p {
+      color: var(--gris);
+      margin-bottom: 28px;
+    }
 
-  const removeLine = (id) => {
-    setInvoice((prev) => ({
-      ...prev,
-      lignes: prev.lignes.filter((line) => line.id !== id),
-    }));
-  };
+    /* Formulaire */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
 
-  const generatePdf = () => {
-    window.print();
-  };
+    @media (min-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
-  const openEmail = () => {
-    const subject = `Facture ${invoice.numero} - Noriot Musique`;
-    const body = `Bonjour ${invoice.clientNom || ""},\n\nVeuillez trouver ci-joint la facture ${invoice.numero} pour les cours de musique.\n\nMontant total : ${formatEuro(total)}\n\nLe règlement peut être effectué par virement bancaire ou en espèces.\n\nBien cordialement,\n\nMartin Noriot\nNoriot Musique\n${emetteur.email}\n${emetteur.telephone}`;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-    const mailto = `mailto:${invoice.clientEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
 
-    window.location.href = mailto;
-  };
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gris);
+    }
 
-  return (
-    <div className="min-h-screen bg-neutral-100 p-4 text-neutral-900 md:p-8">
-      <style>{`
-        @media print {
-          body * { visibility: hidden; }
-          #invoice-pdf, #invoice-pdf * { visibility: visible; }
-          #invoice-pdf {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            display: block !important;
-          }
-          .no-print { display: none !important; }
-          @page { size: A4; margin: 12mm; }
-        }
-      `}</style>
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 12px 16px;
+      border: 2px solid #eee;
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--blanc);
+    }
 
-      <main className="no-print mx-auto max-w-3xl space-y-6">
-        <header className="flex items-center gap-4">
-          <div className="rounded-2xl bg-neutral-900 p-3 text-white">
-            <Music size={24} />
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 4px var(--orange-clair);
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    /* Lignes de prestation */
+    .ligne-presta {
+      background: var(--gris-clair);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .ligne-presta:hover {
+      border-color: var(--rose);
+    }
+
+    .ligne-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .ligne-header span {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--noir);
+    }
+
+    .btn-suppr {
+      background: none;
+      border: none;
+      color: #e74c3c;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-suppr:hover {
+      background: #fee;
+    }
+
+    .ligne-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .ligne-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    }
+
+    /* Total */
+    .total-box {
+      background: linear-gradient(135deg, var(--orange-clair), var(--jaune-clair));
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      margin: 24px 0;
+    }
+
+    .total-box p {
+      font-size: 0.9rem;
+      color: var(--gris);
+      margin-bottom: 8px;
+    }
+
+    .total-box .total-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* Boutons action */
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .action-buttons .btn {
+      flex: 1;
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    /* Preview facture */
+    .preview-section {
+      display: none;
+      background: var(--blanc);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+
+    .preview-section.active {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    /* Style facture imprimable */
+    .facture-pdf {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .facture-pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--orange);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+
+    .facture-pdf-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--noir);
+    }
+
+    .facture-pdf-header .facture-num {
+      text-align: right;
+    }
+
+    .facture-pdf-header .facture-num h3 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+    }
+
+    .facture-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .facture-grid h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gris);
+      margin-bottom: 12px;
+    }
+
+    .facture-grid p {
+      color: var(--noir);
+    }
+
+    .facture-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    .facture-table th {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 2px solid var(--orange);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gris);
+      font-weight: 600;
+    }
+
+    .facture-table td {
+      padding: 16px 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .facture-table td:last-child,
+    .facture-table th:last-child {
+      text-align: right;
+    }
+
+    .facture-table td:nth-child(2),
+    .facture-table th:nth-child(2),
+    .facture-table td:nth-child(3),
+    .facture-table th:nth-child(3) {
+      text-align: center;
+    }
+
+    .facture-total {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+
+    .facture-total-box {
+      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
+      border-radius: var(--radius-sm);
+      padding: 20px 32px;
+      min-width: 250px;
+    }
+
+    .facture-total-box .label {
+      font-size: 0.85rem;
+      color: var(--gris);
+    }
+
+    .facture-total-box .amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .facture-footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #eee;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--gris);
+    }
+
+    @media (min-width: 768px) {
+      .facture-footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .facture-footer h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gris);
+      margin-bottom: 8px;
+    }
+
+    /* Print styles */
+    @media print {
+      body * { visibility: hidden; }
+      .preview-section, .preview-section * { visibility: visible; }
+      .preview-section {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: block !important;
+      }
+      .no-print, .nav-float { display: none !important; }
+      @page { size: A4; margin: 15mm; }
+    }
+
+    /* Info box */
+    .info-facture {
+      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--orange);
+    }
+
+    .info-facture p {
+      font-size: 0.9rem;
+      color: var(--gris);
+      margin: 4px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation flottante -->
+  <a href="index.html" class="nav-float no-print" aria-label="Retour à l'accueil">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+  </a>
+
+  <div class="facture-wrap no-print">
+    <div class="facture-card">
+      <h1>📄 Facture</h1>
+      <p>Génère une facture pour tes élèves en quelques clics.</p>
+
+      <div class="info-facture">
+        <p><strong>Martin Noriot</strong> — Noriot Musique</p>
+        <p>22 rue Portalis, 13100 Aix-en-Provence</p>
+        <p>SIREN : 105 074 496 • Code APE : 85.52Z</p>
+        <p>📧 martin@noriot.fr • 📞 06 66 80 92 89</p>
+      </div>
+
+      <!-- Infos facture -->
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="numero">N° facture</label>
+          <input type="text" id="numero" value="2026-001" placeholder="2026-001">
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" value="2026-05-21">
+        </div>
+      </div>
+
+      <!-- Infos client -->
+      <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">👤 Élève / Client</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="clientNom">Nom complet</label>
+          <input type="text" id="clientNom" placeholder="Camille Dupont">
+        </div>
+        <div class="form-group">
+          <label for="clientEmail">Email</label>
+          <input type="email" id="clientEmail" placeholder="camille@email.com">
+        </div>
+        <div class="form-group full-width">
+          <label for="clientAdresse">Adresse</label>
+          <textarea id="clientAdresse" placeholder="12 rue des Lilas
+13100 Aix-en-Provence"></textarea>
+        </div>
+      </div>
+
+      <!-- Prestations -->
+      <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🎵 Prestations</h3>
+      <div id="lignesContainer">
+        <!-- Les lignes seront injectées ici par JS -->
+      </div>
+
+      <button type="button" class="btn btn-ghost" onclick="ajouterLigne()" style="width:100%; margin-top:8px;">
+        ➕ Ajouter une prestation
+      </button>
+
+      <!-- Total -->
+      <div class="total-box">
+        <p>Total à payer</p>
+        <div class="total-price" id="totalDisplay">0,00 €</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-buttons">
+        <button type="button" class="btn btn-primary" onclick="genererPDF()">
+          🖨️ Générer / Imprimer
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="preparerMail()">
+          📧 Préparer le mail
+        </button>
+      </div>
+
+      <p style="margin-top:16px; font-size:0.85rem; color:var(--gris);">
+        💡 Le bouton mail ouvre ton application avec un message prérempli. 
+        Pour envoyer automatiquement avec le PDF joint, il faudra ajouter un service d'envoi (EmailJS, Resend...).
+      </p>
+    </div>
+  </div>
+
+  <!-- Preview facture (cachée par défaut, visible à l'impression) -->
+  <div class="preview-section" id="previewSection">
+    <div class="facture-pdf" id="facturePDF">
+      <!-- Injecté par JS -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer no-print" style="margin-top:40px;">
+    <div class="footer-content" style="max-width:800px; text-align:center;">
+      <div class="footer-links" style="justify-content:center;">
+        <a href="mailto:martin@noriot.fr">📧 martin@noriot.fr</a>
+        <a href="tel:0666809289">📞 06 66 80 92 89</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Noriot Musique
+    </div>
+  </footer>
+
+  <script>
+    // Données émetteur
+    const emetteur = {
+      nom: "Martin Noriot",
+      commercial: "Noriot Musique",
+      adresse: "22 rue Portalis\n13100 Aix-en-Provence",
+      siren: "105 074 496",
+      codeApe: "85.52Z",
+      email: "martin@noriot.fr",
+      telephone: "06 66 80 92 89",
+      site: "mnoriot.github.io/Noriot-Musique",
+      iban: "FR76 1831 5100 0004 3576 6406 957",
+      bic: "CEPAFRPP831"
+    };
+
+    // Lignes de prestation
+    let lignes = [
+      { id: 1, description: "Cours de musique", details: "", quantite: 1, prix: 40 }
+    ];
+
+    function renderLignes() {
+      const container = document.getElementById('lignesContainer');
+      container.innerHTML = lignes.map((ligne, index) => `
+        <div class="ligne-presta">
+          <div class="ligne-header">
+            <span>Prestation ${index + 1}</span>
+            ${lignes.length > 1 ? `<button type="button" class="btn-suppr" onclick="supprimerLigne(${ligne.id})" title="Supprimer">🗑️</button>` : ''}
           </div>
+          <div class="ligne-grid">
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" value="${ligne.description}" onchange="updateLigne(${ligne.id}, 'description', this.value)" placeholder="Ex : Cours de musique – Mai 2026">
+            </div>
+            <div class="form-group">
+              <label>Quantité</label>
+              <input type="number" min="0" value="${ligne.quantite}" onchange="updateLigne(${ligne.id}, 'quantite', this.value)" placeholder="1">
+            </div>
+            <div class="form-group">
+              <label>Prix unitaire (€)</label>
+              <input type="number" min="0" step="0.01" value="${ligne.prix}" onchange="updateLigne(${ligne.id}, 'prix', this.value)" placeholder="40">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:12px;">
+            <label>Détails (optionnel)</label>
+            <input type="text" value="${ligne.details}" onchange="updateLigne(${ligne.id}, 'details', this.value)" placeholder="Ex : 4 séances individuelles">
+          </div>
+        </div>
+      `).join('');
+      calculerTotal();
+    }
+
+    function updateLigne(id, field, value) {
+      const ligne = lignes.find(l => l.id === id);
+      if (ligne) {
+        ligne[field] = field === 'description' || field === 'details' ? value : Number(value);
+        calculerTotal();
+      }
+    }
+
+    function ajouterLigne() {
+      const newId = lignes.length > 0 ? Math.max(...lignes.map(l => l.id)) + 1 : 1;
+      lignes.push({ id: newId, description: "Cours de musique", details: "", quantite: 1, prix: 40 });
+      renderLignes();
+    }
+
+    function supprimerLigne(id) {
+      lignes = lignes.filter(l => l.id !== id);
+      renderLignes();
+    }
+
+    function calculerTotal() {
+      const total = lignes.reduce((sum, l) => sum + (l.quantite * l.prix), 0);
+      document.getElementById('totalDisplay').textContent = formatEuro(total);
+      return total;
+    }
+
+    function formatEuro(value) {
+      return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr + 'T00:00:00');
+      return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+    }
+
+    function genererPDF() {
+      const numero = document.getElementById('numero').value;
+      const date = document.getElementById('date').value;
+      const clientNom = document.getElementById('clientNom').value;
+      const clientEmail = document.getElementById('clientEmail').value;
+      const clientAdresse = document.getElementById('clientAdresse').value;
+      const total = calculerTotal();
+
+      const pdfHTML = `
+        <div class="facture-pdf-header">
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight">Noriot Musique</h1>
-            <p className="text-neutral-600">Créer une facture simplement</p>
+            <h2>Noriot Musique</h2>
+            <p style="color:var(--gris); margin-top:4px;">Cours de musique</p>
+            <div style="margin-top:16px; font-size:0.9rem; line-height:1.7;">
+              ${emetteur.nom}<br>
+              ${emetteur.adresse.replace(/\n/g, '<br>')}<br>
+              SIREN : ${emetteur.siren}<br>
+              Code APE : ${emetteur.codeApe}
+            </div>
           </div>
-        </header>
-
-        <Card className="rounded-3xl shadow-sm">
-          <CardContent className="space-y-5 p-6">
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="space-y-1 text-sm">
-                <span className="text-neutral-600">N° facture</span>
-                <input
-                  className="w-full rounded-xl border p-3"
-                  value={invoice.numero}
-                  onChange={(e) => updateField("numero", e.target.value)}
-                />
-              </label>
-              <label className="space-y-1 text-sm">
-                <span className="text-neutral-600">Date</span>
-                <input
-                  type="date"
-                  className="w-full rounded-xl border p-3"
-                  value={invoice.date}
-                  onChange={(e) => updateField("date", e.target.value)}
-                />
-              </label>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="space-y-1 text-sm">
-                <span className="text-neutral-600">Nom de l'élève / client</span>
-                <input
-                  className="w-full rounded-xl border p-3"
-                  value={invoice.clientNom}
-                  onChange={(e) => updateField("clientNom", e.target.value)}
-                  placeholder="Ex : Camille Dupont"
-                />
-              </label>
-              <label className="space-y-1 text-sm">
-                <span className="text-neutral-600">Email de l'élève / client</span>
-                <input
-                  type="email"
-                  className="w-full rounded-xl border p-3"
-                  value={invoice.clientEmail}
-                  onChange={(e) => updateField("clientEmail", e.target.value)}
-                  placeholder="exemple@email.com"
-                />
-              </label>
-            </div>
-
-            <label className="block space-y-1 text-sm">
-              <span className="text-neutral-600">Adresse client</span>
-              <textarea
-                className="h-24 w-full rounded-xl border p-3"
-                value={invoice.clientAdresse}
-                onChange={(e) => updateField("clientAdresse", e.target.value)}
-                placeholder="Adresse\nCode postal – Ville"
-              />
-            </label>
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-3xl shadow-sm">
-          <CardContent className="space-y-5 p-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">Prestations</h2>
-              <Button type="button" variant="outline" onClick={addLine} className="rounded-xl">
-                <Plus size={16} className="mr-2" /> Ajouter une ligne
-              </Button>
-            </div>
-
-            {invoice.lignes.map((line, index) => (
-              <div key={line.id} className="space-y-3 rounded-2xl border bg-white p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">Prestation {index + 1}</p>
-                  {invoice.lignes.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeLine(line.id)}
-                      className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  )}
-                </div>
-
-                <input
-                  className="w-full rounded-xl border p-3"
-                  value={line.description}
-                  onChange={(e) => updateLine(line.id, "description", e.target.value)}
-                  placeholder="Ex : Cours de musique – Juin 2026"
-                />
-                <input
-                  className="w-full rounded-xl border p-3"
-                  value={line.details}
-                  onChange={(e) => updateLine(line.id, "details", e.target.value)}
-                  placeholder="Ex : 4 séances individuelles"
-                />
-                <div className="grid gap-3 md:grid-cols-2">
-                  <input
-                    type="number"
-                    min="0"
-                    className="rounded-xl border p-3"
-                    value={line.quantite}
-                    onChange={(e) => updateLine(line.id, "quantite", e.target.value)}
-                    placeholder="Quantité"
-                  />
-                  <input
-                    type="number"
-                    min="0"
-                    className="rounded-xl border p-3"
-                    value={line.prix}
-                    onChange={(e) => updateLine(line.id, "prix", e.target.value)}
-                    placeholder="Prix unitaire"
-                  />
-                </div>
-              </div>
-            ))}
-
-            <div className="rounded-2xl bg-neutral-50 p-5 text-right">
-              <p className="text-sm text-neutral-500">Total à payer</p>
-              <p className="text-3xl font-semibold">{formatEuro(total)}</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="grid gap-3 md:grid-cols-2">
-          <Button
-            type="button"
-            onClick={generatePdf}
-            className="rounded-2xl bg-neutral-900 py-6 text-white hover:bg-neutral-700"
-          >
-            <Download size={18} className="mr-2" /> Générer la facture PDF
-          </Button>
-          <Button
-            type="button"
-            onClick={openEmail}
-            variant="outline"
-            className="rounded-2xl py-6"
-          >
-            <Mail size={18} className="mr-2" /> Préparer le mail
-          </Button>
+          <div class="facture-num">
+            <h3>FACTURE</h3>
+            <p style="margin-top:8px; color:var(--gris);">N° ${numero}</p>
+            <p style="color:var(--gris);">${formatDate(date)}</p>
+          </div>
         </div>
 
-        <p className="text-sm text-neutral-500">
-          Le bouton mail ouvre ton application mail avec un message prérempli. Pour joindre automatiquement le PDF et envoyer sans action manuelle, il faudra ajouter un backend ou un service d'envoi type EmailJS, Resend ou Brevo.
-        </p>
-      </main>
-
-      <section id="invoice-pdf" className="hidden bg-white p-8 text-neutral-900 print:block">
-        <div className="flex items-start justify-between border-b border-neutral-200 pb-8">
+        <div class="facture-grid">
           <div>
-            <h1 className="text-2xl font-semibold tracking-wide">Noriot Musique</h1>
-            <p className="text-sm text-neutral-500">Cours de musique</p>
-            <p className="mt-5 whitespace-pre-line text-sm leading-6">
-              {emetteur.nom}\n{emetteur.adresse}\nSIREN : {emetteur.siren}\nCode APE : {emetteur.codeApe}
+            <h4>Contact</h4>
+            <p>
+              ${emetteur.email}<br>
+              ${emetteur.telephone}<br>
+              ${emetteur.site}
             </p>
           </div>
-          <div className="text-right">
-            <h2 className="text-4xl font-light tracking-[0.18em]">FACTURE</h2>
-            <p className="mt-4 text-sm">N° {invoice.numero}</p>
-            <p className="text-sm">Date : {formatDate(invoice.date)}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-8 py-8 text-sm">
           <div>
-            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Contact</h3>
-            <p className="leading-6">
-              {emetteur.email}<br />
-              {emetteur.telephone}<br />
-              {emetteur.site}
+            <h4>Facturé à</h4>
+            <p>
+              <strong>${clientNom}</strong><br>
+              ${clientAdresse ? clientAdresse.replace(/\n/g, '<br>') + '<br>' : ''}
+              ${clientEmail}
             </p>
           </div>
-          <div>
-            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Facturé à</h3>
-            <p className="font-medium">{invoice.clientNom}</p>
-            <p className="whitespace-pre-line leading-6 text-neutral-700">{invoice.clientAdresse}</p>
-            {invoice.clientEmail && <p className="mt-1 text-neutral-700">{invoice.clientEmail}</p>}
-          </div>
         </div>
 
-        <table className="w-full border-collapse text-sm">
+        <table class="facture-table">
           <thead>
-            <tr className="border-y border-neutral-200 text-left text-xs uppercase tracking-[0.15em] text-neutral-500">
-              <th className="py-4 font-medium">Description</th>
-              <th className="py-4 text-right font-medium">Qté</th>
-              <th className="py-4 text-right font-medium">Prix</th>
-              <th className="py-4 text-right font-medium">Total</th>
+            <tr>
+              <th>Description</th>
+              <th>Qté</th>
+              <th>Prix U.</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
-            {invoice.lignes.map((line) => (
-              <tr key={line.id} className="border-b border-neutral-100">
-                <td className="py-5">
-                  <div className="font-medium">{line.description}</div>
-                  {line.details && <div className="mt-1 text-neutral-500">{line.details}</div>}
+            ${lignes.map(l => `
+              <tr>
+                <td>
+                  <strong>${l.description}</strong>
+                  ${l.details ? `<br><span style="color:var(--gris); font-size:0.9rem;">${l.details}</span>` : ''}
                 </td>
-                <td className="py-5 text-right">{line.quantite}</td>
-                <td className="py-5 text-right">{formatEuro(line.prix)}</td>
-                <td className="py-5 text-right font-medium">
-                  {formatEuro(Number(line.quantite || 0) * Number(line.prix || 0))}
-                </td>
+                <td>${l.quantite}</td>
+                <td>${formatEuro(l.prix)}</td>
+                <td><strong>${formatEuro(l.quantite * l.prix)}</strong></td>
               </tr>
-            ))}
+            `).join('')}
           </tbody>
         </table>
 
-        <div className="mt-8 flex justify-end">
-          <div className="w-72 rounded-2xl bg-neutral-50 p-5">
-            <div className="flex justify-between text-lg font-semibold">
-              <span>Total à payer</span>
-              <span>{formatEuro(total)}</span>
-            </div>
+        <div class="facture-total">
+          <div class="facture-total-box">
+            <div class="label">Total à payer</div>
+            <div class="amount">${formatEuro(total)}</div>
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-8 border-t border-neutral-200 pt-8 text-sm leading-6">
+        <div class="facture-footer">
           <div>
-            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Paiement</h3>
+            <h4>Paiement</h4>
             <p>Virement bancaire ou espèces.</p>
-            <p className="mt-3">IBAN : {emetteur.iban}<br />BIC : {emetteur.bic}</p>
+            <p style="margin-top:8px;">
+              IBAN : ${emetteur.iban}<br>
+              BIC : ${emetteur.bic}
+            </p>
           </div>
           <div>
-            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Mentions</h3>
+            <h4>Mentions légales</h4>
             <p>TVA non applicable – art. 293 B du CGI</p>
-            <p className="mt-3 text-neutral-500">Facture émise par une micro-entreprise.</p>
+            <p style="margin-top:8px;">Facture émise par une micro-entreprise.</p>
           </div>
         </div>
-      </section>
-    </div>
-  );
-}
+      `;
 
-function formatEuro(value) {
-  const number = Number(value || 0);
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  }).format(number);
-}
+      document.getElementById('facturePDF').innerHTML = pdfHTML;
+      document.getElementById('previewSection').classList.add('active');
 
-function formatDate(dateString) {
-  if (!dateString) return "";
-  const date = new Date(dateString + "T00:00:00");
-  return new Intl.DateTimeFormat("fr-FR").format(date);
-}
+      // Scroll vers la preview
+      document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
+
+      // Déclencher l'impression après un court délai
+      setTimeout(() => {
+        window.print();
+      }, 500);
+    }
+
+    function preparerMail() {
+      const numero = document.getElementById('numero').value;
+      const clientNom = document.getElementById('clientNom').value;
+      const clientEmail = document.getElementById('clientEmail').value;
+      const total = calculerTotal();
+
+      const subject = `Facture ${numero} - Noriot Musique`;
+      const body = `Bonjour ${clientNom},\n\nVeuillez trouver ci-joint la facture ${numero} pour les cours de musique.\n\nMontant total : ${formatEuro(total)}\n\nLe règlement peut être effectué par virement bancaire ou en espèces.\n\nIBAN : ${emetteur.iban}\nBIC : ${emetteur.bic}\n\nBien cordialement,\n\nMartin Noriot\nNoriot Musique\n${emetteur.email}\n${emetteur.telephone}`;
+
+      window.location.href = `mailto:${clientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // Init
+    renderLignes();
+  </script>
+
+</body>
+</html>
