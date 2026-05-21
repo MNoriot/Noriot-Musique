@@ -1,148 +1,356 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Accueil — Noriot Musique</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil — Noriot Musique</title>
+  <meta name="description" content="Apprendre la musique autrement avec Martin Noriot. Cours de piano, trompette, guitare, basse. Improvisation et pédagogie adaptée à Aix-en-Provence.">
 
-  <!-- Police -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
-      color: #111;
-
-      background: url("Fond-ecran-acceuil.png");
+      /* TODO MARTIN : Remplacer par ton image Fond-ecran-acceuil.png */
+      background-image: url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+    }
 
+    .hero-index {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      padding: 20px;
+      position: relative;
     }
 
-    .card {
-      background: rgba(255,255,255,0.94);
+    /* Overlay sombre derrière la card pour faire ressortir le texte blanc */
+    .hero-index::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 70%, transparent 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Card glassmorphism */
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      border-radius: var(--radius);
       padding: 48px 36px;
       max-width: 640px;
       width: 100%;
       text-align: center;
-      border-radius: 18px;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      animation: fadeInUp 0.8s ease;
     }
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: 2rem;
-      font-weight: 600;
+    .hero-card h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
-    p.subtitle {
-      margin: 0 0 36px;
-      color: #444;
+    .hero-card .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
       line-height: 1.6;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
-    .btn {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 10px;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
-      text-decoration: none;
-      margin: 8px;
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
-    .btn:hover {
+    /* Tags */
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .hero-tags .tag {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero-tags .tag-orange {
+      background: rgba(230, 126, 34, 0.4);
+      color: #fff;
+      border-color: rgba(230, 126, 34, 0.6);
+    }
+
+    .hero-footer {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 16px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+
+    /* ===== BOUTONS OPaQUES ET LISIBLES ===== */
+
+    .hero-buttons .btn-primary {
+      background: linear-gradient(135deg, #E67E22, #D35400);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(230, 126, 34, 0.4);
+    }
+    .hero-buttons .btn-primary:hover {
+      background: linear-gradient(135deg, #D35400, #E67E22);
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 24px rgba(230, 126, 34, 0.5);
     }
 
-    /* 🔵 Bouton principal Réserver */
-    .btn-primary {
-      background: linear-gradient(135deg, #2b7cff, #0056ff);
-      color: white;
-      font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,86,255,0.25);
+    .hero-buttons .btn-secondary {
+      background: #1A1A1A;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #1f6ef0, #0048d6);
-    }
-
-    /* Boutons secondaires */
-    .btn-secondary {
-      background: #222;
-      color: white;
-    }
-
-    .btn-secondary:hover {
+    .hero-buttons .btn-secondary:hover {
       background: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
-    /* Instagram */
-    .btn-instagram {
+    .hero-buttons .btn-ghost {
+      background: #fff;
+      color: #1A1A1A;
+      border: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .hero-buttons .btn-ghost:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .hero-buttons .btn-instagram {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
+      color: #fff;
+    }
+    .hero-buttons .btn-instagram:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
 
-    .btn-instagram:hover {
-      background: linear-gradient(45deg, #dc2743, #cc2366, #bc1888);
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    footer {
-      margin-top: 32px;
-      font-size: .85rem;
-      color: #666;
+    /* Modal mot de passe */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-hover);
+      animation: slideUp 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .modal-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--noir);
+    }
+
+    .modal-box p {
+      color: var(--gris);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .modal-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #eee;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      letter-spacing: 0.1em;
+      transition: var(--transition);
+      margin-bottom: 16px;
+      background: var(--blanc);
+    }
+
+    .modal-box input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 4px var(--orange-clair);
+    }
+
+    .modal-box .error {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: -8px;
+      margin-bottom: 12px;
+      min-height: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-buttons .btn {
+      flex: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .shake {
+      animation: shake 0.3s ease;
     }
   </style>
 </head>
 
 <body>
+  <div class="hero-index">
+    <div class="hero-card">
+      <h1>Noriot Musique 🎺</h1>
 
-  <div class="card">
-    <h1>Bienvenue sur Noriot Musique 🎺</h1>
+      <p class="subtitle">
+        Apprendre la musique autrement — simple, expressive et accessible.<br>
+        Une pédagogie adaptée, humaine et efficace.
+      </p>
 
-    <p class="subtitle">
-      Apprendre la musique autrement — simple, expressive et accessible.<br>
-      Une pédagogie adaptée, humaine et efficace.
-    </p>
+      <div class="hero-tags">
+        <span class="tag">Piano</span>
+        <span class="tag">Trompette</span>
+        <span class="tag">Guitare</span>
+        <span class="tag">Basse</span>
+        <span class="tag tag-orange">Improvisation</span>
+      </div>
 
-    <!-- 🔵 Bouton principal -->
-    <a href="Réserver.html" class="btn btn-primary">
-      Prendre RDV
-    </a>
+      <div class="hero-buttons">
+        <a href="Réserver.html" class="btn btn-primary">🗓️ Prendre RDV</a>
+        <a href="Cours.html" class="btn btn-secondary">🎵 Cours de musique</a>
+        <a href="Studio.html" class="btn btn-ghost">🎧 Studio</a>
+        <button type="button" class="btn btn-ghost" onclick="ouvrirModal()">📄 Facture</button>
+        <a href="https://www.instagram.com/noriot.music/" class="btn btn-instagram" target="_blank" rel="noopener">📸 Instagram</a>
+      </div>
 
-    <!-- Boutons secondaires -->
-    <a href="Cours.html" class="btn btn-secondary">
-      Cours de musique
-    </a>
-
-    <a href="Studio.html" class="btn btn-secondary">
-      Studio d'enregistrement
-    </a>
-
-    <a href="https://www.instagram.com/noriot.music/" 
-       class="btn btn-instagram"
-       target="_blank">
-       Instagram
-    </a>
-
-    <footer>
-      Noriot — pédagogie musicale moderne
-    </footer>
+      <div class="hero-footer">
+        Aix-en-Provence • Martin Noriot • pédagogie musicale moderne
+      </div>
+    </div>
   </div>
 
+  <!-- Modal mot de passe -->
+  <div class="modal-overlay" id="modalMDP" onclick="fermerModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <h3>🔒 Accès réservé</h3>
+      <p>Cette section est réservée. Entre le mot de passe pour continuer.</p>
+      <input 
+        type="password" 
+        id="inputMDP" 
+        placeholder="••••••" 
+        onkeydown="if(event.key==='Enter')verifierMDP()"
+        autocomplete="off"
+      >
+      <div class="error" id="errorMDP"></div>
+      <div class="modal-buttons">
+        <button type="button" class="btn btn-secondary" onclick="fermerModal()">Annuler</button>
+        <button type="button" class="btn btn-primary" onclick="verifierMDP()">Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MOT_DE_PASSE = "noriot2026";
+
+    function ouvrirModal() {
+      document.getElementById('modalMDP').classList.add('active');
+      document.getElementById('inputMDP').value = '';
+      document.getElementById('errorMDP').textContent = '';
+      setTimeout(() => document.getElementById('inputMDP').focus(), 100);
+    }
+
+    function fermerModal(event) {
+      if (event && event.target !== document.getElementById('modalMDP')) return;
+      document.getElementById('modalMDP').classList.remove('active');
+    }
+
+    function verifierMDP() {
+      const input = document.getElementById('inputMDP');
+      const error = document.getElementById('errorMDP');
+      const modal = document.getElementById('modalMDP');
+
+      if (input.value === MOT_DE_PASSE) {
+        window.location.href = 'FactureForm.html';
+      } else {
+        error.textContent = 'Mot de passe incorrect';
+        modal.querySelector('.modal-box').classList.add('shake');
+        input.value = '';
+        input.focus();
+        setTimeout(() => {
+          modal.querySelector('.modal-box').classList.remove('shake');
+        }, 300);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fermerModal();
+    });
+  </script>
 </body>
 </html>
