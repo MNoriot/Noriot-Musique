@@ -4,156 +4,306 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio — Noriot Musique</title>
+  <meta name="description" content="Home-studio à Aix-en-Provence. Production musicale, co-création, enregistrement. Single complet de 500€ à 1000€.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
   <style>
+    /* Fond spécifique page Studio */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-      background-image: url("https://studios-zf.com/img/tile-price-1.jpg");
+      /* TODO MARTIN : Remplacer par une photo de ton studio ou équipement */
+      background-image: url("https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1920&q=80");
       background-size: cover;
-      background-attachment: fixed;
       background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
-    header {
-      background-color: #2a6efb;
-      color: white;
-      padding: 20px 10px;
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(245, 245, 245, 0.93);
+      z-index: -1;
+    }
+
+    .hero-studio {
+      padding: 100px 20px 40px;
       text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    nav {
-      background-color: #1d4ed8;
+    .hero-studio h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-studio p {
+      font-size: 1.15rem;
+      color: var(--gris);
+    }
+
+    .studio-visual {
+      /* TODO MARTIN : Remplacer par une photo de ton espace studio */
+      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
+      border-radius: var(--radius);
+      min-height: 300px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px 15px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      color: #2a6efb;
-      margin-top: 0;
-    }
-    ul {
-      padding-left: 20px;
-    }
-
-    footer {
+      margin: 32px 0;
+      border: 2px dashed var(--rose);
+      color: var(--gris);
       text-align: center;
-      padding: 15px 0;
-      background-color: #1d4ed8;
-      color: white;
-      margin-top: 30px;
+      padding: 40px;
     }
 
-    .highlight {
-      color: #e67e22;
-      font-weight: bold;
+    .feature-list {
+      list-style: none;
+      padding: 0;
     }
 
-    a.btn {
-      display: inline-block;
-      margin: 6px 0;
-      padding: 10px 16px;
-      border-radius: 6px;
-      background-color: #2a6efb;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+    .feature-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
     }
 
-    a.btn:hover {
-      background-color: #1d4ed8;
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li span {
+      font-size: 1.4rem;
+    }
+
+    .price-highlight {
+      background: linear-gradient(135deg, var(--orange-clair), var(--jaune-clair));
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      margin: 32px 0;
+    }
+
+    .price-highlight .price-big {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .streaming-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .streaming-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--noir);
+      color: var(--blanc);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .streaming-links a:hover {
+      background: var(--orange);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 
 <body>
+  <!-- Barre de progression -->
+  <div class="progress-bar" id="progressBar"></div>
 
-<header>
-  <h1>Studio — Noriot Musique</h1>
-  <p>Co-création et production musicale — Aix-en-Provence</p>
-</header>
+  <!-- Navigation flottante -->
+  <a href="index.html" class="nav-float" aria-label="Retour à l'accueil">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+  </a>
 
-<nav>
-  <a href="index.html">⬅ Retour à l’accueil</a>
-  <a href="#presentation">Présentation</a>
-  <a href="#materiel">Matériel & Espace</a>
-  <a href="#public">Pour qui ?</a>
-  <a href="#tarifs">Tarifs</a>
-  <a href="#liens">Écoutes</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <!-- Hero -->
+  <section class="hero-studio">
+    <h1>Studio 🎧</h1>
+    <p>
+      Co-création et production musicale à Aix-en-Provence.<br>
+      De l'idée au morceau fini, ensemble.
+    </p>
+    <a href="mailto:martin@noriot.fr" class="btn btn-primary" style="margin-top:24px;">
+      📧 Discuter d'un projet
+    </a>
+  </section>
 
-<section id="presentation">
-  <h2>🎧 Présentation</h2>
-  <p>Un home-studio chaleureux avec plafond haut et bonne acoustique pour produire, enregistrer et mixer vos projets musicaux. Je propose un accompagnement complet en co-création, du single à votre projet personnel.</p>
-</section>
+  <!-- Visuel studio -->
+  <section class="section">
+    <div class="studio-visual reveal">
+      <div>
+        📸<br><br>
+        <strong>Photo de ton studio</strong><br>
+        <small>Espace, matériel, ambiance...</small><br><br>
+        <em style="font-size:0.85rem;">Remplace ce bloc par une vraie photo</em>
+      </div>
+    </div>
+  </section>
 
-<section id="materiel">
-  <h2>🎙️ Matériel & Espace</h2>
-  <ul>
-    <li>Ableton Live pour un workflow rapide et flexible</li>
-    <li>Carte son, casques et enceintes de monitoring</li>
-    <li>Plusieurs micros selon le besoin</li>
-    <li>Instruments : piano, guitare, basse, trompette et plus</li>
-    <li>Enregistrement dans un salon calme avec bonne acoustique</li>
-  </ul>
-</section>
+  <!-- Présentation -->
+  <section class="section">
+    <h2 class="section-title">Co-création</h2>
+    <p class="section-subtitle">On définit ensemble un cahier des charges et on travaille jusqu'au résultat</p>
 
-<section id="public">
-  <h2>👥 Pour qui ?</h2>
-  <p>Débutants, auteurs, poètes, chanteurs ou musiciens confirmés — tous projets créatifs bienvenus.</p>
-  <p>La méthode est la co-création : on définit ensemble un cahier des charges et on travaille jusqu’au résultat souhaité.</p>
-</section>
+    <div class="card reveal">
+      <p style="font-size:1.05rem; line-height:1.7; margin-bottom:20px;">
+        Un home-studio chaleureux avec plafond haut et bonne acoustique. 
+        Je t'accompagne du single à ton projet personnel — production, enregistrement, mixage.
+      </p>
 
-<section id="tarifs">
-  <h2>💶 Tarifs</h2>
-  <p>Facturation au projet selon le temps et la complexité.</p>
-  <p><strong>Single complet :</strong> 500 € – 1000 €.</p>
-  <p class="highlight">Objectif : un morceau fini, cohérent et dont vous êtes fier.</p>
-</section>
+      <ul class="feature-list">
+        <li><span>🎛️</span> Ableton Live — workflow rapide et flexible</li>
+        <li><span>🎙️</span> Carte son, casques, enceintes de monitoring</li>
+        <li><span>🎤</span> Plusieurs micros selon le besoin</li>
+        <li><span>🎹</span> Piano, guitare, basse, trompette et plus</li>
+        <li><span>🏠</span> Salon calme avec bonne acoustique</li>
+      </ul>
+    </div>
+  </section>
 
-<section id="liens">
-  <h2>🎵 Écoutes & références</h2>
-  <a class="btn" href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG" target="_blank">Spotify</a>
-  <a class="btn" href="https://www.deezer.com/fr/artist/229572375" target="_blank">Deezer</a>
-</section>
+  <!-- Pour qui -->
+  <section class="section">
+    <h2 class="section-title">Pour qui ?</h2>
+    <div class="cards-grid">
+      <div class="card reveal" style="text-align:center;">
+        <span style="font-size:2.5rem;">🎤</span>
+        <h3 style="margin:12px 0 8px;">Chanteurs & Auteurs</h3>
+        <p style="color:var(--gris); font-size:0.95rem;">Tu as des textes, une voix — je construis l'instru autour</p>
+      </div>
+      <div class="card reveal" style="text-align:center;">
+        <span style="font-size:2.5rem;">🎸</span>
+        <h3 style="margin:12px 0 8px;">Musiciens</h3>
+        <p style="color:var(--gris); font-size:0.95rem;">Tu joues, tu veux enregistrer — on capte ton son</p>
+      </div>
+      <div class="card reveal" style="text-align:center;">
+        <span style="font-size:2.5rem;">🎵</span>
+        <h3 style="margin:12px 0 8px;">Projets créatifs</h3>
+        <p style="color:var(--gris); font-size:0.95rem;">Podcast, jingle, musique de film — on discute</p>
+      </div>
+    </div>
+  </section>
 
-<section id="contact">
-  <h2>📩 Contact</h2>
-  <p>Email : <a href="mailto:martin@noriot.fr">martin@noriot.fr</a></p>
-  <p>Téléphone : 06 66 80 92 89</p>
-  <p>On discute du projet et on crée ensemble.</p>
-</section>
+  <!-- Tarifs -->
+  <section class="section">
+    <h2 class="section-title">Tarifs</h2>
+    <p class="section-subtitle">Facturation au projet selon temps et complexité</p>
 
-<footer>
-  © 2026 — Noriot Musique — Studio & Production
-</footer>
+    <div class="price-highlight reveal">
+      <p style="font-size:1.1rem; margin-bottom:16px;">Single complet</p>
+      <div class="price-big">500€ – 1000€</div>
+      <p style="color:var(--gris); margin-top:16px;">
+        Un morceau fini, cohérent et dont tu es fier.
+      </p>
+    </div>
+
+    <div class="card reveal" style="text-align:center;">
+      <p style="font-size:1.05rem; margin-bottom:16px;">
+        💡 Chaque projet est unique. Contacte-moi pour qu'on évalue ensemble :
+      </p>
+      <a href="mailto:martin@noriot.fr" class="btn btn-primary">
+        📧 Demander un devis
+      </a>
+    </div>
+  </section>
+
+  <!-- Écoutes -->
+  <section class="section">
+    <h2 class="section-title">Écoutes</h2>
+    <p class="section-subtitle">Découvre ce qui est déjà sorti du studio</p>
+
+    <div class="card reveal" style="text-align:center;">
+      <p style="margin-bottom:20px; color:var(--gris);">
+        Mon projet Noriot — disponible sur toutes les plateformes
+      </p>
+      <div class="streaming-links">
+        <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">
+          🎵 Spotify
+        </a>
+        <a href="https://link.deezer.com/s/33kvTlgMjgFxGXELQLVhm" target="_blank" rel="noopener">
+          🎧 Deezer
+        </a>
+        <a href="https://music.apple.com/fr/artist/noriot/1706085284" target="_blank" rel="noopener">
+          🍎 Apple Music
+        </a>
+        <a href="https://www.youtube.com/channel/UCuq3PC-JYy0jdTXRPwsToIw" target="_blank" rel="noopener">
+          ▶️ YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA fixe mobile -->
+  <div class="cta-fixed">
+    <a href="mailto:martin@noriot.fr" class="btn btn-primary">📧 Contacter</a>
+    <a href="index.html" class="btn btn-secondary">🏠 Accueil</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-profile">
+        <div class="img-placeholder footer-profile-img" style="min-height:auto; width:64px; height:64px;">
+          📸
+        </div>
+        <div class="footer-profile-info">
+          <h3>Martin Noriot</h3>
+          <p>🎧 Studio & Production • Aix-en-Provence</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:martin@noriot.fr">📧 martin@noriot.fr</a>
+        <a href="tel:0666809289">📞 06 66 80 92 89</a>
+        <a href="https://www.instagram.com/noriot.music/" target="_blank" rel="noopener">📸 Instagram</a>
+        <a href="https://www.youtube.com/channel/UCuq3PC-JYy0jdTXRPwsToIw" target="_blank" rel="noopener">▶️ YouTube</a>
+        <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">🎵 Spotify</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Noriot Musique — Studio & Production
+    </div>
+  </footer>
+
+  <script>
+    // Barre de progression
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // Reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
