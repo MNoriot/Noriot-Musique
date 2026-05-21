@@ -1,0 +1,364 @@
+import React, { useMemo, useState } from "react";
+import { Download, Mail, Music, Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+export default function NoriotFactureSimple() {
+  const [invoice, setInvoice] = useState({
+    numero: "2026-001",
+    date: "2026-06-01",
+    clientNom: "",
+    clientEmail: "",
+    clientAdresse: "",
+    lignes: [
+      {
+        id: crypto.randomUUID(),
+        description: "Cours de musique",
+        details: "",
+        quantite: 1,
+        prix: 40,
+      },
+    ],
+  });
+
+  const emetteur = {
+    nom: "Martin Noriot",
+    commercial: "Noriot Musique",
+    adresse: "22 rue Portalis\n13100 Aix-en-Provence",
+    siren: "105 074 496",
+    codeApe: "85.52Z",
+    email: "martin@noriot.fr",
+    telephone: "06 66 80 92 89",
+    site: "mnoriot.github.io/Noriot-Musique",
+    iban: "FR76 1831 5100 0004 3576 6406 957",
+    bic: "CEPAFRPP831",
+  };
+
+  const total = useMemo(() => {
+    return invoice.lignes.reduce(
+      (sum, line) => sum + Number(line.quantite || 0) * Number(line.prix || 0),
+      0
+    );
+  }, [invoice.lignes]);
+
+  const updateField = (field, value) => {
+    setInvoice((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const updateLine = (id, field, value) => {
+    setInvoice((prev) => ({
+      ...prev,
+      lignes: prev.lignes.map((line) =>
+        line.id === id ? { ...line, [field]: value } : line
+      ),
+    }));
+  };
+
+  const addLine = () => {
+    setInvoice((prev) => ({
+      ...prev,
+      lignes: [
+        ...prev.lignes,
+        {
+          id: crypto.randomUUID(),
+          description: "Cours de musique",
+          details: "",
+          quantite: 1,
+          prix: 40,
+        },
+      ],
+    }));
+  };
+
+  const removeLine = (id) => {
+    setInvoice((prev) => ({
+      ...prev,
+      lignes: prev.lignes.filter((line) => line.id !== id),
+    }));
+  };
+
+  const generatePdf = () => {
+    window.print();
+  };
+
+  const openEmail = () => {
+    const subject = `Facture ${invoice.numero} - Noriot Musique`;
+    const body = `Bonjour ${invoice.clientNom || ""},\n\nVeuillez trouver ci-joint la facture ${invoice.numero} pour les cours de musique.\n\nMontant total : ${formatEuro(total)}\n\nLe règlement peut être effectué par virement bancaire ou en espèces.\n\nBien cordialement,\n\nMartin Noriot\nNoriot Musique\n${emetteur.email}\n${emetteur.telephone}`;
+
+    const mailto = `mailto:${invoice.clientEmail}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-100 p-4 text-neutral-900 md:p-8">
+      <style>{`
+        @media print {
+          body * { visibility: hidden; }
+          #invoice-pdf, #invoice-pdf * { visibility: visible; }
+          #invoice-pdf {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            display: block !important;
+          }
+          .no-print { display: none !important; }
+          @page { size: A4; margin: 12mm; }
+        }
+      `}</style>
+
+      <main className="no-print mx-auto max-w-3xl space-y-6">
+        <header className="flex items-center gap-4">
+          <div className="rounded-2xl bg-neutral-900 p-3 text-white">
+            <Music size={24} />
+          </div>
+          <div>
+            <h1 className="text-3xl font-semibold tracking-tight">Noriot Musique</h1>
+            <p className="text-neutral-600">Créer une facture simplement</p>
+          </div>
+        </header>
+
+        <Card className="rounded-3xl shadow-sm">
+          <CardContent className="space-y-5 p-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <label className="space-y-1 text-sm">
+                <span className="text-neutral-600">N° facture</span>
+                <input
+                  className="w-full rounded-xl border p-3"
+                  value={invoice.numero}
+                  onChange={(e) => updateField("numero", e.target.value)}
+                />
+              </label>
+              <label className="space-y-1 text-sm">
+                <span className="text-neutral-600">Date</span>
+                <input
+                  type="date"
+                  className="w-full rounded-xl border p-3"
+                  value={invoice.date}
+                  onChange={(e) => updateField("date", e.target.value)}
+                />
+              </label>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <label className="space-y-1 text-sm">
+                <span className="text-neutral-600">Nom de l'élève / client</span>
+                <input
+                  className="w-full rounded-xl border p-3"
+                  value={invoice.clientNom}
+                  onChange={(e) => updateField("clientNom", e.target.value)}
+                  placeholder="Ex : Camille Dupont"
+                />
+              </label>
+              <label className="space-y-1 text-sm">
+                <span className="text-neutral-600">Email de l'élève / client</span>
+                <input
+                  type="email"
+                  className="w-full rounded-xl border p-3"
+                  value={invoice.clientEmail}
+                  onChange={(e) => updateField("clientEmail", e.target.value)}
+                  placeholder="exemple@email.com"
+                />
+              </label>
+            </div>
+
+            <label className="block space-y-1 text-sm">
+              <span className="text-neutral-600">Adresse client</span>
+              <textarea
+                className="h-24 w-full rounded-xl border p-3"
+                value={invoice.clientAdresse}
+                onChange={(e) => updateField("clientAdresse", e.target.value)}
+                placeholder="Adresse\nCode postal – Ville"
+              />
+            </label>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-3xl shadow-sm">
+          <CardContent className="space-y-5 p-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-medium">Prestations</h2>
+              <Button type="button" variant="outline" onClick={addLine} className="rounded-xl">
+                <Plus size={16} className="mr-2" /> Ajouter une ligne
+              </Button>
+            </div>
+
+            {invoice.lignes.map((line, index) => (
+              <div key={line.id} className="space-y-3 rounded-2xl border bg-white p-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium">Prestation {index + 1}</p>
+                  {invoice.lignes.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removeLine(line.id)}
+                      className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  )}
+                </div>
+
+                <input
+                  className="w-full rounded-xl border p-3"
+                  value={line.description}
+                  onChange={(e) => updateLine(line.id, "description", e.target.value)}
+                  placeholder="Ex : Cours de musique – Juin 2026"
+                />
+                <input
+                  className="w-full rounded-xl border p-3"
+                  value={line.details}
+                  onChange={(e) => updateLine(line.id, "details", e.target.value)}
+                  placeholder="Ex : 4 séances individuelles"
+                />
+                <div className="grid gap-3 md:grid-cols-2">
+                  <input
+                    type="number"
+                    min="0"
+                    className="rounded-xl border p-3"
+                    value={line.quantite}
+                    onChange={(e) => updateLine(line.id, "quantite", e.target.value)}
+                    placeholder="Quantité"
+                  />
+                  <input
+                    type="number"
+                    min="0"
+                    className="rounded-xl border p-3"
+                    value={line.prix}
+                    onChange={(e) => updateLine(line.id, "prix", e.target.value)}
+                    placeholder="Prix unitaire"
+                  />
+                </div>
+              </div>
+            ))}
+
+            <div className="rounded-2xl bg-neutral-50 p-5 text-right">
+              <p className="text-sm text-neutral-500">Total à payer</p>
+              <p className="text-3xl font-semibold">{formatEuro(total)}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="grid gap-3 md:grid-cols-2">
+          <Button
+            type="button"
+            onClick={generatePdf}
+            className="rounded-2xl bg-neutral-900 py-6 text-white hover:bg-neutral-700"
+          >
+            <Download size={18} className="mr-2" /> Générer la facture PDF
+          </Button>
+          <Button
+            type="button"
+            onClick={openEmail}
+            variant="outline"
+            className="rounded-2xl py-6"
+          >
+            <Mail size={18} className="mr-2" /> Préparer le mail
+          </Button>
+        </div>
+
+        <p className="text-sm text-neutral-500">
+          Le bouton mail ouvre ton application mail avec un message prérempli. Pour joindre automatiquement le PDF et envoyer sans action manuelle, il faudra ajouter un backend ou un service d'envoi type EmailJS, Resend ou Brevo.
+        </p>
+      </main>
+
+      <section id="invoice-pdf" className="hidden bg-white p-8 text-neutral-900 print:block">
+        <div className="flex items-start justify-between border-b border-neutral-200 pb-8">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-wide">Noriot Musique</h1>
+            <p className="text-sm text-neutral-500">Cours de musique</p>
+            <p className="mt-5 whitespace-pre-line text-sm leading-6">
+              {emetteur.nom}\n{emetteur.adresse}\nSIREN : {emetteur.siren}\nCode APE : {emetteur.codeApe}
+            </p>
+          </div>
+          <div className="text-right">
+            <h2 className="text-4xl font-light tracking-[0.18em]">FACTURE</h2>
+            <p className="mt-4 text-sm">N° {invoice.numero}</p>
+            <p className="text-sm">Date : {formatDate(invoice.date)}</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-8 py-8 text-sm">
+          <div>
+            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Contact</h3>
+            <p className="leading-6">
+              {emetteur.email}<br />
+              {emetteur.telephone}<br />
+              {emetteur.site}
+            </p>
+          </div>
+          <div>
+            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Facturé à</h3>
+            <p className="font-medium">{invoice.clientNom}</p>
+            <p className="whitespace-pre-line leading-6 text-neutral-700">{invoice.clientAdresse}</p>
+            {invoice.clientEmail && <p className="mt-1 text-neutral-700">{invoice.clientEmail}</p>}
+          </div>
+        </div>
+
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-y border-neutral-200 text-left text-xs uppercase tracking-[0.15em] text-neutral-500">
+              <th className="py-4 font-medium">Description</th>
+              <th className="py-4 text-right font-medium">Qté</th>
+              <th className="py-4 text-right font-medium">Prix</th>
+              <th className="py-4 text-right font-medium">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {invoice.lignes.map((line) => (
+              <tr key={line.id} className="border-b border-neutral-100">
+                <td className="py-5">
+                  <div className="font-medium">{line.description}</div>
+                  {line.details && <div className="mt-1 text-neutral-500">{line.details}</div>}
+                </td>
+                <td className="py-5 text-right">{line.quantite}</td>
+                <td className="py-5 text-right">{formatEuro(line.prix)}</td>
+                <td className="py-5 text-right font-medium">
+                  {formatEuro(Number(line.quantite || 0) * Number(line.prix || 0))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="mt-8 flex justify-end">
+          <div className="w-72 rounded-2xl bg-neutral-50 p-5">
+            <div className="flex justify-between text-lg font-semibold">
+              <span>Total à payer</span>
+              <span>{formatEuro(total)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-8 border-t border-neutral-200 pt-8 text-sm leading-6">
+          <div>
+            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Paiement</h3>
+            <p>Virement bancaire ou espèces.</p>
+            <p className="mt-3">IBAN : {emetteur.iban}<br />BIC : {emetteur.bic}</p>
+          </div>
+          <div>
+            <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Mentions</h3>
+            <p>TVA non applicable – art. 293 B du CGI</p>
+            <p className="mt-3 text-neutral-500">Facture émise par une micro-entreprise.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function formatEuro(value) {
+  const number = Number(value || 0);
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(number);
+}
+
+function formatDate(dateString) {
+  if (!dateString) return "";
+  const date = new Date(dateString + "T00:00:00");
+  return new Intl.DateTimeFormat("fr-FR").format(date);
+}
