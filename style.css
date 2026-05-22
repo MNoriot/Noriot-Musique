@@ -389,43 +389,43 @@ a:hover {
 /* --- Tags instruments (page Cours) --- */
 .tag-piano {
   background: #E8F0FE;
-  color: #1a3a5c;
+  color: var(--noir);
   border: 1px solid #A8C6FA;
 }
 
 .tag-trompette {
   background: #FFF8DC;
-  color: #5c4a1a;
+  color: var(--noir);
   border: 1px solid #F0D878;
 }
 
 .tag-guitare {
   background: #FAEBD7;
-  color: #5c2a1a;
+  color: var(--noir);
   border: 1px solid #E8C8A0;
 }
 
 .tag-basse {
   background: #FFE4E1;
-  color: #5c1a1a;
+  color: var(--noir);
   border: 1px solid #F5A9A9;
 }
 
 .tag-impro {
   background: #FFF0E0;
-  color: #5c2a1a;
+  color: var(--noir);
   border: 1px solid #F5C89A;
 }
 
 .tag-mao {
   background: #F0E8FF;
-  color: #3a2a5c;
+  color: var(--noir);
   border: 1px solid #D4B8F0;
 }
 
 .tag-theorie {
   background: #E0F7F5;
-  color: #1a4a4a;
+  color: var(--noir);
   border: 1px solid #A0E0D8;
 }
 
