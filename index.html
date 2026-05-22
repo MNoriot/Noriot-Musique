@@ -28,7 +28,7 @@
       position: relative;
     }
 
-    /* Overlay sombre derrière la card */
+    /* Overlay sombre */
     .hero-index::before {
       content: '';
       position: absolute;
@@ -57,12 +57,36 @@
       animation: fadeInUp 0.8s ease;
     }
 
+    /* ===== TITRE AVEC DÉGRADÉ COLORÉ ===== */
     .hero-card h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       color: #fff;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .hero-card h1 .noriot {
+      color: #fff;
+    }
+
+    .hero-card h1 .musique {
+      background: linear-gradient(135deg, #E67E22, #F4D03F, #E67E22);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 2px 8px rgba(230, 126, 34, 0.4));
+    }
+
+    /* Petit trait décoratif sous le titre */
+    .title-accent {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #E67E22, #F4D03F);
+      border-radius: 3px;
+      margin: 12px auto 24px;
+      box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
     }
 
     .hero-card .subtitle {
@@ -81,7 +105,7 @@
       margin-bottom: 24px;
     }
 
-    /* ===== TAGS INFORMATIFS (pas des boutons) ===== */
+    /* ===== TAGS INFORMATIFS AVEC COULEURS DOUCES ===== */
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
@@ -91,31 +115,84 @@
     }
 
     .hero-tags .tag {
-      background: rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(4px);
       font-size: 0.9rem;
-      font-weight: 400;
+      font-weight: 500;
       padding: 8px 16px;
       cursor: default;
       user-select: none;
       transition: var(--transition);
+      border: none;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .hero-tags .tag:hover {
-      background: rgba(255, 255, 255, 0.25);
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .hero-tags .tag-orange {
-      background: rgba(230, 126, 34, 0.25);
-      color: rgba(255, 255, 255, 0.9);
-      border-color: rgba(230, 126, 34, 0.4);
+    /* Couleurs douces pour chaque instrument */
+    .tag-piano {
+      background: linear-gradient(135deg, rgba(100, 149, 237, 0.25), rgba(70, 130, 180, 0.35));
+      color: #E0F0FF;
+      border: 1px solid rgba(100, 149, 237, 0.4);
+    }
+    .tag-piano:hover {
+      background: linear-gradient(135deg, rgba(100, 149, 237, 0.35), rgba(70, 130, 180, 0.45));
     }
 
-    .hero-tags .tag-orange:hover {
-      background: rgba(230, 126, 34, 0.35);
+    .tag-trompette {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.3));
+      color: #FFF8DC;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+    }
+    .tag-trompette:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(218, 165, 32, 0.4));
+    }
+
+    .tag-guitare {
+      background: linear-gradient(135deg, rgba(210, 105, 30, 0.2), rgba(139, 69, 19, 0.3));
+      color: #FFE4C4;
+      border: 1px solid rgba(210, 105, 30, 0.4);
+    }
+    .tag-guitare:hover {
+      background: linear-gradient(135deg, rgba(210, 105, 30, 0.3), rgba(139, 69, 19, 0.4));
+    }
+
+    .tag-basse {
+      background: linear-gradient(135deg, rgba(220, 20, 60, 0.2), rgba(139, 0, 0, 0.3));
+      color: #FFDAB9;
+      border: 1px solid rgba(220, 20, 60, 0.4);
+    }
+    .tag-basse:hover {
+      background: linear-gradient(135deg, rgba(220, 20, 60, 0.3), rgba(139, 0, 0, 0.4));
+    }
+
+    .tag-impro {
+      background: linear-gradient(135deg, rgba(230, 126, 34, 0.25), rgba(211, 84, 0, 0.35));
+      color: #FFF;
+      border: 1px solid rgba(230, 126, 34, 0.5);
+    }
+    .tag-impro:hover {
+      background: linear-gradient(135deg, rgba(230, 126, 34, 0.35), rgba(211, 84, 0, 0.45));
+    }
+
+    .tag-mao {
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(128, 0, 128, 0.3));
+      color: #E6E6FA;
+      border: 1px solid rgba(147, 112, 219, 0.4);
+    }
+    .tag-mao:hover {
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(128, 0, 128, 0.4));
+    }
+
+    .tag-theorie {
+      background: linear-gradient(135deg, rgba(32, 178, 170, 0.2), rgba(0, 128, 128, 0.3));
+      color: #E0FFFF;
+      border: 1px solid rgba(32, 178, 170, 0.4);
+    }
+    .tag-theorie:hover {
+      background: linear-gradient(135deg, rgba(32, 178, 170, 0.3), rgba(0, 128, 128, 0.4));
     }
 
     .hero-footer {
@@ -138,7 +215,6 @@
       box-shadow: 0 8px 24px rgba(230, 126, 34, 0.5);
     }
 
-    /* Cours de musique — BLANC */
     .hero-buttons .btn-secondary {
       background: #fff;
       color: #1A1A1A;
@@ -150,7 +226,6 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
 
-    /* Studio — transparent blanc */
     .hero-buttons .btn-ghost {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
@@ -162,7 +237,6 @@
       transform: translateY(-2px);
     }
 
-    /* Facture — NOIR */
     .hero-buttons .btn-facture {
       display: inline-flex;
       align-items: center;
@@ -306,22 +380,28 @@
 <body>
   <div class="hero-index">
     <div class="hero-card">
-      <h1>Noriot Musique 🎵</h1>
+      <h1>
+        <span class="noriot">Noriot</span>
+        <span class="musique">Musique</span>
+      </h1>
+
+      <!-- Trait décoratif -->
+      <div class="title-accent"></div>
 
       <p class="subtitle">
         Apprendre la musique autrement — simple, expressive et accessible.<br>
         Une pédagogie adaptée, humaine et efficace.
       </p>
 
-      <!-- Tags informatifs avec emojis -->
+      <!-- Tags informatifs avec couleurs douces -->
       <div class="hero-tags">
-        <span class="tag">🎹 Piano</span>
-        <span class="tag">🎺 Trompette</span>
-        <span class="tag">🎸 Guitare</span>
-        <span class="tag">🎸 Basse</span>
-        <span class="tag tag-orange">🎤 Improvisation</span>
-        <span class="tag">🎛️ MAO</span>
-        <span class="tag">🎼 Théorie musicale</span>
+        <span class="tag tag-piano">🎹 Piano</span>
+        <span class="tag tag-trompette">🎺 Trompette</span>
+        <span class="tag tag-guitare">🎸 Guitare</span>
+        <span class="tag tag-basse">🎸 Basse</span>
+        <span class="tag tag-impro">🎤 Improvisation</span>
+        <span class="tag tag-mao">🎛️ MAO</span>
+        <span class="tag tag-theorie">🎼 Théorie musicale</span>
       </div>
 
       <div class="hero-buttons">
