@@ -81,7 +81,7 @@
 
     /* Petit trait décoratif sous le titre */
     .title-accent {
-      width: 60px;
+      width: 280px;
       height: 3px;
       background: linear-gradient(90deg, #E67E22, #F4D03F);
       border-radius: 3px;
@@ -104,98 +104,8 @@
       gap: 12px;
       margin-bottom: 24px;
     }
-
-    /* ===== TAGS INFORMATIFS AVEC COULEURS DOUCES ===== */
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-
-    .hero-tags .tag {
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 8px 16px;
-      cursor: default;
-      user-select: none;
-      transition: var(--transition);
-      border: none;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .hero-tags .tag:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    /* Couleurs douces pour chaque instrument */
-    .tag-piano {
-      background: linear-gradient(135deg, rgba(100, 149, 237, 0.25), rgba(70, 130, 180, 0.35));
-      color: #E0F0FF;
-      border: 1px solid rgba(100, 149, 237, 0.4);
-    }
-    .tag-piano:hover {
-      background: linear-gradient(135deg, rgba(100, 149, 237, 0.35), rgba(70, 130, 180, 0.45));
-    }
-
-    .tag-trompette {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.3));
-      color: #FFF8DC;
-      border: 1px solid rgba(255, 215, 0, 0.4);
-    }
-    .tag-trompette:hover {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(218, 165, 32, 0.4));
-    }
-
-    .tag-guitare {
-      background: linear-gradient(135deg, rgba(210, 105, 30, 0.2), rgba(139, 69, 19, 0.3));
-      color: #FFE4C4;
-      border: 1px solid rgba(210, 105, 30, 0.4);
-    }
-    .tag-guitare:hover {
-      background: linear-gradient(135deg, rgba(210, 105, 30, 0.3), rgba(139, 69, 19, 0.4));
-    }
-
-    .tag-basse {
-      background: linear-gradient(135deg, rgba(220, 20, 60, 0.2), rgba(139, 0, 0, 0.3));
-      color: #FFDAB9;
-      border: 1px solid rgba(220, 20, 60, 0.4);
-    }
-    .tag-basse:hover {
-      background: linear-gradient(135deg, rgba(220, 20, 60, 0.3), rgba(139, 0, 0, 0.4));
-    }
-
-    .tag-impro {
-      background: linear-gradient(135deg, rgba(230, 126, 34, 0.25), rgba(211, 84, 0, 0.35));
-      color: #FFF;
-      border: 1px solid rgba(230, 126, 34, 0.5);
-    }
-    .tag-impro:hover {
-      background: linear-gradient(135deg, rgba(230, 126, 34, 0.35), rgba(211, 84, 0, 0.45));
-    }
-
-    .tag-mao {
-      background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(128, 0, 128, 0.3));
-      color: #E6E6FA;
-      border: 1px solid rgba(147, 112, 219, 0.4);
-    }
-    .tag-mao:hover {
-      background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(128, 0, 128, 0.4));
-    }
-
-    .tag-theorie {
-      background: linear-gradient(135deg, rgba(32, 178, 170, 0.2), rgba(0, 128, 128, 0.3));
-      color: #E0FFFF;
-      border: 1px solid rgba(32, 178, 170, 0.4);
-    }
-    .tag-theorie:hover {
-      background: linear-gradient(135deg, rgba(32, 178, 170, 0.3), rgba(0, 128, 128, 0.4));
-    }
-
-    .hero-footer {
+/* Couleurs douces pour chaque instrument */
+.hero-footer {
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.75);
       margin-top: 16px;
@@ -392,19 +302,7 @@
         Apprendre la musique autrement — simple, expressive et accessible.<br>
         Une pédagogie adaptée, humaine et efficace.
       </p>
-
-      <!-- Tags informatifs avec couleurs douces -->
-      <div class="hero-tags">
-        <span class="tag tag-piano">🎹 Piano</span>
-        <span class="tag tag-trompette">🎺 Trompette</span>
-        <span class="tag tag-guitare">🎸 Guitare</span>
-        <span class="tag tag-basse">🎸 Basse</span>
-        <span class="tag tag-impro">🎤 Improvisation</span>
-        <span class="tag tag-mao">🎛️ MAO</span>
-        <span class="tag tag-theorie">🎼 Théorie musicale</span>
-      </div>
-
-      <div class="hero-buttons">
+<div class="hero-buttons">
         <a href="Réserver.html" class="btn btn-primary">🗓️ Prendre RDV</a>
         <a href="Cours.html" class="btn btn-secondary">🎵 Cours de musique</a>
         <a href="Studio.html" class="btn btn-ghost">🎧 Studio</a>
