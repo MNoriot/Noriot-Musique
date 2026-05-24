@@ -12,7 +12,7 @@
   <style>
     /* Fond simple et calme pour la page de réservation */
     body {
-      /* TODO MARTIN : Remplacer par une image douce ou garder le dégradé */
+      /* Fond doux pour la page de réservation */
       background: linear-gradient(135deg, #f8f4f0 0%, #fce4ec 50%, #fcf3cf 100%);
       min-height: 100vh;
     }
@@ -41,39 +41,6 @@
       font-size: 1.05rem;
     }
 
-    .info-reserver {
-      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      margin-bottom: 28px;
-      border-left: 4px solid var(--orange);
-    }
-
-    .info-reserver h3 {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      color: var(--noir);
-    }
-
-    .info-reserver ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .info-reserver li {
-      padding: 8px 0;
-      font-size: 0.95rem;
-      color: var(--gris);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .info-reserver li strong {
-      color: var(--noir);
-      min-width: 100px;
-    }
-
     .form-embed {
       border-radius: var(--radius-sm);
       overflow: hidden;
@@ -84,7 +51,7 @@
 
     .form-embed iframe {
       width: 100%;
-      height: 2200px;
+      height: 1200px;
       border: 0;
       display: block;
     }
@@ -111,6 +78,7 @@
       }
     }
   </style>
+<base target="_blank">
 </head>
 
 <body>
@@ -127,20 +95,8 @@
       <h1>🗓️ Réserver un cours</h1>
       <p>Remplis ce formulaire — je te recontacte rapidement pour confirmer un créneau.</p>
 
-      <div class="info-reserver">
-        <h3>📋 Avant de réserver</h3>
-        <ul>
-          <li><strong>Premier cours :</strong> Gratuit (sur confirmation)</li>
-          <li><strong>Durée :</strong> 1h réservée, 50 min effectives</li>
-          <li><strong>Horaires :</strong> Semaine 15h–20h • Mercredi 10h–20h</li>
-          <li><strong>Contact :</strong> martin@noriot.fr • 06 66 80 92 89</li>
-          <li><strong>Annulation :</strong> Prévenir 24h à l'avance si possible 🙏</li>
-        </ul>
-      </div>
-
       <div class="form-embed">
-        <!-- TODO MARTIN : Remplacer par ton vrai formulaire Google Forms si besoin -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmCyaNVP_RxQjpS8XaTPYWVa_Yv4UyDVS3dEuOqksU-Eq26w/viewform?embedded=true" 
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?embedded=true" 
                 frameborder="0" 
                 marginheight="0" 
                 marginwidth="0">
@@ -150,9 +106,8 @@
 
       <div class="reserver-footer">
         <p>
-          💡 Tu préfères échanger directement ? 
-          <a href="mailto:martin@noriot.fr">Envoie-moi un mail</a> 
-          ou <a href="tel:0666809289">appelle-moi</a>
+          💡 Tu préfères échanger directement ?<br>
+          martin@noriot.fr • 06 66 80 92 89
         </p>
       </div>
     </div>
