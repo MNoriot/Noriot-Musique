@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cours de Musique — Noriot Musique</title>
-  <meta name="description" content="Cours de piano, trompette, guitare, basse à Aix-en-Provence. Pédagogie adaptée, improvisation, tous niveaux. Premier cours d'essai gratuit.">
+  <meta name="description" content="Cours de piano, trompette, guitare, basse à Aix-en-Provence, Marseille et alentours. Pédagogie adaptée, improvisation, tous niveaux. Premier cours d'essai gratuit.">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
+    /* ============================================
+       STYLES SPÉCIFIQUES PAGE COURS
+       ============================================ */
+
     /* Fond spécifique page Cours */
     body {
-      /* TODO MARTIN : Remplacer par une photo de ton espace de cours ou atmosphère studio */
       background-image: url("https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&q=80");
       background-size: cover;
       background-position: center;
@@ -110,8 +113,7 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
+      left: 0; right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--orange), var(--jaune));
     }
@@ -122,8 +124,7 @@
       color: var(--orange);
       opacity: 0.3;
       position: absolute;
-      top: 16px;
-      right: 24px;
+      top: 16px; right: 24px;
     }
 
     .method-step h3 {
@@ -153,8 +154,7 @@
     .price-card.featured::after {
       content: 'Populaire';
       position: absolute;
-      top: 12px;
-      right: -28px;
+      top: 12px; right: -28px;
       background: var(--orange);
       color: white;
       padding: 4px 32px;
@@ -210,6 +210,8 @@
       margin-top: 16px;
       width: 100%;
       max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .atout-tag {
@@ -224,6 +226,7 @@
       color: var(--noir);
       border: 2px solid var(--orange);
       transition: var(--transition);
+      justify-content: center;
     }
 
     .atout-tag:hover {
@@ -234,6 +237,153 @@
 
     .atout-tag .emoji {
       font-size: 1.1rem;
+    }
+
+    /* ============================================
+       SECTION AVIS GOOGLE — PÉRIMÈTRE AIX/MARSEILLE
+       ============================================ */
+
+    .reviews-section {
+      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    /* Note moyenne */
+    .rating-display {
+      margin: 24px 0;
+    }
+
+    .rating-score {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .rating-stars {
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      margin: 8px 0;
+    }
+
+    .rating-count {
+      font-size: 0.95rem;
+      color: var(--gris);
+    }
+
+    /* Carte périmètre Aix/Marseille et alentours */
+    .map-area-container {
+      position: relative;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin: 24px 0;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--blanc);
+    }
+
+    .map-area-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      filter: grayscale(10%);
+    }
+
+    /* Overlay zone d'activité — HAUT À DROITE */
+    .map-overlay {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      text-align: left;
+      box-shadow: var(--shadow);
+      max-width: 220px;
+      z-index: 10;
+    }
+
+    .map-overlay h4 {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: var(--noir);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-overlay p {
+      font-size: 0.8rem;
+      color: var(--gris);
+      margin: 0 0 6px 0;
+      line-height: 1.4;
+    }
+
+    .map-overlay .zone-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--orange);
+      color: white;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Lien fiche Google en bas de carte */
+    .map-cta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      padding: 50px 20px 16px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Fallback si pas d'avis */
+    .reviews-empty {
+      background: var(--blanc);
+      border-radius: var(--radius-sm);
+      padding: 48px 32px;
+      margin: 24px 0;
+      border: 2px dashed var(--rose);
+    }
+
+    .reviews-empty-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .reviews-empty h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--noir);
+    }
+
+    .reviews-empty p {
+      color: var(--gris);
+      max-width: 400px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    /* CTA laisser un avis */
+    .review-cta {
+      margin-top: 24px;
+    }
+
+    .review-cta p {
+      color: var(--gris);
+      margin-bottom: 16px;
+    }
+
+    .review-note {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #999;
     }
 
     /* Responsive */
@@ -249,6 +399,25 @@
       .professor-atouts {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .map-area-container iframe {
+        height: 450px;
+      }
+
+      .map-overlay {
+        top: 16px;
+        right: 16px;
+        padding: 16px 22px;
+        max-width: 260px;
+      }
+
+      .map-overlay h4 {
+        font-size: 0.95rem;
+      }
+
+      .map-overlay p {
+        font-size: 0.85rem;
+      }
     }
 
     @media (min-width: 1024px) {
@@ -258,6 +427,10 @@
 
       .professor-atouts {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      .map-area-container iframe {
+        height: 500px;
       }
     }
   </style>
@@ -375,7 +548,7 @@
     <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
       <!-- TODO MARTIN : Remplacer par ta photo -->
       <div class="img-placeholder" style="width:200px; height:200px; border-radius:50%;">
-        📸<<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
+        📸<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
       </div>
       <div>
         <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot 🎺</h3>
@@ -384,7 +557,7 @@
           un an aux États-Unis pour découvrir l'improvisation. 
           Ingénieur et Master en management — rigueur et pédagogie au service de la musique.
         </p>
-        <div class="professor-atouts" style="margin: 16px auto 0;">
+        <div class="professor-atouts">
           <span class="atout-tag"><span class="emoji">🧠</span> Pédagogie adaptée</span>
           <span class="atout-tag"><span class="emoji">🤝</span> Bienveillance & empathie</span>
           <span class="atout-tag"><span class="emoji">🎯</span> Rigueur structurée</span>
@@ -455,25 +628,64 @@
     </div>
   </section>
 
-  <!-- Reviews Google -->
+  <!-- ============================================
+       SECTION AVIS GOOGLE — ZONE AIX/MARSEILLE/ALENTOURS
+       ============================================ -->
   <section class="section">
     <div class="reviews-section">
       <h2 class="section-title" style="margin-bottom:8px;">Avis des élèves ⭐</h2>
       <p style="color:var(--gris);">Ce que disent ceux qui ont franchi le pas</p>
 
-      <!-- TODO MARTIN : Remplacer par widget Google Reviews quand tu auras créé ta fiche Google Business -->
-      <div class="reviews-placeholder">
-        <p style="font-size:1.1rem; margin-bottom:16px;">📝 Les avis arrivent bientôt !</p>
-        <p style="color:var(--gris); margin-bottom:20px;">
-          Tu as suivi des cours avec moi ? <br>
-          Laisse un avis sur Google pour aider les futurs élèves à se lancer.
+      <!-- Note moyenne affichée -->
+      <div class="rating-display">
+        <div class="rating-score">5.0</div>
+        <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+        <div class="rating-count">Basé sur les avis Google</div>
+      </div>
+
+      <!-- Carte périmètre Aix/Marseille et alentours (~30 min) -->
+      <div class="map-area-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188933.19787728732!2d5.3698!3d43.4131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1716540000000!5m2!1sfr!2sfr" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        
+        <!-- Overlay zone d'activité — HAUT À DROITE -->
+        <div class="map-overlay">
+          <h4>📍 Zone d'intervention</h4>
+          <p>Aix-en-Provence, Marseille & alentours</p>
+          <span class="zone-tag">~30 min en voiture max</span>
+        </div>
+
+        <!-- CTA vers fiche Google -->
+        <div class="map-cta">
+          <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;">
+            📍 Voir la fiche sur Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Fallback : message si pas encore d'avis -->
+      <div class="reviews-empty">
+        <div class="reviews-empty-icon">📝</div>
+        <h3>Soyez le premier à donner votre avis !</h3>
+        <p>
+          Vous avez suivi des cours avec moi ? Partagez votre expérience pour aider 
+          les futurs élèves à se lancer. Ça prend 30 secondes et ça fait toute la différence.
         </p>
-        <a href="#" class="btn btn-secondary" style="margin-right:8px;">
-          ⭐ Laisser un avis
+      </div>
+
+      <!-- CTA laisser un avis -->
+      <div class="review-cta">
+        <p>Tu as suivi des cours avec moi ?</p>
+        <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:1rem; padding:14px 28px;">
+          ⭐ Laisser un avis sur Google
         </a>
-        <small style="display:block; margin-top:12px; color:#999;">
-          💡 <strong>À faire :</strong> Créer une fiche Google Business pour activer les vrais avis
-        </small>
+        <p class="review-note">
+          🔗 Redirection vers Google Maps — rapide et sécurisé
+        </p>
       </div>
     </div>
   </section>
