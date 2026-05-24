@@ -54,6 +54,26 @@
       margin: 0 auto 32px;
     }
 
+    /* ===== BOUTONS HERO — NOUVELLE STRUCTURE ===== */
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-buttons-row-primary {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-buttons-row-secondary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
     /* Section offre */
     .offer-card {
       background: var(--blanc);
@@ -455,11 +475,16 @@
       Tu joues déjà mais tu bloques ? Tu veux lâcher prise et apprendre à improviser ? 
       Je t'accompagne avec une pédagogie adaptée, sans jugement.
     </p>
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver un essai gratuit</a>
-      <a href="#offre" class="btn btn-ghost">Découvrir l'offre</a>
-      <a href="#professeur" class="btn btn-ghost">Le professeur</a>
-      <a href="#tarifs" class="btn btn-ghost">Les tarifs</a>
+    <!-- ===== NOUVELLE STRUCTURE BOUTONS ===== -->
+    <div class="hero-buttons">
+      <div class="hero-buttons-row-primary">
+        <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver un essai gratuit</a>
+      </div>
+      <div class="hero-buttons-row-secondary">
+        <a href="#offre" class="btn btn-ghost">Découvrir l'offre</a>
+        <a href="#professeur" class="btn btn-ghost">Le professeur</a>
+        <a href="#tarifs" class="btn btn-ghost">Les tarifs</a>
+      </div>
     </div>
   </section>
 
@@ -548,7 +573,7 @@
     <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
       <!-- TODO MARTIN : Remplacer par ta photo -->
       <div class="img-placeholder" style="width:200px; height:200px; border-radius:50%;">
-        📸<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
+        📸<<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
       </div>
       <div>
         <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot 🎺</h3>
