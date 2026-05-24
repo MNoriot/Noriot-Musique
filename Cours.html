@@ -202,6 +202,40 @@
       margin-right: auto;
     }
 
+    /* Section professeur - atouts pédagogiques */
+    .professor-atouts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .atout-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--blanc);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--noir);
+      border: 2px solid var(--orange);
+      transition: var(--transition);
+    }
+
+    .atout-tag:hover {
+      background: var(--orange);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .atout-tag .emoji {
+      font-size: 1.1rem;
+    }
+
     /* Responsive */
     @media (min-width: 768px) {
       .method-visual {
@@ -211,11 +245,19 @@
       .prices-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .professor-atouts {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (min-width: 1024px) {
       .prices-grid {
         grid-template-columns: repeat(4, 1fr);
+      }
+
+      .professor-atouts {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
   </style>
@@ -243,6 +285,8 @@
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
       <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver un essai gratuit</a>
       <a href="#offre" class="btn btn-ghost">Découvrir l'offre</a>
+      <a href="#professeur" class="btn btn-ghost">👨‍🏫 Le professeur</a>
+      <a href="#tarifs" class="btn btn-ghost">💰 Les tarifs</a>
     </div>
   </section>
 
@@ -315,7 +359,7 @@
       <div class="method-step reveal">
         <span class="step-number">2</span>
         <h3>🧠 Comprends</h3>
-        <p>Théorie musicale universelle, transposable à tout instrument. Pas de solfège académique inutile.</p>
+        <p>Théorie musicale universelle, transposable à tout instrument, avec un solfège réduit au minimum essentiel.</p>
       </div>
       <div class="method-step reveal">
         <span class="step-number">3</span>
@@ -326,12 +370,12 @@
   </section>
 
   <!-- Photo du professeur -->
-  <section class="section">
+  <section class="section" id="professeur">
     <h2 class="section-title">Le professeur</h2>
     <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
       <!-- TODO MARTIN : Remplacer par ta photo -->
       <div class="img-placeholder" style="width:200px; height:200px; border-radius:50%;">
-        📸<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
+        📸<<br>Photo Martin Noriot<br><small>(trompette en main ?)</small>
       </div>
       <div>
         <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot 🎺</h3>
@@ -340,12 +384,16 @@
           un an aux États-Unis pour découvrir l'improvisation. 
           Ingénieur et Master en management — rigueur et pédagogie au service de la musique.
         </p>
-        <div style="margin-top:16px;">
-          <span class="tag">Trompette</span>
-          <span class="tag">Piano</span>
-          <span class="tag">Guitare</span>
-          <span class="tag">Basse</span>
-          <span class="tag tag-orange">Pédagogie adaptée</span>
+        <div class="professor-atouts" style="margin: 16px auto 0;">
+          <span class="atout-tag"><span class="emoji">🧠</span> Pédagogie adaptée</span>
+          <span class="atout-tag"><span class="emoji">🤝</span> Bienveillance & empathie</span>
+          <span class="atout-tag"><span class="emoji">🎯</span> Rigueur structurée</span>
+          <span class="atout-tag"><span class="emoji">🌍</span> Anglais bilingue</span>
+          <span class="atout-tag"><span class="emoji">🎨</span> Créativité & expression</span>
+          <span class="atout-tag"><span class="emoji">🧘</span> Gestion du stress</span>
+          <span class="atout-tag"><span class="emoji">🎭</span> Improvisation artistique</span>
+          <span class="atout-tag"><span class="emoji">👥</span> Animation de groupes</span>
+          <span class="atout-tag"><span class="emoji">🔧</span> Esprit d'initiative</span>
         </div>
       </div>
     </div>
