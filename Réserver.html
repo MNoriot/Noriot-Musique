@@ -20,13 +20,13 @@
     .reserver-wrap {
       max-width: 800px;
       margin: 0 auto;
-      padding: 80px 20px 40px;
+      padding: 20px 20px 0;
     }
 
     .reserver-card {
       background: rgba(255,255,255,0.98);
       border-radius: var(--radius);
-      padding: 40px 32px;
+      padding: 12px;
       box-shadow: var(--shadow);
     }
 
@@ -46,7 +46,7 @@
       overflow: hidden;
       border: 1px solid #eee;
       background: var(--blanc);
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
 
     .form-embed iframe {
@@ -70,11 +70,11 @@
 
     @media (min-width: 768px) {
       .reserver-wrap {
-        padding: 100px 40px 60px;
+        padding: 20px 40px 0;
       }
 
       .reserver-card {
-        padding: 48px 40px;
+        padding: 12px;
       }
     }
   </style>
@@ -92,10 +92,7 @@
 
   <div class="reserver-wrap">
     <div class="reserver-card">
-      <h1>🗓️ Réserver un cours</h1>
-      <p>Remplis ce formulaire — je te recontacte rapidement pour confirmer un créneau.</p>
-
-      <div class="form-embed">
+      <div class="form-embed" style="margin:0;">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?embedded=true" 
                 frameborder="0" 
                 marginheight="0" 
@@ -103,26 +100,21 @@
           Chargement…
         </iframe>
       </div>
-
-      <div class="reserver-footer">
-        <p>
-          💡 Tu préfères échanger directement ?<br>
-          martin@noriot.fr • 06 66 80 92 89
-        </p>
-      </div>
     </div>
   </div>
 
-  <!-- Footer minimal -->
-  <footer class="site-footer" style="margin-top:40px;">
-    <div class="footer-content" style="max-width:800px; text-align:center;">
-      <div class="footer-links" style="justify-content:center;">
-        <a href="mailto:martin@noriot.fr">📧 martin@noriot.fr</a>
-        <a href="tel:0666809289">📞 06 66 80 92 89</a>
+  <!-- Footer centré et joli -->
+  <footer class="site-footer" style="margin-top:24px; padding-bottom:40px;">
+    <div style="max-width:800px; margin:0 auto; text-align:center; padding:0 20px;">
+      <p style="color:var(--gris); font-size:0.95rem; margin-bottom:16px; line-height:1.6;">
+        💡 Tu préfères échanger directement ?<br>
+        martin@noriot.fr • 06 66 80 92 89
+      </p>
+      <div class="footer-links" style="justify-content:center; gap:20px;">
         <a href="https://www.instagram.com/noriot.music/" target="_blank" rel="noopener">📸 Instagram</a>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" style="margin-top:20px;">
       © 2026 Noriot Musique
     </div>
   </footer>
