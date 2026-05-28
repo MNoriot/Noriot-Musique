@@ -6,10 +6,6 @@
   <title>Facture & Comptabilite — Noriot Musique</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ============================================
-       NORIOT MUSIQUE - Style Commun integre
-       Palette inspiree de l'affiche officielle
-       ============================================ */
     :root {
       --rose: #F5A9B8;
       --rose-clair: #FCE4EC;
@@ -28,29 +24,22 @@
       --bleu-clair: #d6eaf8;
       --rouge: #e74c3c;
       --rouge-clair: #fadbd8;
-
       --radius: 18px;
       --radius-sm: 12px;
       --shadow: 0 8px 32px rgba(0,0,0,0.12);
       --shadow-hover: 0 12px 40px rgba(0,0,0,0.18);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #f8f4f0 0%, #fce4ec 50%, #fcf3cf 100%);
       min-height: 100vh; color: var(--noir); line-height: 1.6;
       overflow-x: hidden;
     }
-
     a { color: var(--bleu-lien); text-decoration: none; transition: var(--transition); }
     a:hover { color: var(--orange); }
-
-    /* --- Navigation --- */
     .nav-float {
       background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 100;
@@ -71,16 +60,11 @@
     }
     .nav-tab:hover { background: var(--gris-clair); color: var(--noir); }
     .nav-tab.active { background: var(--orange-clair); color: var(--orange); }
-
     .main-wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }
-
     .section { display: none; }
     .section.active { display: block; animation: fadeIn 0.4s ease; }
-
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* --- Cartes --- */
     .card {
       background: var(--blanc); border-radius: var(--radius);
       padding: 32px; box-shadow: var(--shadow); margin-bottom: 20px;
@@ -89,8 +73,6 @@
     .card:hover { box-shadow: var(--shadow-hover); }
     .card h2 { font-size: 1.5rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
     .card > p { color: var(--gris); margin-bottom: 24px; font-size: 0.95rem; }
-
-    /* --- Formulaires --- */
     .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 20px; }
     @media (min-width: 768px) {
       .form-grid { grid-template-columns: 1fr 1fr; }
@@ -112,8 +94,6 @@
     }
     .form-group textarea { min-height: 80px; resize: vertical; }
     .form-group input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--orange); }
-
-    /* --- Boutons --- */
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       gap: 8px; padding: 12px 24px; border-radius: var(--radius-sm); border: none;
@@ -136,11 +116,8 @@
     .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
     .btn-icon { padding: 6px 10px; font-size: 0.85rem; background: var(--gris-clair); }
     .btn-icon:hover { background: var(--orange-clair); }
-
     .action-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .action-buttons .btn { flex: 1; min-width: 180px; }
-
-    /* --- Checkbox row --- */
     .checkbox-row {
       display: flex; align-items: center; gap: 10px;
       padding: 12px 16px; background: var(--gris-clair);
@@ -148,8 +125,6 @@
     }
     .checkbox-row label { font-weight: 600; color: var(--noir); text-transform: none; letter-spacing: 0; }
     .checkbox-row p { font-size: 0.85rem; color: var(--gris); margin: 0; }
-
-    /* --- Lignes prestation --- */
     .ligne-presta {
       background: var(--gris-clair); border-radius: var(--radius-sm);
       padding: 20px; margin-bottom: 12px;
@@ -158,15 +133,11 @@
     .ligne-presta:hover { border-color: var(--rose); }
     .ligne-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .ligne-header span { font-weight: 600; font-size: 0.9rem; }
-
-    /* --- Total box --- */
     .total-box {
       background: linear-gradient(135deg, var(--orange-clair), var(--jaune-clair));
       border-radius: var(--radius); padding: 28px; text-align: center; margin: 24px 0;
     }
     .total-box .total-price { font-size: 2.2rem; font-weight: 700; color: var(--orange); }
-
-    /* --- Info box --- */
     .info-box {
       background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
       border-radius: var(--radius-sm); padding: 20px;
@@ -174,14 +145,11 @@
     }
     .info-box p { font-size: 0.9rem; color: var(--gris); margin: 4px 0; }
     .info-box strong { color: var(--noir); }
-
     .placeholder-info {
       background: var(--bleu-clair); border-left: 4px solid var(--bleu);
       padding: 12px 16px; border-radius: var(--radius-sm);
       margin-top: 8px; font-size: 0.85rem; color: var(--noir);
     }
-
-    /* --- Alertes --- */
     .alert-success {
       background: var(--vert-clair); border-radius: var(--radius-sm);
       padding: 16px 20px; margin-bottom: 20px;
@@ -189,8 +157,6 @@
     }
     .alert-success.show { display: block; animation: fadeIn 0.3s ease; }
     .alert-success p { margin: 0; font-size: 0.9rem; color: var(--noir); }
-
-    /* --- Stats --- */
     .stats-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px; margin-bottom: 24px;
@@ -203,8 +169,6 @@
     .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
     .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--orange); }
     .stat-card .label { font-size: 0.85rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.1em; }
-
-    /* --- Tableaux --- */
     .table-wrap { overflow-x: auto; }
     .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
     .data-table th {
@@ -218,18 +182,13 @@
     .data-table td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
     .data-table tr:hover td { background: var(--gris-clair); }
     .data-table td.amount { font-weight: 600; text-align: right; }
-
-    /* --- Badges --- */
     .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
     .badge-paid { background: var(--vert-clair); color: var(--vert); }
     .badge-pending { background: var(--orange-clair); color: var(--orange); }
     .badge-cancelled { background: var(--rouge-clair); color: var(--rouge); }
     .badge-micro { background: var(--bleu-clair); color: var(--bleu); }
     .badge-sap { background: #e8f5e9; color: #2e7d32; }
-
     .actions-cell { display: flex; gap: 6px; }
-
-    /* --- Filtres --- */
     .filters-bar {
       display: flex; flex-wrap: wrap; gap: 12px;
       margin-bottom: 20px; align-items: center;
@@ -239,8 +198,6 @@
       border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 0.9rem;
     }
     .filters-bar input:focus, .filters-bar select:focus { outline: none; border-color: var(--orange); }
-
-    /* --- Preview facture --- */
     .preview-section { display: none; }
     .preview-section.active { display: block; animation: fadeInUp 0.5s ease; }
     .facture-pdf { font-size: 0.95rem; line-height: 1.6; }
@@ -263,20 +220,15 @@
     .facture-total-box .amount { font-size: 1.8rem; font-weight: 700; color: var(--orange); }
     .facture-footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid #eee; display: grid; grid-template-columns: 1fr; gap: 20px; font-size: 0.85rem; color: var(--gris); }
     @media (min-width: 768px) { .facture-footer { grid-template-columns: 1fr 1fr; } }
-
     .sap-mention { background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: var(--radius-sm); padding: 16px; margin: 16px 0; }
     .sap-mention h4 { color: #2e7d32; margin-bottom: 8px; }
     .sap-mention p { font-size: 0.85rem; color: var(--noir); margin: 4px 0; }
-
-    /* --- Modal --- */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .modal-content { background: white; border-radius: var(--radius); padding: 32px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; animation: fadeInUp 0.3s ease; }
     .modal-content h3 { margin-bottom: 16px; }
     .modal-content p { color: var(--gris); margin-bottom: 24px; }
     .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
-
-    /* --- Section Clients --- */
     .client-card {
       background: var(--gris-clair); border-radius: var(--radius-sm);
       padding: 20px; margin-bottom: 12px;
@@ -292,28 +244,21 @@
       background: var(--orange-clair); color: var(--orange);
       padding: 2px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
     }
-
     .select-client {
       background: var(--blanc); border: 2px solid var(--orange); border-radius: var(--radius-sm);
       padding: 12px 14px; font-size: 1rem; font-weight: 600; color: var(--orange);
       cursor: pointer; width: 100%;
     }
     .select-client:focus { outline: none; box-shadow: 0 0 0 3px var(--orange-clair); }
-
     .client-fields { display: none; }
     .client-fields.active { display: block; animation: fadeIn 0.3s ease; }
-
     .empty-state { text-align:center; color:var(--gris); padding:40px; }
     .empty-state a { color:var(--orange); font-weight:600; }
-
-    /* --- Tags --- */
     .tag {
       display: inline-block; padding: 4px 12px; border-radius: 999px;
       font-size: 0.8rem; font-weight: 600; background: var(--rose-clair); color: var(--noir); margin: 2px;
     }
     .tag-orange { background: var(--orange-clair); color: #8B4513; }
-
-    /* --- Print --- */
     @media print {
       body * { visibility: hidden; }
       .preview-section, .preview-section * { visibility: visible; }
@@ -321,8 +266,6 @@
       .no-print, .nav-float { display: none !important; }
       @page { size: A4; margin: 15mm; }
     }
-
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       .nav-content { flex-wrap: wrap; height: auto; padding: 10px 0; gap: 8px; }
       .facture-pdf-header { flex-direction: column; gap: 20px; }
@@ -338,7 +281,6 @@
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav class="nav-float no-print">
     <div class="nav-content">
       <div class="nav-brand">🎵 Noriot Musique</div>
@@ -363,7 +305,6 @@
           <p>✅ Facture enregistree avec succes !</p>
         </div>
 
-        <!-- Mode SAP -->
         <div class="checkbox-row">
           <input type="checkbox" id="modeSAP" onchange="toggleSAP()">
           <div>
@@ -372,7 +313,6 @@
           </div>
         </div>
 
-        <!-- Infos emetteur -->
         <div class="info-box" id="infoEmetteur">
           <p><strong id="emetteurNom">Martin Noriot</strong> — <span id="emetteurCommercial">Noriot Musique</span></p>
           <p id="emetteurAdresse">22 rue Portalis, 13100 Aix-en-Provence</p>
@@ -381,7 +321,6 @@
           <p>📧 <span id="emetteurEmail">martin@noriot.fr</span> • 📞 <span id="emetteurTel">06 66 80 92 89</span></p>
         </div>
 
-        <!-- Infos facture -->
         <div class="form-grid">
           <div class="form-group">
             <label for="numero">N° facture *</label>
@@ -401,7 +340,6 @@
           </div>
         </div>
 
-        <!-- SELECTION CLIENT -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">👤 Beneficiaire (Client)</h3>
         
         <div class="form-group" style="margin-bottom: 16px;">
@@ -429,7 +367,6 @@
           </div>
         </div>
 
-        <!-- Champs SAP specifiques -->
         <div id="sapFields" style="display:none;">
           <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🏛️ Informations SAP</h3>
           <div class="form-grid">
@@ -469,14 +406,12 @@
           </div>
         </div>
 
-        <!-- Prestations -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🎵 Prestations</h3>
         <div id="lignesContainer"></div>
         <button type="button" class="btn btn-ghost" onclick="ajouterLigne()" style="width:100%; margin-top:8px;">
           ➕ Ajouter une prestation
         </button>
 
-        <!-- Decompte horaire SAP -->
         <div id="sapHoraire" style="display:none; margin-top:16px;">
           <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">⏱️ Decompte horaire (obligatoire SAP)</h3>
           <div class="form-grid cols-3">
@@ -495,7 +430,6 @@
           </div>
         </div>
 
-        <!-- Paiement -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">💳 Paiement</h3>
         <div class="form-grid">
           <div class="form-group">
@@ -519,13 +453,11 @@
           </div>
         </div>
 
-        <!-- Total -->
         <div class="total-box">
           <p style="font-size:0.9rem; color:var(--gris); margin-bottom:8px;">Total TTC</p>
           <div class="total-price" id="totalDisplay">0,00 €</div>
         </div>
 
-        <!-- Actions -->
         <div class="action-buttons">
           <button type="button" class="btn btn-primary" onclick="genererEtEnregistrer()">
             💾 Enregistrer & Imprimer
@@ -539,7 +471,6 @@
         </div>
       </div>
 
-      <!-- Preview -->
       <div class="preview-section card" id="previewSection">
         <div class="facture-pdf" id="facturePDF"></div>
       </div>
@@ -766,7 +697,7 @@
     </div>
   </div>
 
-  <!-- Modal Client (ajout / edition) -->
+  <!-- Modal Client -->
   <div class="modal-overlay no-print" id="modalClient">
     <div class="modal-content" style="max-width: 600px;">
       <h3 id="clientModalTitle">➕ Nouveau client</h3>
@@ -801,7 +732,6 @@
   </div>
 
   <script>
-    // ==================== CONFIG & DONNEES ====================
     const STORAGE_KEY = 'noriot_factures_v3';
     const PARAMS_KEY = 'noriot_params_v3';
     const CLIENTS_KEY = 'noriot_clients_v1';
@@ -832,7 +762,6 @@
       nomIntervenant: "Martin Noriot"
     };
 
-    // ==================== INITIALISATION ====================
     function init() {
       chargerDonnees();
       chargerParametres();
@@ -914,7 +843,6 @@
       document.getElementById('emetteurTel').textContent = params.telephone;
     }
 
-    // ==================== NAVIGATION ====================
     function showSection(id) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -924,7 +852,6 @@
       if (id === 'clients') renderClients();
     }
 
-    // ==================== CLIENTS ====================
     function chargerClients() {
       try { const data = localStorage.getItem(CLIENTS_KEY); if (data) clients = JSON.parse(data); }
       catch(e) { console.error('Erreur chargement clients', e); }
@@ -934,7 +861,6 @@
 
     function populateClientSelect() {
       const select = document.getElementById('selectClient');
-      // Garder les 2 premieres options
       const baseOptions = '<option value="">-- Choisir un client existant ou creer un nouveau --</option><option value="__new__">➕ Nouveau client</option>';
       const clientOptions = clients
         .sort((a, b) => a.nom.localeCompare(b.nom))
@@ -967,7 +893,6 @@
     }
 
     function getOrCreateClient(nom, email, adresse) {
-      // Cherche un client existant par nom + email (si email fourni) ou juste par nom
       let client = clients.find(c => {
         if (email && c.email) {
           return c.nom.toLowerCase().trim() === nom.toLowerCase().trim() && 
@@ -1004,7 +929,6 @@
       });
       filtered.sort((a, b) => a.nom.localeCompare(b.nom));
 
-      // Stats
       const clientsAvecFactures = new Set(factures.map(f => f.clientNom.toLowerCase().trim())).size;
       document.getElementById('statClientsTotal').textContent = clients.length;
       document.getElementById('statClientsFactures').textContent = clientsAvecFactures;
@@ -1087,10 +1011,8 @@
       if (!adresse) { alert('L\'adresse est obligatoire'); return; }
 
       if (editId) {
-        // Modification
         const client = clients.find(c => c.id == editId);
         if (client) {
-          // Verifier si le nom change et s'il est utilise dans des factures
           const oldNom = client.nom;
           const newNom = nom;
           
@@ -1101,7 +1023,6 @@
           client.notes = notes;
           client.updatedAt = new Date().toISOString();
 
-          // Mettre a jour les factures liees si le nom a change
           if (oldNom !== newNom) {
             factures.forEach(f => {
               if (f.clientNom === oldNom) f.clientNom = newNom;
@@ -1116,7 +1037,6 @@
           showAlert('Client modifie !');
         }
       } else {
-        // Nouveau
         const client = {
           id: Date.now(),
           nom, email, adresse, telephone, notes,
@@ -1138,7 +1058,6 @@
       const client = clients.find(c => c.id === id);
       if (!client) return;
 
-      // Verifier si le client a des factures
       const hasFactures = factures.some(f => f.clientNom.toLowerCase().trim() === client.nom.toLowerCase().trim());
       if (hasFactures) {
         alert('❌ Impossible de supprimer ce client car il est lie a des factures existantes. Supprime d\'abord ses factures.');
@@ -1167,7 +1086,6 @@
       downloadFile(csv, 'clients_noriot_' + new Date().toISOString().slice(0,10) + '.csv', 'text/csv');
     }
 
-    // ==================== FACTURE ====================
     function toggleSAP() {
       const isSAP = document.getElementById('modeSAP').checked;
       document.getElementById('sapFields').style.display = isSAP ? 'block' : 'none';
@@ -1175,9 +1093,9 @@
       const sapInfo = document.getElementById('sapEmetteurInfo');
       if (isSAP) {
         let html = '';
-        if (params.numeroSAP) html += 'N SAP : ' + params.numeroSAP + ' ';
+        if (params.numeroSAP) html += 'N° SAP : ' + params.numeroSAP + ' ';
         if (params.dateSAP) html += '(enregistre le ' + formatDate(params.dateSAP) + ')<br>';
-        if (params.numeroAgrement) html += 'N agreement : ' + params.numeroAgrement + '<br>';
+        if (params.numeroAgrement) html += 'N° agreement : ' + params.numeroAgrement + '<br>';
         if (params.numeroIntervenant) html += 'Intervenant : ' + params.nomIntervenant + ' (ID: ' + params.numeroIntervenant + ')';
         sapInfo.innerHTML = html || '<em>Infos SAP a completer dans les parametres</em>';
         sapInfo.style.display = 'block';
@@ -1267,7 +1185,6 @@
         }
       }
 
-      // Auto-ajout ou recuperation du client
       const client = getOrCreateClient(clientNom, clientEmail, clientAdresse);
 
       const total = calculerTotal();
@@ -1289,8 +1206,7 @@
         numeroAgrement: document.getElementById('numeroAgrement').value || params.numeroAgrement,
         dateAgrement: document.getElementById('dateAgrement').value || params.dateAgrement,
         numeroIntervenant: document.getElementById('numeroIntervenant').value || params.numeroIntervenant,
-        nomIntervenant: document.getElementById('nomIntervenant').value || params.nomInterven
-                nomIntervenant: document.getElementById('nomIntervenant').value || params.nomIntervenant,
+        nomIntervenant: document.getElementById('nomIntervenant').value || params.nomIntervenant,
         heuresRealisees: isSAP ? (document.getElementById('heuresRealisees').value || 0) : null,
         tauxHoraire: isSAP ? (document.getElementById('tauxHoraire').value || 0) : null,
         fraisDeplacement: isSAP ? (document.getElementById('fraisDeplacement').value || 0) : null,
@@ -1354,6 +1270,9 @@
         `;
       }
 
+      const pdf Voici la suite et fin du code :
+
+```javascript
       const pdfHTML = `
         <div class="facture-pdf-header">
           <div>${emetteurHTML}</div>
@@ -1460,7 +1379,6 @@
       };
     }
 
-    // ==================== COMPTABILITE ====================
     function renderComptabilite() {
       const search = document.getElementById('searchInput').value.toLowerCase();
       const statutFilter = document.getElementById('filterStatut').value;
@@ -1542,13 +1460,11 @@
       const f = factures.find(f => f.id === id);
       if (!f) return;
       
-      // Generer nouveau numero
       document.getElementById('numero').value = '';
       document.getElementById('date').valueAsDate = new Date();
       document.getElementById('datePrestation').value = f.datePrestation || '';
       document.getElementById('dateEcheance').value = f.dateEcheance || '';
       
-      // Selectionner le client dans la liste deroulante
       const client = clients.find(c => c.nom.toLowerCase().trim() === f.clientNom.toLowerCase().trim());
       if (client) {
         document.getElementById('selectClient').value = client.id;
@@ -1597,12 +1513,11 @@
         sauverDonnees();
         renderComptabilite();
         populateAnnees();
-        renderClients(); // Mettre a jour les compteurs de factures par client
+        renderClients();
         closeModal();
       });
     }
 
-    // ==================== EXPORT / IMPORT ====================
     function exporterCSV() {
       const f = getCurrentFormData();
       const csv = [
@@ -1680,19 +1595,16 @@
       });
     }
 
-    // ==================== UTILITAIRES ====================
     function formatEuro(value) {
       return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
     }
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      // Si c'est un ISO string complet
       if (dateStr.includes('T')) {
         const date = new Date(dateStr);
         return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
       }
-      // Sinon format YYYY-MM-DD
       const date = new Date(dateStr + 'T00:00:00');
       return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
     }
@@ -1758,7 +1670,6 @@
       modalCallback = null;
     }
 
-    // ==================== LANCEMENT ====================
     init();
   </script>
 </body>
