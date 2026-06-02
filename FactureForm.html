@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facture & Comptabilite — Noriot Musique</title>
+  <title>Facture & Comptabilité — Noriot Musique</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -221,8 +221,9 @@
       <div class="nav-brand">🎵 Noriot Musique</div>
       <div class="nav-tabs">
         <button class="nav-tab active" onclick="showSection('facture')" id="tab-facture">📄 Nouvelle Facture</button>
-        <button class="nav-tab" onclick="showSection('comptabilite')" id="tab-comptabilite">📊 Comptabilite</button>
-        <button class="nav-tab" onclick="showSection('parametres')" id="tab-parametres">⚙️ Parametres</button>
+        <button class="nav-tab" onclick="showSection('comptabilite')" id="tab-comptabilite">📊 Comptabilité</button>
+        <button class="nav-tab" onclick="showSection('clients')" id="tab-clients">👤 Clients</button>
+        <button class="nav-tab" onclick="showSection('parametres')" id="tab-parametres">⚙️ Paramètres</button>
       </div>
     </div>
   </nav>
@@ -233,10 +234,10 @@
     <div id="section-facture" class="section active">
       <div class="card no-print">
         <h2>📄 Nouvelle Facture</h2>
-        <p>Par defaut : facture standard micro-entreprise. Coche "SAP" pour le Service a la Personne.</p>
+        <p>Par défaut : facture standard micro-entreprise. Coche "SAP" pour le Service a la Personne.</p>
 
         <div class="alert-success" id="saveAlert">
-          <p>✅ Facture enregistree avec succes !</p>
+          <p>✅ Facture enregistrée avec succès !</p>
         </div>
 
         <!-- Mode SAP -->
@@ -244,7 +245,7 @@
           <input type="checkbox" id="modeSAP" onchange="toggleSAP()">
           <div>
             <label for="modeSAP">Mode Service a la Personne (SAP)</label>
-            <p>Ajoute les mentions legales obligatoires pour les services eligibles au credit d'impot / CESU</p>
+            <p>Ajoute les mentions legales obligatoires pour les services éligibles au crédit d'impôt / CESU</p>
           </div>
         </div>
 
@@ -264,7 +265,7 @@
             <input type="text" id="numero" placeholder="2026-001" required>
           </div>
           <div class="form-group">
-            <label for="date">Date d'emission *</label>
+            <label for="date">Date d'émission *</label>
             <input type="date" id="date" required>
           </div>
           <div class="form-group">
@@ -272,14 +273,23 @@
             <input type="date" id="datePrestation">
           </div>
           <div class="form-group">
-            <label for="dateEcheance">Date d'echeance</label>
+            <label for="dateEcheance">Date d'échéance</label>
             <input type="date" id="dateEcheance">
           </div>
         </div>
 
         <!-- Infos client -->
-        <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">👤 Beneficiaire (Client)</h3>
+        <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">👤 Bénéficiaire (Client)</h3>
         <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="clientSelect">Client enregistré</label>
+            <select id="clientSelect" onchange="selectionnerClient(this.value)">
+              <option value="">Nouveau client / saisie libre</option>
+            </select>
+            <div class="placeholder-info">
+              Sélectionner un client remplit les champs sans supprimer une saisie en cours. Les champs restent toujours modifiables.
+            </div>
+          </div>
           <div class="form-group">
             <label for="clientNom">Nom complet / Denomination *</label>
             <input type="text" id="clientNom" placeholder="Camille Dupont" required>
@@ -294,16 +304,20 @@
 13100 Aix-en-Provence" required></textarea>
           </div>
         </div>
+        <div class="action-buttons" style="margin-top:12px;">
+          <button type="button" class="btn btn-ghost" onclick="enregistrerClientDepuisFacture()">💾 Enregistrer le client</button>
+          <button type="button" class="btn btn-ghost" onclick="nouveauClientFacture()">➕ Nouveau client</button>
+        </div>
 
-        <!-- Champs SAP specifiques -->
+        <!-- Champs SAP spécifiques -->
         <div id="sapFields" style="display:none;">
           <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🏛️ Informations SAP</h3>
           <div class="form-grid">
             <div class="form-group">
-              <label for="numeroSAP">N° SAP (declaration) *</label>
+              <label for="numeroSAP">N° SAP (déclaration) *</label>
               <input type="text" id="numeroSAP" placeholder="SAP-XXXX-XXXX">
               <div class="placeholder-info">
-                💡 A renseigner quand tu recevras ton numero de declaration SAP sur servicesalapersonne.gouv.fr
+                💡 A renseigner quand tu recevras ton numéro de déclaration SAP sur servicesalapersonne.gouv.fr
               </div>
             </div>
             <div class="form-group">
@@ -311,21 +325,21 @@
               <input type="date" id="dateSAP">
             </div>
             <div class="form-group">
-              <label for="numeroAgrement">N° d'agrement qualite (si applicable)</label>
+              <label for="numeroAgrement">N° d'agrément qualité (si applicable)</label>
               <input type="text" id="numeroAgrement" placeholder="AQ-XXXX-XXXX">
               <div class="placeholder-info">
                 💡 Seulement si tu demandes un agreement pour publics fragiles. Laisse vide si simple declaration.
               </div>
             </div>
             <div class="form-group">
-              <label for="dateAgrement">Date d'agrement</label>
+              <label for="dateAgrement">Date d'agrément</label>
               <input type="date" id="dateAgrement">
             </div>
             <div class="form-group">
               <label for="numeroIntervenant">N° d'immatriculation de l'intervenant *</label>
               <input type="text" id="numeroIntervenant" placeholder="ID-XXXX-XXXX">
               <div class="placeholder-info">
-                💡 Numero d'identification dans le registre des intervenants SAP. A demander lors de l'inscription.
+                💡 Numéro d'identification dans le registre des intervenants SAP. A demander lors de l'inscription.
               </div>
             </div>
             <div class="form-group">
@@ -342,12 +356,12 @@
           ➕ Ajouter une prestation
         </button>
 
-        <!-- Decompte horaire SAP -->
+        <!-- Décompte horaire SAP -->
         <div id="sapHoraire" style="display:none; margin-top:16px;">
-          <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">⏱️ Decompte horaire (obligatoire SAP)</h3>
+          <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">⏱️ Décompte horaire (obligatoire SAP)</h3>
           <div class="form-grid cols-3">
             <div class="form-group">
-              <label for="heuresRealisees">Heures realisees</label>
+              <label for="heuresRealisees">Heures réalisées</label>
               <input type="number" id="heuresRealisees" min="0" step="0.5" value="1" placeholder="1">
             </div>
             <div class="form-group">
@@ -355,7 +369,7 @@
               <input type="number" id="tauxHoraire" min="0" step="0.01" value="40" placeholder="40">
             </div>
             <div class="form-group">
-              <label for="fraisDeplacement">Frais de deplacement (€)</label>
+              <label for="fraisDeplacement">Frais de déplacement (€)</label>
               <input type="number" id="fraisDeplacement" min="0" step="0.01" value="0" placeholder="0">
             </div>
           </div>
@@ -368,18 +382,18 @@
             <label for="modePaiement">Mode de paiement</label>
             <select id="modePaiement">
               <option value="virement">Virement bancaire</option>
-              <option value="especes">Especes</option>
-              <option value="cheque">Cheque</option>
+              <option value="especes">Espèces</option>
+              <option value="cheque">Chèque</option>
               <option value="carte">Carte bancaire</option>
               <option value="cesu">CESU prefiance</option>
-              <option value="cheque_emploi">Cheque emploi service universel</option>
+              <option value="cheque_emploi">Chèque emploi service universel</option>
             </select>
           </div>
           <div class="form-group">
             <label for="statutPaiement">Statut</label>
             <select id="statutPaiement">
               <option value="en_attente">En attente</option>
-              <option value="payee">Payee</option>
+              <option value="payee">Payée</option>
               <option value="annulee">Annulee</option>
             </select>
           </div>
@@ -414,7 +428,7 @@
     <!-- SECTION COMPTABILITE -->
     <div id="section-comptabilite" class="section">
       <div class="card">
-        <h2>📊 Comptabilite</h2>
+        <h2>📊 Comptabilité</h2>
         <p>Suivi de toutes tes factures. Tri, recherche, export.</p>
 
         <div class="stats-grid">
@@ -424,11 +438,11 @@
           </div>
           <div class="stat-card">
             <div class="value" id="statCount">0</div>
-            <div class="label">Factures emises</div>
+            <div class="label">Factures émises</div>
           </div>
           <div class="stat-card">
             <div class="value" id="statPaid">0 €</div>
-            <div class="label">Encaisse</div>
+            <div class="label">Encaissé</div>
           </div>
           <div class="stat-card">
             <div class="value" id="statPending">0 €</div>
@@ -441,11 +455,11 @@
           <select id="filterStatut" onchange="renderComptabilite()">
             <option value="">Tous les statuts</option>
             <option value="en_attente">En attente</option>
-            <option value="payee">Payee</option>
+            <option value="payee">Payée</option>
             <option value="annulee">Annulee</option>
           </select>
           <select id="filterAnnee" onchange="renderComptabilite()">
-            <option value="">Toutes les annees</option>
+            <option value="">Toutes les années</option>
           </select>
           <select id="filterMode" onchange="renderComptabilite()">
             <option value="">Tous les types</option>
@@ -474,18 +488,71 @@
           </table>
         </div>
         <p id="emptyState" style="text-align:center; color:var(--gris); padding:40px; display:none;">
-          Aucune facture enregistree. <a href="#" onclick="showSection('facture')" style="color:var(--orange);">Cree ta premiere facture</a>.
+          Aucune facture enregistrée. <a href="#" onclick="showSection('facture')" style="color:var(--orange);">Crée ta première facture</a>.
         </p>
+      </div>
+    </div>
+
+
+    <!-- SECTION CLIENTS -->
+    <div id="section-clients" class="section">
+      <div class="card">
+        <h2>👤 Clients</h2>
+        <p>Gestion simple des beneficiaires. Les factures gardent un instantane du client au moment de l'emission.</p>
+
+        <div class="filters-bar no-print">
+          <input type="text" id="clientSearchInput" placeholder="🔍 Rechercher un client..." oninput="renderClients()">
+          <button class="btn btn-sm" style="background:var(--orange); color:white;" onclick="nouveauClientCRM()">➕ Nouveau client</button>
+        </div>
+
+        <div class="form-grid" style="margin-top:18px;">
+          <input type="hidden" id="crmClientId">
+          <div class="form-group">
+            <label for="crmClientNom">Nom complet / Denomination *</label>
+            <input type="text" id="crmClientNom" placeholder="Camille Dupont">
+          </div>
+          <div class="form-group">
+            <label for="crmClientEmail">Email</label>
+            <input type="email" id="crmClientEmail" placeholder="camille@email.com">
+          </div>
+          <div class="form-group full-width">
+            <label for="crmClientAdresse">Adresse complete</label>
+            <textarea id="crmClientAdresse" placeholder="12 rue des Lilas
+13100 Aix-en-Provence"></textarea>
+          </div>
+        </div>
+
+        <div class="action-buttons" style="margin-top:16px;">
+          <button class="btn" style="background:var(--orange); color:white;" onclick="sauverClientCRM()">💾 Sauvegarder client</button>
+          <button class="btn btn-ghost" onclick="utiliserClientDansFacture()">📄 Utiliser dans facture</button>
+          <button class="btn btn-danger" onclick="supprimerClientCRM()">🗑️ Supprimer client</button>
+        </div>
+
+        <div class="table-wrap" style="margin-top:24px;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Factures</th>
+                <th class="no-print">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="clientsBody"></tbody>
+          </table>
+        </div>
+        <p id="clientsEmptyState" style="text-align:center; color:var(--gris); padding:40px; display:none;">Aucun client enregistre.</p>
       </div>
     </div>
 
     <!-- SECTION PARAMETRES -->
     <div id="section-parametres" class="section">
       <div class="card">
-        <h2>⚙️ Parametres</h2>
+        <h2>⚙️ Paramètres</h2>
         <p>Configure tes informations et les options SAP.</p>
 
-        <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🏢 Informations generales</h3>
+        <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🏢 Informations générales</h3>
         <div class="form-grid">
           <div class="form-group">
             <label>Nom complet</label>
@@ -513,7 +580,7 @@
             <input type="email" id="paramEmail" value="martin@noriot.fr">
           </div>
           <div class="form-group">
-            <label>Telephone</label>
+            <label>Téléphone</label>
             <input type="text" id="paramTel" value="06 66 80 92 89">
           </div>
           <div class="form-group">
@@ -533,7 +600,7 @@
         <h3 style="margin: 32px 0 16px; font-size: 1.1rem;">🏛️ Informations Service a la Personne (SAP)</h3>
         <div class="form-grid">
           <div class="form-group">
-            <label>N° SAP (declaration)</label>
+            <label>N° SAP (déclaration)</label>
             <input type="text" id="paramNumeroSAP" placeholder="SAP-XXXX-XXXX">
             <div class="placeholder-info">
               💡 Tu recevras ce numero apres validation de ta declaration sur servicesalapersonne.gouv.fr
@@ -544,7 +611,7 @@
             <input type="date" id="paramDateSAP">
           </div>
           <div class="form-group">
-            <label>N° d'agrement qualite (optionnel)</label>
+            <label>N° d'agrément qualité (optionnel)</label>
             <input type="text" id="paramNumeroAgrement" placeholder="AQ-XXXX-XXXX">
             <div class="placeholder-info">
               💡 Seulement si tu demandes un agreement pour publics fragiles (handicap, personnes agees...)
@@ -558,7 +625,7 @@
             <label>N° d'immatriculation intervenant</label>
             <input type="text" id="paramNumeroIntervenant" placeholder="ID-XXXX-XXXX">
             <div class="placeholder-info">
-              💡 Numero d'identification dans le registre des intervenants SAP
+              💡 Numéro d'identification dans le registre des intervenants SAP
             </div>
           </div>
           <div class="form-group">
@@ -600,16 +667,20 @@
 
   <script>
     // ==================== CONFIG & DONNEES ====================
+    const APP_KEY = 'noriot_app_v4';
     const STORAGE_KEY = 'noriot_factures_v3';
     const PARAMS_KEY = 'noriot_params_v3';
 
+    let clients = [];
     let factures = [];
-    let lignes = [{ id: 1, description: "Cours de musique", details: "", quantite: 1, prix: 40 }];
+    let parametres = {};
+    let lignes = [{ id: 'ligne-1', description: "Cours de musique", details: "", quantite: 1, prix: 40 }];
     let sortCol = 'date';
     let sortAsc = false;
     let modalCallback = null;
+    let selectedClientId = '';
 
-    let params = {
+    const defaultParams = {
       nom: "Martin Noriot",
       commercial: "Noriot Musique",
       adresse: "22 rue Portalis\n13100 Aix-en-Provence",
@@ -627,33 +698,118 @@
       numeroIntervenant: "",
       nomIntervenant: "Martin Noriot"
     };
+    let params = { ...defaultParams };
+    parametres = params;
 
     // ==================== INITIALISATION ====================
     function init() {
       chargerDonnees();
-      chargerParametres();
       renderLignes();
       setToday();
+      autoNumeroFacture();
       updateEmetteurDisplay();
+      renderClientSelect();
+      renderClients();
       renderComptabilite();
       populateAnnees();
+      bindLiveCalculations();
     }
 
-    function setToday() { document.getElementById('date').valueAsDate = new Date(); }
+    function uid(prefix) {
+      if (window.crypto && crypto.randomUUID) return prefix + '-' + crypto.randomUUID();
+      return prefix + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+    }
+
+    function normalizeId(id) { return String(id || ''); }
+    function getClientById(id) { return clients.find(c => normalizeId(c.id) === normalizeId(id)); }
+    function clientName(f) { return (f.clientSnapshot && f.clientSnapshot.nom) || f.clientNom || ''; }
+    function clientEmail(f) { return (f.clientSnapshot && f.clientSnapshot.email) || f.clientEmail || ''; }
+    function clientAdresse(f) { return (f.clientSnapshot && f.clientSnapshot.adresse) || f.clientAdresse || ''; }
+
+    function migrateFacture(raw) {
+      const now = new Date().toISOString();
+      const clientSnapshot = raw.clientSnapshot || {
+        nom: raw.clientNom || '',
+        email: raw.clientEmail || '',
+        adresse: raw.clientAdresse || ''
+      };
+      let clientId = normalizeId(raw.clientId);
+      if (!clientId && clientSnapshot.nom) {
+        const nomKey = clientSnapshot.nom.trim().toLowerCase();
+        const emailKey = (clientSnapshot.email || '').trim().toLowerCase();
+        let client = clients.find(c => c.nom.trim().toLowerCase() === nomKey && (c.email || '').trim().toLowerCase() === emailKey);
+        if (!client) {
+          client = {
+            id: uid('client'),
+            nom: clientSnapshot.nom,
+            email: clientSnapshot.email || '',
+            adresse: clientSnapshot.adresse || '',
+            createdAt: raw.createdAt || now,
+            updatedAt: now
+          };
+          clients.push(client);
+        }
+        clientId = client.id;
+      }
+      return {
+        ...raw,
+        id: normalizeId(raw.id || uid('facture')),
+        numero: raw.numero || '',
+        date: raw.date || now.slice(0, 10),
+        clientId,
+        clientSnapshot,
+        clientNom: clientSnapshot.nom,
+        clientEmail: clientSnapshot.email,
+        clientAdresse: clientSnapshot.adresse,
+        lignes: Array.isArray(raw.lignes) ? raw.lignes : [],
+        total: Number(raw.total) || 0,
+        statut: raw.statut || raw.statutPaiement || 'en_attente',
+        statutPaiement: raw.statutPaiement || raw.statut || 'en_attente',
+        modePaiement: raw.modePaiement || 'virement',
+        isSAP: Boolean(raw.isSAP || raw.sapMode),
+        sapMode: Boolean(raw.isSAP || raw.sapMode),
+        createdAt: raw.createdAt || now
+      };
+    }
 
     function chargerDonnees() {
-      try { const data = localStorage.getItem(STORAGE_KEY); if (data) factures = JSON.parse(data); }
-      catch(e) { console.error('Erreur chargement', e); }
+      let appData = null;
+      try {
+        const saved = localStorage.getItem(APP_KEY);
+        if (saved) appData = JSON.parse(saved);
+      } catch(e) { console.error('Erreur chargement app', e); }
+
+      if (appData) {
+        clients = Array.isArray(appData.clients) ? appData.clients.map(c => ({
+          id: normalizeId(c.id || uid('client')),
+          nom: c.nom || '',
+          email: c.email || '',
+          adresse: c.adresse || '',
+          createdAt: c.createdAt || new Date().toISOString(),
+          updatedAt: c.updatedAt || c.createdAt || new Date().toISOString()
+        })) : [];
+        factures = Array.isArray(appData.factures) ? appData.factures.map(migrateFacture) : [];
+        params = { ...defaultParams, ...(appData.parametres || appData.params || {}) };
+      } else {
+        try {
+          const oldParams = localStorage.getItem(PARAMS_KEY);
+          if (oldParams) params = { ...defaultParams, ...JSON.parse(oldParams) };
+        } catch(e) { console.error('Erreur params', e); }
+        try {
+          const oldFactures = localStorage.getItem(STORAGE_KEY);
+          factures = oldFactures ? JSON.parse(oldFactures).map(migrateFacture) : [];
+        } catch(e) { console.error('Erreur factures', e); factures = []; }
+      }
+      parametres = params;
+      applyParamsToForm();
+      sauverDonnees();
     }
 
-    function sauverDonnees() { localStorage.setItem(STORAGE_KEY, JSON.stringify(factures)); }
-
-    function chargerParametres() {
-      try {
-        const data = localStorage.getItem(PARAMS_KEY);
-        if (data) { const saved = JSON.parse(data); params = { ...params, ...saved }; }
-      } catch(e) { console.error('Erreur params', e); }
-      applyParamsToForm();
+    function sauverDonnees() {
+      parametres = params;
+      localStorage.setItem(APP_KEY, JSON.stringify({ clients, factures, parametres, updatedAt: new Date().toISOString() }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(factures));
+      localStorage.setItem(PARAMS_KEY, JSON.stringify(params));
     }
 
     function sauverParametres() {
@@ -673,7 +829,7 @@
       params.dateAgrement = document.getElementById('paramDateAgrement').value;
       params.numeroIntervenant = document.getElementById('paramNumeroIntervenant').value;
       params.nomIntervenant = document.getElementById('paramNomIntervenant').value;
-      localStorage.setItem(PARAMS_KEY, JSON.stringify(params));
+      sauverDonnees();
       updateEmetteurDisplay();
       showAlert('Parametres sauvegardes !');
     }
@@ -707,12 +863,25 @@
       document.getElementById('emetteurTel').textContent = params.telephone;
     }
 
+    function setToday() { if (!document.getElementById('date').value) document.getElementById('date').valueAsDate = new Date(); }
+
+    function autoNumeroFacture() {
+      const input = document.getElementById('numero');
+      if (input.value.trim()) return;
+      const year = new Date().getFullYear().toString();
+      const max = factures.map(f => String(f.numero || '')).filter(n => n.startsWith(year + '-'))
+        .map(n => Number(n.split('-')[1])).filter(n => !Number.isNaN(n)).reduce((m, n) => Math.max(m, n), 0);
+      input.value = year + '-' + String(max + 1).padStart(3, '0');
+    }
+
     function showSection(id) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       document.getElementById('section-' + id).classList.add('active');
-      document.getElementById('tab-' + id).classList.add('active');
+      const tab = document.getElementById('tab-' + id);
+      if (tab) tab.classList.add('active');
       if (id === 'comptabilite') renderComptabilite();
+      if (id === 'clients') renderClients();
     }
 
     function toggleSAP() {
@@ -722,42 +891,189 @@
       const sapInfo = document.getElementById('sapEmetteurInfo');
       if (isSAP) {
         let html = '';
-        if (params.numeroSAP) html += 'N SAP : ' + params.numeroSAP + ' ';
+        if (params.numeroSAP) html += 'N SAP : ' + escapeHTML(params.numeroSAP) + ' ';
         if (params.dateSAP) html += '(enregistre le ' + formatDate(params.dateSAP) + ')<br>';
-        if (params.numeroAgrement) html += 'N agreement : ' + params.numeroAgrement + '<br>';
-        if (params.numeroIntervenant) html += 'Intervenant : ' + params.nomIntervenant + ' (ID: ' + params.numeroIntervenant + ')';
+        if (params.numeroAgrement) html += 'N agrement : ' + escapeHTML(params.numeroAgrement) + '<br>';
+        if (params.numeroIntervenant) html += 'Intervenant : ' + escapeHTML(params.nomIntervenant) + ' (ID: ' + escapeHTML(params.numeroIntervenant) + ')';
         sapInfo.innerHTML = html || '<em>Infos SAP a completer dans les parametres</em>';
         sapInfo.style.display = 'block';
       } else {
         sapInfo.style.display = 'none';
       }
+      calculerTotal();
     }
 
+    // ==================== CLIENTS ====================
+    function getClientFormData(prefix) {
+      return {
+        nom: document.getElementById(prefix + 'ClientNom').value.trim(),
+        email: document.getElementById(prefix + 'ClientEmail').value.trim(),
+        adresse: document.getElementById(prefix + 'ClientAdresse').value.trim()
+      };
+    }
+
+    function renderClientSelect() {
+      const select = document.getElementById('clientSelect');
+      if (!select) return;
+      const current = selectedClientId || select.value;
+      select.innerHTML = '<option value="">Nouveau client / saisie libre</option>' + clients.slice()
+        .sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))
+        .map(c => '<option value="' + escapeAttr(c.id) + '">' + escapeHTML(c.nom || 'Sans nom') + (c.email ? ' - ' + escapeHTML(c.email) : '') + '</option>')
+        .join('');
+      select.value = current;
+    }
+
+    function selectionnerClient(id) {
+      selectedClientId = normalizeId(id);
+      if (!selectedClientId) return;
+      const client = getClientById(selectedClientId);
+      if (!client) return;
+      document.getElementById('clientNom').value = client.nom || '';
+      document.getElementById('clientEmail').value = client.email || '';
+      document.getElementById('clientAdresse').value = client.adresse || '';
+    }
+
+    function nouveauClientFacture() {
+      selectedClientId = '';
+      document.getElementById('clientSelect').value = '';
+      showAlert('Mode nouveau client active. Les champs saisis sont conserves.');
+    }
+
+    function upsertClient(data, id) {
+      const now = new Date().toISOString();
+      let client = id ? getClientById(id) : null;
+      if (client) {
+        client.nom = data.nom;
+        client.email = data.email;
+        client.adresse = data.adresse;
+        client.updatedAt = now;
+      } else {
+        client = { id: uid('client'), nom: data.nom, email: data.email, adresse: data.adresse, createdAt: now, updatedAt: now };
+        clients.push(client);
+      }
+      sauverDonnees();
+      renderClientSelect();
+      renderClients();
+      return client;
+    }
+
+    function enregistrerClientDepuisFacture() {
+      const data = getClientFormData('');
+      if (!data.nom) { alert('Nom du client obligatoire'); return; }
+      const client = upsertClient(data, selectedClientId);
+      selectedClientId = client.id;
+      renderClientSelect();
+      document.getElementById('clientSelect').value = client.id;
+      showAlert('Client enregistré !');
+    }
+
+    function renderClients() {
+      const tbody = document.getElementById('clientsBody');
+      if (!tbody) return;
+      const search = (document.getElementById('clientSearchInput').value || '').toLowerCase();
+      const filtered = clients.filter(c => [c.nom, c.email, c.adresse].join(' ').toLowerCase().includes(search));
+      document.getElementById('clientsEmptyState').style.display = filtered.length ? 'none' : 'block';
+      tbody.innerHTML = filtered.slice().sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(c => {
+        const count = factures.filter(f => normalizeId(f.clientId) === normalizeId(c.id)).length;
+        return '<tr>' +
+          '<td><strong>' + escapeHTML(c.nom || 'Sans nom') + '</strong></td>' +
+          '<td>' + escapeHTML(c.email || '') + '</td>' +
+          '<td>' + escapeHTML(c.adresse || '').replace(/\n/g, '<br>') + '</td>' +
+          '<td>' + count + '</td>' +
+          '<td class="actions-cell no-print">' +
+            '<button class="btn btn-icon btn-sm" onclick="editerClientCRM(\'' + escapeAttr(c.id) + '\')" title="Modifier">✏️</button>' +
+            '<button class="btn btn-icon btn-sm" onclick="selectionnerClientCRM(\'' + escapeAttr(c.id) + '\')" title="Utiliser">📄</button>' +
+          '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function nouveauClientCRM() {
+      document.getElementById('crmClientId').value = '';
+      document.getElementById('crmClientNom').value = '';
+      document.getElementById('crmClientEmail').value = '';
+      document.getElementById('crmClientAdresse').value = '';
+      document.getElementById('crmClientNom').focus();
+    }
+
+    function editerClientCRM(id) {
+      const client = getClientById(id);
+      if (!client) return;
+      document.getElementById('crmClientId').value = client.id;
+      document.getElementById('crmClientNom').value = client.nom || '';
+      document.getElementById('crmClientEmail').value = client.email || '';
+      document.getElementById('crmClientAdresse').value = client.adresse || '';
+    }
+
+    function sauverClientCRM() {
+      const data = getClientFormData('crm');
+      if (!data.nom) { alert('Nom du client obligatoire'); return; }
+      const client = upsertClient(data, document.getElementById('crmClientId').value);
+      document.getElementById('crmClientId').value = client.id;
+      showAlert('Client enregistré !');
+    }
+
+    function supprimerClientCRM() {
+      const id = document.getElementById('crmClientId').value;
+      if (!id) { alert('Selectionne un client a supprimer'); return; }
+      const count = factures.filter(f => normalizeId(f.clientId) === normalizeId(id)).length;
+      const message = count ? 'Ce client est lie a ' + count + ' facture(s). Les factures garderont leur snapshot historique. Supprimer le client ?' : 'Supprimer ce client ?';
+      openModal(message, () => {
+        clients = clients.filter(c => normalizeId(c.id) !== normalizeId(id));
+        if (selectedClientId === id) selectedClientId = '';
+        sauverDonnees();
+        nouveauClientCRM();
+        renderClientSelect();
+        renderClients();
+        closeModal();
+        showAlert('Client supprime.');
+      });
+    }
+
+    function selectionnerClientCRM(id) {
+      const client = getClientById(id);
+      if (!client) return;
+      selectedClientId = client.id;
+      document.getElementById('clientSelect').value = client.id;
+      document.getElementById('clientNom').value = client.nom || '';
+      document.getElementById('clientEmail').value = client.email || '';
+      document.getElementById('clientAdresse').value = client.adresse || '';
+      showSection('facture');
+      showAlert('Client selectionne pour la facture.');
+    }
+
+    function utiliserClientDansFacture() {
+      const id = document.getElementById('crmClientId').value;
+      if (!id) { alert('Selectionne ou sauvegarde un client'); return; }
+      selectionnerClientCRM(id);
+    }
+
+    // ==================== LIGNES & TOTAL ====================
     function renderLignes() {
       const container = document.getElementById('lignesContainer');
       container.innerHTML = lignes.map((ligne, index) => `
         <div class="ligne-presta">
           <div class="ligne-header">
             <span>Prestation ${index + 1}</span>
-            ${lignes.length > 1 ? `<button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne(${ligne.id})" title="Supprimer">🗑️</button>` : ''}
+            ${lignes.length > 1 ? `<button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne('${ligne.id}')" title="Supprimer">ðŸ—‘ï¸</button>` : ''}
           </div>
           <div class="form-grid cols-3">
             <div class="form-group">
               <label>Description *</label>
-              <input type="text" value="${ligne.description}" onchange="updateLigne(${ligne.id}, 'description', this.value)" placeholder="Ex : Cours de musique - Mai 2026" required>
+              <input type="text" value="${escapeAttr(ligne.description)}" oninput="updateLigne('${ligne.id}', 'description', this.value)" placeholder="Ex : Cours de musique - Mai 2026" required>
             </div>
             <div class="form-group">
               <label>Quantite *</label>
-              <input type="number" min="1" value="${ligne.quantite}" onchange="updateLigne(${ligne.id}, 'quantite', this.value)" required>
+              <input type="number" min="0" step="0.01" value="${Number(ligne.quantite) || 0}" oninput="updateLigne('${ligne.id}', 'quantite', this.value)" required>
             </div>
             <div class="form-group">
               <label>Prix unitaire TTC (€) *</label>
-              <input type="number" min="0" step="0.01" value="${ligne.prix}" onchange="updateLigne(${ligne.id}, 'prix', this.value)" required>
+              <input type="number" min="0" step="0.01" value="${Number(ligne.prix) || 0}" oninput="updateLigne('${ligne.id}', 'prix', this.value)" required>
             </div>
           </div>
           <div class="form-group" style="margin-top:12px;">
             <label>Details (optionnel)</label>
-            <input type="text" value="${ligne.details}" onchange="updateLigne(${ligne.id}, 'details', this.value)" placeholder="Ex : 4 seances individuelles">
+            <input type="text" value="${escapeAttr(ligne.details)}" oninput="updateLigne('${ligne.id}', 'details', this.value)" placeholder="Ex : 4 seances individuelles">
           </div>
         </div>
       `).join('');
@@ -765,67 +1081,65 @@
     }
 
     function updateLigne(id, field, value) {
-      const ligne = lignes.find(l => l.id === id);
+      const ligne = lignes.find(l => normalizeId(l.id) === normalizeId(id));
       if (ligne) {
-        ligne[field] = field === 'description' || field === 'details' ? value : Number(value);
+        ligne[field] = field === 'description' || field === 'details' ? value : Number(value) || 0;
         calculerTotal();
       }
     }
 
     function ajouterLigne() {
-      const newId = lignes.length > 0 ? Math.max(...lignes.map(l => l.id)) + 1 : 1;
-      lignes.push({ id: newId, description: "Cours de musique", details: "", quantite: 1, prix: 40 });
+      lignes.push({ id: uid('ligne'), description: "Cours de musique", details: "", quantite: 1, prix: 40 });
       renderLignes();
     }
 
     function supprimerLigne(id) {
-      lignes = lignes.filter(l => l.id !== id);
-      renderLignes();
+      lignes = lignes.filter(l => normalizeId(l.id) !== normalizeId(id));
+      if (!lignes.length) ajouterLigne();
+      else renderLignes();
     }
 
     function calculerTotal() {
       const isSAP = document.getElementById('modeSAP').checked;
-      let total = lignes.reduce((sum, l) => sum + (l.quantite * l.prix), 0);
-      if (isSAP) {
-        const frais = Number(document.getElementById('fraisDeplacement').value) || 0;
-        total += frais;
-      }
+      let total = lignes.reduce((sum, l) => sum + ((Number(l.quantite) || 0) * (Number(l.prix) || 0)), 0);
+      if (isSAP) total += Number(document.getElementById('fraisDeplacement').value) || 0;
       document.getElementById('totalDisplay').textContent = formatEuro(total);
       return total;
     }
 
-    function genererEtEnregistrer() {
-      const numero = document.getElementById('numero').value.trim();
-      const date = document.getElementById('date').value;
-      const clientNom = document.getElementById('clientNom').value.trim();
-      const clientAdresse = document.getElementById('clientAdresse').value.trim();
+    function bindLiveCalculations() {
+      ['fraisDeplacement', 'heuresRealisees', 'tauxHoraire'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', calculerTotal);
+      });
+    }
+
+    // ==================== FACTURES ====================
+    function buildFactureFromForm() {
       const isSAP = document.getElementById('modeSAP').checked;
-
-      if (!numero) { alert('N facture obligatoire'); return; }
-      if (!date) { alert('Date obligatoire'); return; }
-      if (!clientNom) { alert('Nom du client obligatoire'); return; }
-      if (!clientAdresse) { alert('Adresse du client obligatoire'); return; }
-
-      if (isSAP) {
-        if (!document.getElementById('numeroSAP').value.trim() && !params.numeroSAP) {
-          alert('N SAP obligatoire en mode Service a la Personne. Renseigne-le dans le formulaire ou dans les parametres.');
-          return;
-        }
-      }
-
-      const total = calculerTotal();
-      const facture = {
-        id: Date.now(),
-        numero, date,
+      const snapshot = {
+        nom: document.getElementById('clientNom').value.trim(),
+        email: document.getElementById('clientEmail').value.trim(),
+        adresse: document.getElementById('clientAdresse').value.trim()
+      };
+      const selectedClient = selectedClientId ? getClientById(selectedClientId) : null;
+      return {
+        id: uid('facture'),
+        numero: document.getElementById('numero').value.trim(),
+        date: document.getElementById('date').value,
         datePrestation: document.getElementById('datePrestation').value,
         dateEcheance: document.getElementById('dateEcheance').value,
-        clientNom,
-        clientEmail: document.getElementById('clientEmail').value,
-        clientAdresse,
+        clientId: selectedClient ? selectedClient.id : '',
+        clientSnapshot: snapshot,
+        clientNom: snapshot.nom,
+        clientEmail: snapshot.email,
+        clientAdresse: snapshot.adresse,
         lignes: JSON.parse(JSON.stringify(lignes)),
-        total,
-        modePaiement: document.getElementById('modePaiement').value,
+        total: calculerTotal(),
+        statutPaiement: document.getElementById('statutPaiement').value,
         statut: document.getElementById('statutPaiement').value,
+        modePaiement: document.getElementById('modePaiement').value,
+        sapMode: isSAP,
         isSAP,
         numeroSAP: document.getElementById('numeroSAP').value || params.numeroSAP,
         dateSAP: document.getElementById('dateSAP').value || params.dateSAP,
@@ -838,223 +1152,177 @@
         fraisDeplacement: isSAP ? (document.getElementById('fraisDeplacement').value || 0) : null,
         createdAt: new Date().toISOString()
       };
+    }
 
-      if (factures.find(f => f.numero === numero)) {
-        if (!confirm('Une facture avec ce numero existe deja. Continuer ?')) return;
+    function validateFacture(facture) {
+      if (!facture.numero) return 'N facture obligatoire';
+      if (!facture.date) return 'Date obligatoire';
+      if (!facture.clientSnapshot.nom) return 'Nom du client obligatoire';
+      if (!facture.clientSnapshot.adresse) return 'Adresse du client obligatoire';
+      if (factures.some(f => String(f.numero).trim().toLowerCase() === facture.numero.toLowerCase())) return 'Ce numero de facture existe deja. Choisis un autre numero.';
+      if (!facture.lignes.length || facture.lignes.some(l => !String(l.description || '').trim())) return 'Chaque prestation doit avoir une description.';
+      if (facture.isSAP && !facture.numeroSAP) return 'N SAP obligatoire en mode Service a la Personne. Renseigne-le dans le formulaire ou dans les parametres.';
+      return '';
+    }
+
+    function genererEtEnregistrer() {
+      const facture = buildFactureFromForm();
+      const erreur = validateFacture(facture);
+      if (erreur) { alert(erreur); return; }
+      if (!facture.clientId) {
+        const client = upsertClient(facture.clientSnapshot, '');
+        facture.clientId = client.id;
+        selectedClientId = client.id;
+        renderClientSelect();
+        document.getElementById('clientSelect').value = client.id;
       }
-
       factures.push(facture);
       sauverDonnees();
       renderComptabilite();
-      genererPDF(facture);
+      populateAnnees();
+      genererPDF(facture, true);
       showAlert('Facture enregistree !');
+      document.getElementById('numero').value = '';
+      autoNumeroFacture();
     }
 
-    function genererPDF(factureData) {
+    function genererPDF(factureData, shouldPrint) {
       const f = factureData || getCurrentFormData();
-      const isSAP = f.isSAP;
-      const total = f.total;
-
+      const isSAP = Boolean(f.isSAP || f.sapMode);
+      const total = Number(f.total) || 0;
+      const snap = f.clientSnapshot || { nom: clientName(f), email: clientEmail(f), adresse: clientAdresse(f) };
       let emetteurHTML = `
-        <h2>${params.commercial}</h2>
+        <h2>${escapeHTML(params.commercial)}</h2>
         <p style="color:var(--gris); margin-top:4px;">Cours de musique</p>
         <div style="margin-top:12px; font-size:0.85rem; line-height:1.7;">
-          ${params.nom}<br>
-          ${params.adresse.replace(/\n/g, '<br>')}<br>
-          SIREN : ${params.siren}<br>
-          Code APE : ${params.ape}
+          ${escapeHTML(params.nom)}<br>
+          ${escapeHTML(params.adresse).replace(/\n/g, '<br>')}<br>
+          SIREN : ${escapeHTML(params.siren)}<br>
+          Code APE : ${escapeHTML(params.ape)}
         </div>
       `;
-
       let sapBlock = '';
       if (isSAP) {
         sapBlock = `
           <div class="sap-mention">
-            <h4>🏛️ Service a la Personne</h4>
-            ${f.numeroSAP ? '<p><strong>N SAP :</strong> ' + f.numeroSAP + '</p>' : '<p><em>N SAP a completer</em></p>'}
+            <h4>ðŸ›️ Service a la Personne</h4>
+            ${f.numeroSAP ? '<p><strong>N SAP :</strong> ' + escapeHTML(f.numeroSAP) + '</p>' : '<p><em>N SAP a completer</em></p>'}
             ${f.dateSAP ? '<p><strong>Enregistre le :</strong> ' + formatDate(f.dateSAP) + '</p>' : ''}
-            ${f.numeroAgrement ? '<p><strong>N agreement :</strong> ' + f.numeroAgrement + '</p>' : ''}
-            ${f.dateAgrement ? '<p><strong>Date agreement :</strong> ' + formatDate(f.dateAgrement) + '</p>' : ''}
-            ${f.numeroIntervenant ? '<p><strong>Intervenant :</strong> ' + f.nomIntervenant + ' (ID: ' + f.numeroIntervenant + ')</p>' : '<p><em>ID intervenant a completer</em></p>'}
+            ${f.numeroAgrement ? '<p><strong>N agrement :</strong> ' + escapeHTML(f.numeroAgrement) + '</p>' : ''}
+            ${f.dateAgrement ? '<p><strong>Date agrement :</strong> ' + formatDate(f.dateAgrement) + '</p>' : ''}
+            ${f.numeroIntervenant ? '<p><strong>Intervenant :</strong> ' + escapeHTML(f.nomIntervenant) + ' (ID: ' + escapeHTML(f.numeroIntervenant) + ')</p>' : '<p><em>ID intervenant a completer</em></p>'}
           </div>
         `;
       }
-
-      let mentionsLegales = '';
-      if (isSAP) {
-        mentionsLegales = `
+      const mentionsLegales = isSAP ? `
           <p>Cette facture est etablie conformement aux articles D. 7233-1 et suivants du Code du travail.</p>
-          <p>Les services listes ouvrent droit au credit d'impot / CESU dans les conditions prevues par la loi.</p>
+          <p>Les services listes ouvrent droit au crédit d'impôt / CESU dans les conditions prevues par la loi.</p>
           <p style="margin-top:8px;">Facture conservee 10 ans (art. L. 123-22 du Code de commerce).</p>
-        `;
-      } else {
-        mentionsLegales = `
+        ` : `
           <p>TVA non applicable - art. 293 B du CGI</p>
           <p>Facture emise par une micro-entreprise.</p>
           <p style="margin-top:8px;">Facture conservee 10 ans (art. L. 123-22 du Code de commerce).</p>
         `;
-      }
-
       const pdfHTML = `
         <div class="facture-pdf-header">
           <div>${emetteurHTML}</div>
           <div class="facture-num">
             <h3>FACTURE</h3>
-            <p style="margin-top:8px; color:var(--gris);">N ${f.numero}</p>
+            <p style="margin-top:8px; color:var(--gris);">N ${escapeHTML(f.numero)}</p>
             <p style="color:var(--gris);">Emise le ${formatDate(f.date)}</p>
             ${f.datePrestation ? '<p style="color:var(--gris); font-size:0.85rem;">Prestation : ' + formatDate(f.datePrestation) + '</p>' : ''}
           </div>
         </div>
-
         ${sapBlock}
-
         <div class="facture-grid">
           <div>
             <h4>Contact</h4>
-            <p>${params.email}<br>${params.telephone}<br>${params.site}</p>
+            <p>${escapeHTML(params.email)}<br>${escapeHTML(params.telephone)}<br>${escapeHTML(params.site)}</p>
           </div>
           <div>
             <h4>Facture a</h4>
-            <p>
-              <strong>${f.clientNom}</strong><br>
-              ${f.clientAdresse ? f.clientAdresse.replace(/\n/g, '<br>') + '<br>' : ''}
-              ${f.clientEmail}
-            </p>
+            <p><strong>${escapeHTML(snap.nom)}</strong><br>${snap.adresse ? escapeHTML(snap.adresse).replace(/\n/g, '<br>') + '<br>' : ''}${escapeHTML(snap.email || '')}</p>
           </div>
         </div>
-
         <table class="facture-table">
-          <thead>
-            <tr><th>Description</th><th>Qty</th><th>Prix U. TTC</th><th>Total TTC</th></tr>
-          </thead>
+          <thead><tr><th>Description</th><th>Qty</th><th>Prix U. TTC</th><th>Total TTC</th></tr></thead>
           <tbody>
             ${f.lignes.map(l => `
               <tr>
-                <td><strong>${l.description}</strong>${l.details ? '<br><span style="color:var(--gris); font-size:0.9rem;">' + l.details + '</span>' : ''}</td>
-                <td>${l.quantite}</td>
-                <td>${formatEuro(l.prix)}</td>
-                <td><strong>${formatEuro(l.quantite * l.prix)}</strong></td>
+                <td><strong>${escapeHTML(l.description)}</strong>${l.details ? '<br><span style="color:var(--gris); font-size:0.9rem;">' + escapeHTML(l.details) + '</span>' : ''}</td>
+                <td>${Number(l.quantite) || 0}</td>
+                <td>${formatEuro(Number(l.prix) || 0)}</td>
+                <td><strong>${formatEuro((Number(l.quantite) || 0) * (Number(l.prix) || 0))}</strong></td>
               </tr>
             `).join('')}
-            ${isSAP && f.fraisDeplacement > 0 ? `
-              <tr><td><strong>Frais de deplacement</strong></td><td>-</td><td>-</td><td><strong>${formatEuro(Number(f.fraisDeplacement))}</strong></td></tr>
-            ` : ''}
+            ${isSAP && Number(f.fraisDeplacement) > 0 ? `<tr><td><strong>Frais de déplacement</strong></td><td>-</td><td>-</td><td><strong>${formatEuro(Number(f.fraisDeplacement))}</strong></td></tr>` : ''}
           </tbody>
         </table>
-
-        ${isSAP && f.heuresRealisees ? `
-          <div style="margin: 16px 0; padding: 12px; background: var(--gris-clair); border-radius: var(--radius-sm);">
-            <strong>Decompte horaire :</strong> ${f.heuresRealisees} heure(s) realisee(s) ${f.tauxHoraire ? 'a ' + formatEuro(Number(f.tauxHoraire)) + '/heure' : ''}
-          </div>
-        ` : ''}
-
-        <div class="facture-total">
-          <div class="facture-total-box">
-            <div style="font-size:0.85rem; color:var(--gris); margin-bottom:4px;">Total TTC</div>
-            <div class="amount">${formatEuro(total)}</div>
-          </div>
-        </div>
-
+        ${isSAP && f.heuresRealisees ? `<div style="margin: 16px 0; padding: 12px; background: var(--gris-clair); border-radius: var(--radius-sm);"><strong>Décompte horaire :</strong> ${escapeHTML(f.heuresRealisees)} heure(s) realisee(s) ${f.tauxHoraire ? 'a ' + formatEuro(Number(f.tauxHoraire)) + '/heure' : ''}</div>` : ''}
+        <div class="facture-total"><div class="facture-total-box"><div style="font-size:0.85rem; color:var(--gris); margin-bottom:4px;">Total TTC</div><div class="amount">${formatEuro(total)}</div></div></div>
         <div class="facture-footer">
-          <div>
-            <h4>Paiement</h4>
-            <p>${getModePaiementLabel(f.modePaiement)}</p>
-            <p style="margin-top:8px;">IBAN : ${params.iban}<br>BIC : ${params.bic}</p>
-            ${f.dateEcheance ? '<p style="margin-top:8px;">Echeance : ' + formatDate(f.dateEcheance) + '</p>' : ''}
-          </div>
-          <div>
-            <h4>Mentions legales</h4>
-            ${mentionsLegales}
-          </div>
+          <div><h4>Paiement</h4><p>${getModePaiementLabel(f.modePaiement)}</p><p style="margin-top:8px;">IBAN : ${escapeHTML(params.iban)}<br>BIC : ${escapeHTML(params.bic)}</p>${f.dateEcheance ? '<p style="margin-top:8px;">Echeance : ' + formatDate(f.dateEcheance) + '</p>' : ''}</div>
+          <div><h4>Mentions legales</h4>${mentionsLegales}</div>
         </div>
       `;
-
       document.getElementById('facturePDF').innerHTML = pdfHTML;
       document.getElementById('previewSection').classList.add('active');
       document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => { window.print(); }, 600);
+      if (shouldPrint) setTimeout(() => { window.print(); }, 600);
     }
 
-    function getCurrentFormData() {
-      const isSAP = document.getElementById('modeSAP').checked;
-      const lignesData = JSON.parse(JSON.stringify(lignes));
-      let total = lignesData.reduce((sum, l) => sum + (l.quantite * l.prix), 0);
-      if (isSAP) total += Number(document.getElementById('fraisDeplacement').value) || 0;
-      return {
-        numero: document.getElementById('numero').value,
-        date: document.getElementById('date').value,
-        datePrestation: document.getElementById('datePrestation').value,
-        clientNom: document.getElementById('clientNom').value,
-        clientEmail: document.getElementById('clientEmail').value,
-        clientAdresse: document.getElementById('clientAdresse').value,
-        lignes: lignesData, total,
-        modePaiement: document.getElementById('modePaiement').value,
-        isSAP,
-        numeroSAP: document.getElementById('numeroSAP').value || params.numeroSAP,
-        dateSAP: document.getElementById('dateSAP').value || params.dateSAP,
-        numeroAgrement: document.getElementById('numeroAgrement').value || params.numeroAgrement,
-        numeroIntervenant: document.getElementById('numeroIntervenant').value || params.numeroIntervenant,
-        nomIntervenant: document.getElementById('nomIntervenant').value || params.nomIntervenant,
-        heuresRealisees: isSAP ? document.getElementById('heuresRealisees').value : null,
-        tauxHoraire: isSAP ? document.getElementById('tauxHoraire').value : null,
-        fraisDeplacement: isSAP ? document.getElementById('fraisDeplacement').value : null
-      };
-    }
+    function getCurrentFormData() { return buildFactureFromForm(); }
 
     function renderComptabilite() {
-      const search = document.getElementById('searchInput').value.toLowerCase();
+      const search = (document.getElementById('searchInput').value || '').toLowerCase();
       const statutFilter = document.getElementById('filterStatut').value;
       const anneeFilter = document.getElementById('filterAnnee').value;
       const modeFilter = document.getElementById('filterMode').value;
-
       let filtered = factures.filter(f => {
-        if (search && !f.numero.toLowerCase().includes(search) && !f.clientNom.toLowerCase().includes(search)) return false;
+        const haystack = [f.numero, clientName(f), clientEmail(f), clientAdresse(f), getStatutLabel(f.statut), f.isSAP ? 'sap service personne' : 'standard'].join(' ').toLowerCase();
+        if (search && !haystack.includes(search)) return false;
         if (statutFilter && f.statut !== statutFilter) return false;
-        if (anneeFilter && !f.date.startsWith(anneeFilter)) return false;
+        if (anneeFilter && !String(f.date || '').startsWith(anneeFilter)) return false;
         if (modeFilter === 'standard' && f.isSAP) return false;
         if (modeFilter === 'sap' && !f.isSAP) return false;
         return true;
       });
-
       filtered.sort((a, b) => {
         let valA = a[sortCol], valB = b[sortCol];
         if (sortCol === 'montant') { valA = a.total; valB = b.total; }
+        if (sortCol === 'client') { valA = clientName(a); valB = clientName(b); }
         if (valA < valB) return sortAsc ? -1 : 1;
         if (valA > valB) return sortAsc ? 1 : -1;
         return 0;
       });
-
-      const totalCA = factures.filter(f => f.statut !== 'annulee').reduce((s, f) => s + f.total, 0);
-      const totalPaye = factures.filter(f => f.statut === 'payee').reduce((s, f) => s + f.total, 0);
-      const totalPending = factures.filter(f => f.statut === 'en_attente').reduce((s, f) => s + f.total, 0);
+      const totalCA = filtered.filter(f => f.statut !== 'annulee').reduce((s, f) => s + Number(f.total || 0), 0);
+      const totalPaye = filtered.filter(f => f.statut === 'payee').reduce((s, f) => s + Number(f.total || 0), 0);
+      const totalPending = filtered.filter(f => f.statut === 'en_attente').reduce((s, f) => s + Number(f.total || 0), 0);
       document.getElementById('statTotal').textContent = formatEuro(totalCA);
-      document.getElementById('statCount').textContent = factures.length;
+      document.getElementById('statCount').textContent = filtered.length;
       document.getElementById('statPaid').textContent = formatEuro(totalPaye);
       document.getElementById('statPending').textContent = formatEuro(totalPending);
-
       const tbody = document.getElementById('comptaBody');
       const emptyState = document.getElementById('emptyState');
-
       if (filtered.length === 0) {
         tbody.innerHTML = '';
         emptyState.style.display = 'block';
         return;
       }
       emptyState.style.display = 'none';
-
       tbody.innerHTML = filtered.map(f => `
         <tr>
           <td>${formatDate(f.date)}</td>
-          <td><strong>${f.numero}</strong></td>
-          <td>${f.clientNom}</td>
+          <td><strong>${escapeHTML(f.numero)}</strong></td>
+          <td>${escapeHTML(clientName(f))}</td>
           <td class="amount">${formatEuro(f.total)}</td>
           <td><span class="badge badge-${f.statut}">${getStatutLabel(f.statut)}</span></td>
           <td><span class="badge badge-${f.isSAP ? 'sap' : 'micro'}">${f.isSAP ? 'SAP' : 'Standard'}</span></td>
           <td class="actions-cell no-print">
-            <button class="btn btn-icon btn-sm" onclick="voirFacture(${f.id})" title="Voir">👁️</button>
-            <button class="btn btn-icon btn-sm" onclick="dupliquerFacture(${f.id})" title="Dupliquer">📋</button>
-            <button class="btn btn-icon btn-sm" onclick="changerStatut(${f.id})" title="Statut">💳</button>
-            <button class="btn btn-icon btn-sm" style="color:var(--rouge);" onclick="supprimerFacture(${f.id})" title="Supprimer">🗑️</button>
+            <button class="btn btn-icon btn-sm" onclick="voirFacture('${f.id}')" title="Voir">👁️</button>
+            <button class="btn btn-icon btn-sm" onclick="dupliquerFacture('${f.id}')" title="Dupliquer">ðŸ“‹</button>
+            <button class="btn btn-icon btn-sm" onclick="changerStatut('${f.id}')" title="Statut">💳</button>
+            <button class="btn btn-icon btn-sm" style="color:var(--rouge);" onclick="supprimerFacture('${f.id}')" title="Supprimer">ðŸ—‘ï¸</button>
           </td>
         </tr>
       `).join('');
@@ -1068,26 +1336,31 @@
 
     function populateAnnees() {
       const select = document.getElementById('filterAnnee');
-      const annees = [...new Set(factures.map(f => f.date.substring(0, 4)))].sort().reverse();
-      select.innerHTML = '<option value="">Toutes les annees</option>' + 
-        annees.map(a => `<option value="${a}">${a}</option>`).join('');
+      const selected = select.value;
+      const annees = [...new Set(factures.map(f => String(f.date || '').substring(0, 4)).filter(Boolean))].sort().reverse();
+      select.innerHTML = '<option value="">Toutes les années</option>' + annees.map(a => `<option value="${a}">${a}</option>`).join('');
+      select.value = selected;
     }
 
     function voirFacture(id) {
-      const f = factures.find(f => f.id === id);
-      if (f) genererPDF(f);
+      const f = factures.find(f => normalizeId(f.id) === normalizeId(id));
+      if (f) genererPDF(f, false);
     }
 
     function dupliquerFacture(id) {
-      const f = factures.find(f => f.id === id);
+      const f = factures.find(f => normalizeId(f.id) === normalizeId(id));
       if (!f) return;
       document.getElementById('numero').value = '';
+      autoNumeroFacture();
       document.getElementById('date').valueAsDate = new Date();
       document.getElementById('datePrestation').value = f.datePrestation || '';
-      document.getElementById('clientNom').value = f.clientNom;
-      document.getElementById('clientEmail').value = f.clientEmail || '';
-      document.getElementById('clientAdresse').value = f.clientAdresse || '';
-      document.getElementById('modeSAP').checked = f.isSAP;
+      document.getElementById('dateEcheance').value = f.dateEcheance || '';
+      selectedClientId = f.clientId || '';
+      document.getElementById('clientSelect').value = selectedClientId;
+      document.getElementById('clientNom').value = clientName(f);
+      document.getElementById('clientEmail').value = clientEmail(f);
+      document.getElementById('clientAdresse').value = clientAdresse(f);
+      document.getElementById('modeSAP').checked = Boolean(f.isSAP);
       toggleSAP();
       document.getElementById('modePaiement').value = f.modePaiement || 'virement';
       document.getElementById('statutPaiement').value = 'en_attente';
@@ -1102,25 +1375,27 @@
         document.getElementById('tauxHoraire').value = f.tauxHoraire || '';
         document.getElementById('fraisDeplacement').value = f.fraisDeplacement || '';
       }
-      lignes = JSON.parse(JSON.stringify(f.lignes));
+      lignes = JSON.parse(JSON.stringify(f.lignes)).map(l => ({ ...l, id: uid('ligne') }));
       renderLignes();
       showSection('facture');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      showAlert('Facture dupliquee en brouillon.');
     }
 
     function changerStatut(id) {
-      const f = factures.find(f => f.id === id);
+      const f = factures.find(f => normalizeId(f.id) === normalizeId(id));
       if (!f) return;
       const statuts = ['en_attente', 'payee', 'annulee'];
       const currentIdx = statuts.indexOf(f.statut);
       f.statut = statuts[(currentIdx + 1) % statuts.length];
+      f.statutPaiement = f.statut;
       sauverDonnees();
       renderComptabilite();
     }
 
     function supprimerFacture(id) {
-      openModal('Supprimer cette facture ? Cette action est irreversible.', () => {
-        factures = factures.filter(f => f.id !== id);
+      openModal('Supprimer cette facture ? Cette action est irréversible.', () => {
+        factures = factures.filter(f => normalizeId(f.id) !== normalizeId(id));
         sauverDonnees();
         renderComptabilite();
         populateAnnees();
@@ -1128,37 +1403,41 @@
       });
     }
 
+    // ==================== EXPORT / IMPORT ====================
+    function csvCell(value) {
+      const text = String(value == null ? '' : value).replace(/\r?\n/g, ' ');
+      return /[";]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text;
+    }
+
     function exporterCSV() {
       const f = getCurrentFormData();
       const csv = [
-        ['N Facture', 'Date', 'Client', 'Montant TTC', 'Statut', 'Type'].join(';'),
-        [f.numero, f.date, f.clientNom, f.total.toFixed(2).replace('.', ','), document.getElementById('statutPaiement').value, f.isSAP ? 'SAP' : 'Standard'].join(';')
+        ['N Facture', 'Date', 'Client', 'Email', 'Adresse', 'Montant TTC', 'Statut', 'Type'].map(csvCell).join(';'),
+        [f.numero, f.date, f.clientSnapshot.nom, f.clientSnapshot.email, f.clientSnapshot.adresse, f.total.toFixed(2).replace('.', ','), document.getElementById('statutPaiement').value, f.isSAP ? 'SAP' : 'Standard'].map(csvCell).join(';')
       ].join('\n');
-      downloadFile(csv, 'facture_' + f.numero + '.csv', 'text/csv');
+      downloadFile('\ufeff' + csv, 'facture_' + (f.numero || 'brouillon') + '.csv', 'text/csv;charset=utf-8');
     }
 
     function exporterToutesCSV() {
       if (factures.length === 0) { alert('Aucune facture a exporter'); return; }
       const csv = [
-        ['N Facture', 'Date', 'Date Prestation', 'Client', 'Montant TTC', 'Statut', 'Type', 'Mode Paiement', 'N SAP', 'Heures', 'Frais depl.'].join(';'),
+        ['N Facture', 'Date', 'Date Prestation', 'Client', 'Email', 'Adresse', 'Montant TTC', 'Statut', 'Type', 'Mode Paiement', 'N SAP', 'Heures', 'Frais depl.'].map(csvCell).join(';'),
         ...factures.map(f => [
-          f.numero, f.date, f.datePrestation || '', f.clientNom,
-          f.total.toFixed(2).replace('.', ','), getStatutLabel(f.statut),
+          f.numero, f.date, f.datePrestation || '', clientName(f), clientEmail(f), clientAdresse(f),
+          Number(f.total || 0).toFixed(2).replace('.', ','), getStatutLabel(f.statut),
           f.isSAP ? 'SAP' : 'Standard', getModePaiementLabel(f.modePaiement),
           f.numeroSAP || '', f.heuresRealisees || '', f.fraisDeplacement || ''
-        ].join(';'))
+        ].map(csvCell).join(';'))
       ].join('\n');
-      downloadFile(csv, 'export_comptabilite_' + new Date().toISOString().slice(0,10) + '.csv', 'text/csv');
+      downloadFile('\ufeff' + csv, 'export_comptabilite_' + new Date().toISOString().slice(0,10) + '.csv', 'text/csv;charset=utf-8');
     }
 
     function exporterDonnees() {
-      const data = { factures, params, exportDate: new Date().toISOString() };
+      const data = { clients, factures, parametres: params, params, exportDate: new Date().toISOString(), version: 4 };
       downloadFile(JSON.stringify(data, null, 2), 'noriot_backup_' + new Date().toISOString().slice(0,10) + '.json', 'application/json');
     }
 
-    function importerDonnees() {
-      document.getElementById('importFile').click();
-    }
+    function importerDonnees() { document.getElementById('importFile').click(); }
 
     function handleImport(event) {
       const file = event.target.files[0];
@@ -1167,16 +1446,14 @@
       reader.onload = function(e) {
         try {
           const data = JSON.parse(e.target.result);
-          if (data.factures) {
-            factures = data.factures;
-            sauverDonnees();
-          }
-          if (data.params) {
-            params = { ...params, ...data.params };
-            localStorage.setItem(PARAMS_KEY, JSON.stringify(params));
-            applyParamsToForm();
-            updateEmetteurDisplay();
-          }
+          clients = Array.isArray(data.clients) ? data.clients : clients;
+          if (data.factures) factures = data.factures.map(migrateFacture);
+          if (data.parametres || data.params) params = { ...defaultParams, ...(data.parametres || data.params) };
+          applyParamsToForm();
+          updateEmetteurDisplay();
+          sauverDonnees();
+          renderClientSelect();
+          renderClients();
           renderComptabilite();
           populateAnnees();
           showAlert('Donnees importees avec succes !');
@@ -1189,16 +1466,19 @@
     }
 
     function confirmerReset() {
-      openModal('⚠️ TOUT effacer ? Toutes les factures et parametres seront perdus.', () => {
+      openModal('⚠️ TOUT effacer ? Toutes les factures, clients et parametres seront perdus.', () => {
+        localStorage.removeItem(APP_KEY);
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(PARAMS_KEY);
+        clients = [];
         factures = [];
         location.reload();
       });
     }
 
+    // ==================== UTILITAIRES ====================
     function formatEuro(value) {
-      return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
+      return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(value) || 0);
     }
 
     function formatDate(dateStr) {
@@ -1207,20 +1487,24 @@
       return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
     }
 
-    function getStatutLabel(s) {
-      return { en_attente: 'En attente', payee: 'Payee', annulee: 'Annulee' }[s] || s;
-    }
+    function getStatutLabel(s) { return { en_attente: 'En attente', payee: 'Payée', annulee: 'Annulee' }[s] || s; }
 
     function getModePaiementLabel(m) {
-      return { 
-        virement: 'Virement bancaire', 
-        especes: 'Especes', 
-        cheque: 'Cheque', 
+      return {
+        virement: 'Virement bancaire',
+        especes: 'Espèces',
+        cheque: 'Chèque',
         carte: 'Carte bancaire',
-        cesu: 'CESU prefiance',
-        cheque_emploi: 'Cheque emploi service'
+        cesu: 'CESU préfinancé',
+        cheque_emploi: 'Chèque emploi service'
       }[m] || m;
     }
+
+    function escapeHTML(value) {
+      return String(value == null ? '' : value).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    }
+
+    function escapeAttr(value) { return escapeHTML(value).replace(/'/g, '&#39;'); }
 
     function downloadFile(content, filename, type) {
       const blob = new Blob([content], { type });
@@ -1233,20 +1517,18 @@
 
     function preparerMail() {
       const numero = document.getElementById('numero').value;
-      const clientNom = document.getElementById('clientNom').value;
-      const clientEmail = document.getElementById('clientEmail').value;
+      const clientNomValue = document.getElementById('clientNom').value;
+      const clientEmailValue = document.getElementById('clientEmail').value;
       const total = calculerTotal();
       const isSAP = document.getElementById('modeSAP').checked;
       const subject = 'Facture ' + numero + ' - ' + params.commercial;
-      let body = 'Bonjour ' + clientNom + ',\n\nVeuillez trouver ci-joint la facture ' + numero + '.\n\n';
-      if (isSAP) {
-        body += 'Cette facture concerne des services eligibles au credit d\'impot / CESU.\n\n';
-      }
+      let body = 'Bonjour ' + clientNomValue + ',\n\nVeuillez trouver ci-joint la facture ' + numero + '.\n\n';
+      if (isSAP) body += 'Cette facture concerne des services éligibles au credit d\'impot / CESU.\n\n';
       body += 'Montant total : ' + formatEuro(total) + '\n\n';
-      body += 'Le reglement peut etre effectue par ' + getModePaiementLabel(document.getElementById('modePaiement').value) + '.\n\n';
+      body += 'Le règlement peut être effectué par ' + getModePaiementLabel(document.getElementById('modePaiement').value) + '.\n\n';
       body += 'IBAN : ' + params.iban + '\nBIC : ' + params.bic + '\n\n';
       body += 'Bien cordialement,\n\n' + params.nom + '\n' + params.commercial + '\n' + params.email + '\n' + params.telephone;
-      window.location.href = 'mailto:' + clientEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = 'mailto:' + clientEmailValue + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     }
 
     function showAlert(msg) {
@@ -1271,5 +1553,6 @@
     // ==================== LANCEMENT ====================
     init();
   </script>
+
 </body>
 </html>
