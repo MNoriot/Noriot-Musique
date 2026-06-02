@@ -657,7 +657,7 @@
   <!-- ============================================
        SECTION AVIS GOOGLE — ZONE AIX/MARSEILLE/ALENTOURS
        ============================================ -->
-  <section class="section">
+    <section class="section">
     <div class="reviews-section">
       <h2 class="section-title" style="margin-bottom:8px;">Avis des élèves ⭐</h2>
       <p style="color:var(--gris);">Ce que disent ceux qui ont franchi le pas</p>
@@ -666,7 +666,7 @@
       <div class="rating-display">
         <div class="rating-score">5.0</div>
         <div class="rating-stars">⭐⭐⭐⭐⭐</div>
-        <div class="rating-count">Basé sur les avis Google</div>
+        <div class="rating-count">1 avis Google vérifié</div>
       </div>
 
       <!-- Carte périmètre Aix/Marseille et alentours (~30 min) -->
@@ -693,37 +693,41 @@
         </div>
       </div>
 
-      <!-- Fallback : message si pas encore d'avis -->
+      <!-- Avis Google -->
+      <div class="reviews-grid" style="display:grid; gap:16px; margin:24px 0;">
+        <div class="review-card" style="background:var(--blanc); border-radius:var(--radius-sm); padding:20px; text-align:left; box-shadow:var(--shadow); position:relative;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--jaune)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">C.</div>
+            <div>
+              <div style="font-weight:600;">Cybilhe C.</div>
+              <div style="font-size:0.8rem; color:var(--gris);">le 30/05/2026 · ⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+          <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">
+            "Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une méthode qui était adaptée à ma façon d'apprendre et de retenir les choses. Je recommande que vous soyez débutants ou déjà pratiquants, avoir un prof à l'écoute et qui s'adapte ça change tout ⭐"
+          </p>
+          <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+            <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">🎸 Basse</span>
+            <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">Débutant</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- message pour inciter à donner son avis -->
       <div class="reviews-empty">
         <div class="reviews-empty-icon">📝</div>
-        <h3>Soyez le premier à donner votre avis !</h3>
+        <h3>Tu as suivi des cours ? Donne ton avis !</h3>
         <p>
-          Vous avez suivi des cours avec moi ? Partagez votre expérience pour aider 
-          les futurs élèves à se lancer. Ça prend 30 secondes et ça fait toute la différence.
+          Partage ton expérience pour aider les futurs élèves à se lancer. Ça prend 30 secondes et ça fait toute la différence.
+        </p>
+        <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:1rem; padding:14px 28px;">
+          ⭐ Laisser un avis sur Google
+        </a>
+        <p class="review-note" style="margin-top:12px; font-size:0.85rem; color:#999;">
+          🔗 Redirection vers Google Maps — rapide et sécurisé
         </p>
       </div>
 
-      <!-- CTA laisser un avis -->
-      <div class="reviews-grid" style="display:grid; gap:16px; margin:24px 0;">
-  
-  <div class="review-card" style="background:var(--blanc); border-radius:var(--radius-sm); padding:20px; text-align:left; box-shadow:var(--shadow); position:relative;">
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-      <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--jaune)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">C.</div>
-      <div>
-        <div style="font-weight:600;">Cybilhe C.</div>
-        <div style="font-size:0.8rem; color:var(--gris);">il y a 4 jours · ⭐⭐⭐⭐⭐</div>
-      </div>
-    </div>
-    <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">
-      "Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une méthode qui était adaptée à ma façon d'apprendre et de retenir les choses. Je recommande que vous soyez débutants ou déjà pratiquants, avoir un prof à l'écoute et qui s'adapte ça change tout ⭐"
-    </p>
-    <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
-      <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">🎸 Guitare</span>
-      <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">Débutant</span>
-    </div>
-  </div>
-
-</div>
     </div>
   </section>
 
