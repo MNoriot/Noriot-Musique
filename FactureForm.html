@@ -7,71 +7,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --rose: #F5A9B8;
-      --rose-clair: #FCE4EC;
-      --orange: #E67E22;
-      --orange-clair: #FAD7A0;
-      --jaune: #F4D03F;
-      --jaune-clair: #FCF3CF;
-      --noir: #1A1A1A;
-      --gris: #666666;
-      --gris-clair: #F5F5F5;
-      --blanc: #FFFFFF;
-      --bleu-lien: #2A6EFB;
-      --vert: #27ae60;
-      --vert-clair: #d5f5e3;
-      --bleu: #3498db;
-      --bleu-clair: #d6eaf8;
-      --rouge: #e74c3c;
-      --rouge-clair: #fadbd8;
-      --radius: 18px;
-      --radius-sm: 12px;
-      --shadow: 0 8px 32px rgba(0,0,0,0.12);
-      --shadow-hover: 0 12px 40px rgba(0,0,0,0.18);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --orange: #e67e22; --orange-clair: #fdebd0; --rose: #e91e63; --rose-clair: #f8bbd0;
+      --jaune-clair: #fff9c4; --vert: #27ae60; --vert-clair: #d5f5e3; --bleu: #3498db;
+      --bleu-clair: #d6eaf8; --rouge: #e74c3c; --rouge-clair: #fadbd8; --noir: #2c3e50;
+      --gris: #7f8c8d; --gris-clair: #f8f9fa; --blanc: #ffffff;
+      --radius: 16px; --radius-sm: 10px; --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --transition: all 0.2s ease;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #f8f4f0 0%, #fce4ec 50%, #fcf3cf 100%);
-      min-height: 100vh; color: var(--noir); line-height: 1.6;
-      overflow-x: hidden;
+      min-height: 100vh; color: var(--noir); line-height: 1.5;
     }
-    a { color: var(--bleu-lien); text-decoration: none; transition: var(--transition); }
-    a:hover { color: var(--orange); }
     .nav-float {
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid rgba(0,0,0,0.05); padding: 0 20px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
     }
     .nav-content {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between; height: 60px;
     }
     .nav-brand { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
-    .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+    .nav-tabs { display: flex; gap: 4px; }
     .nav-tab {
-      padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer;
-      font-size: 0.85rem; font-weight: 600; transition: var(--transition);
+      padding: 8px 16px; border-radius: var(--radius-sm); cursor: pointer;
+      font-size: 0.9rem; font-weight: 500; transition: var(--transition);
       border: none; background: transparent; color: var(--gris);
-      white-space: nowrap;
     }
-    .nav-tab:hover { background: var(--gris-clair); color: var(--noir); }
+    .nav-tab:hover { background: var(--gris-clair); }
     .nav-tab.active { background: var(--orange-clair); color: var(--orange); }
     .main-wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }
     .section { display: none; }
-    .section.active { display: block; animation: fadeIn 0.4s ease; }
+    .section.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .card {
-      background: var(--blanc); border-radius: var(--radius);
+      background: rgba(255,255,255,0.98); border-radius: var(--radius);
       padding: 32px; box-shadow: var(--shadow); margin-bottom: 20px;
-      transition: var(--transition);
     }
-    .card:hover { box-shadow: var(--shadow-hover); }
-    .card h2 { font-size: 1.5rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .card h2 { font-size: 1.4rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
     .card > p { color: var(--gris); margin-bottom: 24px; font-size: 0.95rem; }
     .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 20px; }
     @media (min-width: 768px) {
@@ -94,30 +70,6 @@
     }
     .form-group textarea { min-height: 80px; resize: vertical; }
     .form-group input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--orange); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 8px; padding: 12px 24px; border-radius: var(--radius-sm); border: none;
-      font-family: 'Inter', sans-serif; font-size: 0.95rem;
-      font-weight: 600; cursor: pointer; transition: var(--transition);
-      text-decoration: none; white-space: nowrap;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--orange), #D35400);
-      color: var(--blanc); box-shadow: 0 4px 16px rgba(230, 126, 34, 0.3);
-    }
-    .btn-primary:hover { background: linear-gradient(135deg, #D35400, var(--orange)); }
-    .btn-secondary { background: var(--noir); color: var(--blanc); }
-    .btn-secondary:hover { background: #333; }
-    .btn-ghost { background: transparent; color: var(--gris); border: 2px dashed #ddd; }
-    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-clair); }
-    .btn-danger { background: var(--rouge); color: white; }
-    .btn-danger:hover { background: #c0392b; }
-    .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
-    .btn-icon { padding: 6px 10px; font-size: 0.85rem; background: var(--gris-clair); }
-    .btn-icon:hover { background: var(--orange-clair); }
-    .action-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .action-buttons .btn { flex: 1; min-width: 180px; }
     .checkbox-row {
       display: flex; align-items: center; gap: 10px;
       padding: 12px 16px; background: var(--gris-clair);
@@ -133,6 +85,19 @@
     .ligne-presta:hover { border-color: var(--rose); }
     .ligne-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .ligne-header span { font-weight: 600; font-size: 0.9rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 12px 24px; border-radius: var(--radius-sm); border: none;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; transition: var(--transition);
+    }
+    .btn-ghost { background: transparent; color: var(--gris); border: 2px dashed #ddd; }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-clair); }
+    .btn-danger { background: var(--rouge); color: white; }
+    .btn-danger:hover { background: #c0392b; }
+    .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
+    .action-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .action-buttons .btn { flex: 1; min-width: 180px; }
     .total-box {
       background: linear-gradient(135deg, var(--orange-clair), var(--jaune-clair));
       border-radius: var(--radius); padding: 28px; text-align: center; margin: 24px 0;
@@ -145,11 +110,6 @@
     }
     .info-box p { font-size: 0.9rem; color: var(--gris); margin: 4px 0; }
     .info-box strong { color: var(--noir); }
-    .placeholder-info {
-      background: var(--bleu-clair); border-left: 4px solid var(--bleu);
-      padding: 12px 16px; border-radius: var(--radius-sm);
-      margin-top: 8px; font-size: 0.85rem; color: var(--noir);
-    }
     .alert-success {
       background: var(--vert-clair); border-radius: var(--radius-sm);
       padding: 16px 20px; margin-bottom: 20px;
@@ -162,11 +122,9 @@
       gap: 16px; margin-bottom: 24px;
     }
     .stat-card {
-      background: var(--blanc); border-radius: var(--radius);
+      background: rgba(255,255,255,0.98); border-radius: var(--radius);
       padding: 24px; box-shadow: var(--shadow); text-align: center;
-      transition: var(--transition);
     }
-    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
     .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--orange); }
     .stat-card .label { font-size: 0.85rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.1em; }
     .table-wrap { overflow-x: auto; }
@@ -189,6 +147,8 @@
     .badge-micro { background: var(--bleu-clair); color: var(--bleu); }
     .badge-sap { background: #e8f5e9; color: #2e7d32; }
     .actions-cell { display: flex; gap: 6px; }
+    .btn-icon { padding: 6px 10px; font-size: 0.85rem; background: var(--gris-clair); }
+    .btn-icon:hover { background: var(--orange-clair); }
     .filters-bar {
       display: flex; flex-wrap: wrap; gap: 12px;
       margin-bottom: 20px; align-items: center;
@@ -220,6 +180,7 @@
     .facture-total-box .amount { font-size: 1.8rem; font-weight: 700; color: var(--orange); }
     .facture-footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid #eee; display: grid; grid-template-columns: 1fr; gap: 20px; font-size: 0.85rem; color: var(--gris); }
     @media (min-width: 768px) { .facture-footer { grid-template-columns: 1fr 1fr; } }
+    .facture-footer h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gris); margin-bottom: 8px; }
     .sap-mention { background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: var(--radius-sm); padding: 16px; margin: 16px 0; }
     .sap-mention h4 { color: #2e7d32; margin-bottom: 8px; }
     .sap-mention p { font-size: 0.85rem; color: var(--noir); margin: 4px 0; }
@@ -229,36 +190,11 @@
     .modal-content h3 { margin-bottom: 16px; }
     .modal-content p { color: var(--gris); margin-bottom: 24px; }
     .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
-    .client-card {
-      background: var(--gris-clair); border-radius: var(--radius-sm);
-      padding: 20px; margin-bottom: 12px;
-      border: 2px solid transparent; transition: var(--transition);
-      display: flex; justify-content: space-between; align-items: flex-start;
-      gap: 16px;
+    .placeholder-info {
+      background: var(--bleu-clair); border-left: 4px solid var(--bleu);
+      padding: 12px 16px; border-radius: var(--radius-sm);
+      margin-top: 8px; font-size: 0.85rem; color: var(--noir);
     }
-    .client-card:hover { border-color: var(--orange); background: var(--blanc); }
-    .client-info h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: var(--noir); }
-    .client-info p { font-size: 0.9rem; color: var(--gris); margin: 2px 0; }
-    .client-actions { display: flex; gap: 6px; flex-shrink: 0; }
-    .client-count {
-      background: var(--orange-clair); color: var(--orange);
-      padding: 2px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
-    }
-    .select-client {
-      background: var(--blanc); border: 2px solid var(--orange); border-radius: var(--radius-sm);
-      padding: 12px 14px; font-size: 1rem; font-weight: 600; color: var(--orange);
-      cursor: pointer; width: 100%;
-    }
-    .select-client:focus { outline: none; box-shadow: 0 0 0 3px var(--orange-clair); }
-    .client-fields { display: none; }
-    .client-fields.active { display: block; animation: fadeIn 0.3s ease; }
-    .empty-state { text-align:center; color:var(--gris); padding:40px; }
-    .empty-state a { color:var(--orange); font-weight:600; }
-    .tag {
-      display: inline-block; padding: 4px 12px; border-radius: 999px;
-      font-size: 0.8rem; font-weight: 600; background: var(--rose-clair); color: var(--noir); margin: 2px;
-    }
-    .tag-orange { background: var(--orange-clair); color: #8B4513; }
     @media print {
       body * { visibility: hidden; }
       .preview-section, .preview-section * { visibility: visible; }
@@ -267,26 +203,24 @@
       @page { size: A4; margin: 15mm; }
     }
     @media (max-width: 768px) {
-      .nav-content { flex-wrap: wrap; height: auto; padding: 10px 0; gap: 8px; }
+      .nav-content { flex-wrap: wrap; height: auto; padding: 10px 0; }
       .facture-pdf-header { flex-direction: column; gap: 20px; }
       .facture-pdf-header .facture-num { text-align: left; }
       .facture-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .action-buttons .btn { width: 100%; }
-      .client-card { flex-direction: column; }
-      .client-actions { width: 100%; justify-content: flex-end; }
     }
   </style>
-  <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav class="nav-float no-print">
     <div class="nav-content">
       <div class="nav-brand">🎵 Noriot Musique</div>
       <div class="nav-tabs">
         <button class="nav-tab active" onclick="showSection('facture')" id="tab-facture">📄 Nouvelle Facture</button>
-        <button class="nav-tab" onclick="showSection('clients')" id="tab-clients">👤 Infos Clients</button>
         <button class="nav-tab" onclick="showSection('comptabilite')" id="tab-comptabilite">📊 Comptabilite</button>
         <button class="nav-tab" onclick="showSection('parametres')" id="tab-parametres">⚙️ Parametres</button>
       </div>
@@ -305,6 +239,7 @@
           <p>✅ Facture enregistree avec succes !</p>
         </div>
 
+        <!-- Mode SAP -->
         <div class="checkbox-row">
           <input type="checkbox" id="modeSAP" onchange="toggleSAP()">
           <div>
@@ -313,6 +248,7 @@
           </div>
         </div>
 
+        <!-- Infos emetteur -->
         <div class="info-box" id="infoEmetteur">
           <p><strong id="emetteurNom">Martin Noriot</strong> — <span id="emetteurCommercial">Noriot Musique</span></p>
           <p id="emetteurAdresse">22 rue Portalis, 13100 Aix-en-Provence</p>
@@ -321,6 +257,7 @@
           <p>📧 <span id="emetteurEmail">martin@noriot.fr</span> • 📞 <span id="emetteurTel">06 66 80 92 89</span></p>
         </div>
 
+        <!-- Infos facture -->
         <div class="form-grid">
           <div class="form-group">
             <label for="numero">N° facture *</label>
@@ -340,33 +277,25 @@
           </div>
         </div>
 
+        <!-- Infos client -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">👤 Beneficiaire (Client)</h3>
-        
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label for="selectClient">Selectionner un client</label>
-          <select id="selectClient" class="select-client" onchange="onClientSelect()">
-            <option value="">-- Choisir un client existant ou creer un nouveau --</option>
-            <option value="__new__">➕ Nouveau client</option>
-          </select>
-        </div>
-
-        <div id="clientFields" class="client-fields">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="clientNom">Nom complet / Denomination *</label>
-              <input type="text" id="clientNom" placeholder="Camille Dupont" required>
-            </div>
-            <div class="form-group">
-              <label for="clientEmail">Email</label>
-              <input type="email" id="clientEmail" placeholder="camille@email.com">
-            </div>
-            <div class="form-group full-width">
-              <label for="clientAdresse">Adresse complete *</label>
-              <textarea id="clientAdresse" placeholder="12 rue des Lilas&#10;13100 Aix-en-Provence" required></textarea>
-            </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="clientNom">Nom complet / Denomination *</label>
+            <input type="text" id="clientNom" placeholder="Camille Dupont" required>
+          </div>
+          <div class="form-group">
+            <label for="clientEmail">Email</label>
+            <input type="email" id="clientEmail" placeholder="camille@email.com">
+          </div>
+          <div class="form-group full-width">
+            <label for="clientAdresse">Adresse complete *</label>
+            <textarea id="clientAdresse" placeholder="12 rue des Lilas
+13100 Aix-en-Provence" required></textarea>
           </div>
         </div>
 
+        <!-- Champs SAP specifiques -->
         <div id="sapFields" style="display:none;">
           <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🏛️ Informations SAP</h3>
           <div class="form-grid">
@@ -406,12 +335,14 @@
           </div>
         </div>
 
+        <!-- Prestations -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">🎵 Prestations</h3>
         <div id="lignesContainer"></div>
         <button type="button" class="btn btn-ghost" onclick="ajouterLigne()" style="width:100%; margin-top:8px;">
           ➕ Ajouter une prestation
         </button>
 
+        <!-- Decompte horaire SAP -->
         <div id="sapHoraire" style="display:none; margin-top:16px;">
           <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">⏱️ Decompte horaire (obligatoire SAP)</h3>
           <div class="form-grid cols-3">
@@ -430,6 +361,7 @@
           </div>
         </div>
 
+        <!-- Paiement -->
         <h3 style="margin: 24px 0 16px; font-size: 1.1rem;">💳 Paiement</h3>
         <div class="form-grid">
           <div class="form-group">
@@ -453,13 +385,15 @@
           </div>
         </div>
 
+        <!-- Total -->
         <div class="total-box">
           <p style="font-size:0.9rem; color:var(--gris); margin-bottom:8px;">Total TTC</p>
           <div class="total-price" id="totalDisplay">0,00 €</div>
         </div>
 
+        <!-- Actions -->
         <div class="action-buttons">
-          <button type="button" class="btn btn-primary" onclick="genererEtEnregistrer()">
+          <button type="button" class="btn" style="background:var(--orange); color:white;" onclick="genererEtEnregistrer()">
             💾 Enregistrer & Imprimer
           </button>
           <button type="button" class="btn btn-ghost" onclick="preparerMail()">
@@ -471,42 +405,9 @@
         </div>
       </div>
 
+      <!-- Preview -->
       <div class="preview-section card" id="previewSection">
         <div class="facture-pdf" id="facturePDF"></div>
-      </div>
-    </div>
-
-    <!-- SECTION CLIENTS -->
-    <div id="section-clients" class="section">
-      <div class="card">
-        <h2>👤 Infos Clients</h2>
-        <p>Base de donnees de tous tes clients. Ajoute, modifie ou supprime des fiches client.</p>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="value" id="statClientsTotal">0</div>
-            <div class="label">Clients enregistres</div>
-          </div>
-          <div class="stat-card">
-            <div class="value" id="statClientsFactures">0</div>
-            <div class="label">Clients avec factures</div>
-          </div>
-        </div>
-
-        <div class="filters-bar no-print">
-          <input type="text" id="searchClientInput" placeholder="🔍 Rechercher un client..." oninput="renderClients()">
-          <button class="btn btn-primary btn-sm" onclick="openClientModal()">
-            ➕ Ajouter un client
-          </button>
-          <button class="btn btn-sm" style="background:var(--vert); color:white;" onclick="exporterClientsCSV()">
-            📥 Export CSV clients
-          </button>
-        </div>
-
-        <div id="clientsList"></div>
-        <p id="emptyClientsState" class="empty-state" style="display:none;">
-          Aucun client enregistre. <a href="#" onclick="openClientModal()">Ajoute ton premier client</a>.
-        </p>
       </div>
     </div>
 
@@ -572,8 +473,8 @@
             <tbody id="comptaBody"></tbody>
           </table>
         </div>
-        <p id="emptyState" class="empty-state" style="display:none;">
-          Aucune facture enregistree. <a href="#" onclick="showSection('facture')">Cree ta premiere facture</a>.
+        <p id="emptyState" style="text-align:center; color:var(--gris); padding:40px; display:none;">
+          Aucune facture enregistree. <a href="#" onclick="showSection('facture')" style="color:var(--orange);">Cree ta premiere facture</a>.
         </p>
       </div>
     </div>
@@ -667,7 +568,7 @@
         </div>
 
         <div class="action-buttons" style="margin-top:32px;">
-          <button class="btn btn-primary" onclick="sauverParametres()">
+          <button class="btn" style="background:var(--orange); color:white;" onclick="sauverParametres()">
             💾 Sauvegarder
           </button>
           <button class="btn btn-ghost" onclick="exporterDonnees()">
@@ -697,47 +598,12 @@
     </div>
   </div>
 
-  <!-- Modal Client -->
-  <div class="modal-overlay no-print" id="modalClient">
-    <div class="modal-content" style="max-width: 600px;">
-      <h3 id="clientModalTitle">➕ Nouveau client</h3>
-      <input type="hidden" id="clientEditId" value="">
-      <div class="form-grid" style="margin-top: 20px;">
-        <div class="form-group">
-          <label for="modalClientNom">Nom complet / Denomination *</label>
-          <input type="text" id="modalClientNom" placeholder="Camille Dupont" required>
-        </div>
-        <div class="form-group">
-          <label for="modalClientEmail">Email</label>
-          <input type="email" id="modalClientEmail" placeholder="camille@email.com">
-        </div>
-        <div class="form-group full-width">
-          <label for="modalClientAdresse">Adresse complete *</label>
-          <textarea id="modalClientAdresse" placeholder="12 rue des Lilas&#10;13100 Aix-en-Provence" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="modalClientTel">Telephone</label>
-          <input type="text" id="modalClientTel" placeholder="06 12 34 56 78">
-        </div>
-        <div class="form-group">
-          <label for="modalClientNotes">Notes (optionnel)</label>
-          <input type="text" id="modalClientNotes" placeholder="Ex: cours le mardi soir, enfant de 8 ans...">
-        </div>
-      </div>
-      <div class="modal-actions" style="margin-top: 24px;">
-        <button class="btn btn-ghost" onclick="closeClientModal()">Annuler</button>
-        <button class="btn btn-primary" onclick="sauverClient()">💾 Sauvegarder</button>
-      </div>
-    </div>
-  </div>
-
   <script>
+    // ==================== CONFIG & DONNEES ====================
     const STORAGE_KEY = 'noriot_factures_v3';
     const PARAMS_KEY = 'noriot_params_v3';
-    const CLIENTS_KEY = 'noriot_clients_v1';
 
     let factures = [];
-    let clients = [];
     let lignes = [{ id: 1, description: "Cours de musique", details: "", quantite: 1, prix: 40 }];
     let sortCol = 'date';
     let sortAsc = false;
@@ -762,24 +628,22 @@
       nomIntervenant: "Martin Noriot"
     };
 
+    // ==================== INITIALISATION ====================
     function init() {
       chargerDonnees();
       chargerParametres();
-      chargerClients();
       renderLignes();
       setToday();
       updateEmetteurDisplay();
       renderComptabilite();
       populateAnnees();
-      populateClientSelect();
-      renderClients();
     }
 
     function setToday() { document.getElementById('date').valueAsDate = new Date(); }
 
     function chargerDonnees() {
       try { const data = localStorage.getItem(STORAGE_KEY); if (data) factures = JSON.parse(data); }
-      catch(e) { console.error('Erreur chargement factures', e); }
+      catch(e) { console.error('Erreur chargement', e); }
     }
 
     function sauverDonnees() { localStorage.setItem(STORAGE_KEY, JSON.stringify(factures)); }
@@ -849,241 +713,6 @@
       document.getElementById('section-' + id).classList.add('active');
       document.getElementById('tab-' + id).classList.add('active');
       if (id === 'comptabilite') renderComptabilite();
-      if (id === 'clients') renderClients();
-    }
-
-    function chargerClients() {
-      try { const data = localStorage.getItem(CLIENTS_KEY); if (data) clients = JSON.parse(data); }
-      catch(e) { console.error('Erreur chargement clients', e); }
-    }
-
-    function sauverClients() { localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients)); }
-
-    function populateClientSelect() {
-      const select = document.getElementById('selectClient');
-      const baseOptions = '<option value="">-- Choisir un client existant ou creer un nouveau --</option><option value="__new__">➕ Nouveau client</option>';
-      const clientOptions = clients
-        .sort((a, b) => a.nom.localeCompare(b.nom))
-        .map(c => `<option value="${c.id}">${c.nom}${c.email ? ' (' + c.email + ')' : ''}</option>`)
-        .join('');
-      select.innerHTML = baseOptions + clientOptions;
-    }
-
-    function onClientSelect() {
-      const select = document.getElementById('selectClient');
-      const val = select.value;
-      const fields = document.getElementById('clientFields');
-
-      if (val === '__new__' || val === '') {
-        fields.classList.add('active');
-        if (val === '') {
-          document.getElementById('clientNom').value = '';
-          document.getElementById('clientEmail').value = '';
-          document.getElementById('clientAdresse').value = '';
-        }
-      } else {
-        const client = clients.find(c => c.id == val);
-        if (client) {
-          document.getElementById('clientNom').value = client.nom;
-          document.getElementById('clientEmail').value = client.email || '';
-          document.getElementById('clientAdresse').value = client.adresse || '';
-          fields.classList.add('active');
-        }
-      }
-    }
-
-    function getOrCreateClient(nom, email, adresse) {
-      let client = clients.find(c => {
-        if (email && c.email) {
-          return c.nom.toLowerCase().trim() === nom.toLowerCase().trim() && 
-                 c.email.toLowerCase().trim() === email.toLowerCase().trim();
-        }
-        return c.nom.toLowerCase().trim() === nom.toLowerCase().trim();
-      });
-
-      if (!client) {
-        client = {
-          id: Date.now(),
-          nom: nom.trim(),
-          email: email ? email.trim() : '',
-          adresse: adresse ? adresse.trim() : '',
-          telephone: '',
-          notes: '',
-          createdAt: new Date().toISOString()
-        };
-        clients.push(client);
-        sauverClients();
-        populateClientSelect();
-        renderClients();
-      }
-      return client;
-    }
-
-    function renderClients() {
-      const search = document.getElementById('searchClientInput').value.toLowerCase();
-      let filtered = clients.filter(c => {
-        if (!search) return true;
-        return c.nom.toLowerCase().includes(search) || 
-               (c.email && c.email.toLowerCase().includes(search)) ||
-               (c.adresse && c.adresse.toLowerCase().includes(search));
-      });
-      filtered.sort((a, b) => a.nom.localeCompare(b.nom));
-
-      const clientsAvecFactures = new Set(factures.map(f => f.clientNom.toLowerCase().trim())).size;
-      document.getElementById('statClientsTotal').textContent = clients.length;
-      document.getElementById('statClientsFactures').textContent = clientsAvecFactures;
-
-      const container = document.getElementById('clientsList');
-      const emptyState = document.getElementById('emptyClientsState');
-
-      if (filtered.length === 0) {
-        container.innerHTML = '';
-        emptyState.style.display = 'block';
-        return;
-      }
-      emptyState.style.display = 'none';
-
-      container.innerHTML = filtered.map(c => {
-        const factureCount = factures.filter(f => f.clientNom.toLowerCase().trim() === c.nom.toLowerCase().trim()).length;
-        return `
-          <div class="client-card">
-            <div class="client-info" style="flex:1;">
-              <h4>${c.nom}</h4>
-              <p>📧 ${c.email || 'Pas d\'email'}</p>
-              <p>📍 ${c.adresse ? c.adresse.replace(/\n/g, ', ') : 'Pas d\'adresse'}</p>
-              ${c.telephone ? '<p>📞 ' + c.telephone + '</p>' : ''}
-              ${c.notes ? '<p style="color:var(--orange); font-size:0.85rem; margin-top:6px;">📝 ' + c.notes + '</p>' : ''}
-              <div style="margin-top:8px;">
-                <span class="tag tag-orange">${factureCount} facture${factureCount > 1 ? 's' : ''}</span>
-                <span class="tag">Ajoute le ${formatDate(c.createdAt)}</span>
-              </div>
-            </div>
-            <div class="client-actions">
-              <button class="btn btn-icon btn-sm" onclick="editClient(${c.id})" title="Modifier">✏️</button>
-              <button class="btn btn-icon btn-sm" style="color:var(--rouge);" onclick="deleteClient(${c.id})" title="Supprimer">🗑️</button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function openClientModal(clientId) {
-      const modal = document.getElementById('modalClient');
-      const title = document.getElementById('clientModalTitle');
-      const editId = document.getElementById('clientEditId');
-
-      if (clientId) {
-        const client = clients.find(c => c.id === clientId);
-        if (!client) return;
-        title.textContent = '✏️ Modifier le client';
-        editId.value = client.id;
-        document.getElementById('modalClientNom').value = client.nom;
-        document.getElementById('modalClientEmail').value = client.email || '';
-        document.getElementById('modalClientAdresse').value = client.adresse || '';
-        document.getElementById('modalClientTel').value = client.telephone || '';
-        document.getElementById('modalClientNotes').value = client.notes || '';
-      } else {
-        title.textContent = '➕ Nouveau client';
-        editId.value = '';
-        document.getElementById('modalClientNom').value = '';
-        document.getElementById('modalClientEmail').value = '';
-        document.getElementById('modalClientAdresse').value = '';
-        document.getElementById('modalClientTel').value = '';
-        document.getElementById('modalClientNotes').value = '';
-      }
-
-      modal.classList.add('active');
-    }
-
-    function closeClientModal() {
-      document.getElementById('modalClient').classList.remove('active');
-    }
-
-    function sauverClient() {
-      const editId = document.getElementById('clientEditId').value;
-      const nom = document.getElementById('modalClientNom').value.trim();
-      const email = document.getElementById('modalClientEmail').value.trim();
-      const adresse = document.getElementById('modalClientAdresse').value.trim();
-      const telephone = document.getElementById('modalClientTel').value.trim();
-      const notes = document.getElementById('modalClientNotes').value.trim();
-
-      if (!nom) { alert('Le nom du client est obligatoire'); return; }
-      if (!adresse) { alert('L\'adresse est obligatoire'); return; }
-
-      if (editId) {
-        const client = clients.find(c => c.id == editId);
-        if (client) {
-          const oldNom = client.nom;
-          const newNom = nom;
-          
-          client.nom = nom;
-          client.email = email;
-          client.adresse = adresse;
-          client.telephone = telephone;
-          client.notes = notes;
-          client.updatedAt = new Date().toISOString();
-
-          if (oldNom !== newNom) {
-            factures.forEach(f => {
-              if (f.clientNom === oldNom) f.clientNom = newNom;
-            });
-            sauverDonnees();
-            renderComptabilite();
-          }
-
-          sauverClients();
-          populateClientSelect();
-          renderClients();
-          showAlert('Client modifie !');
-        }
-      } else {
-        const client = {
-          id: Date.now(),
-          nom, email, adresse, telephone, notes,
-          createdAt: new Date().toISOString()
-        };
-        clients.push(client);
-        sauverClients();
-        populateClientSelect();
-        renderClients();
-        showAlert('Client ajoute !');
-      }
-
-      closeClientModal();
-    }
-
-    function editClient(id) { openClientModal(id); }
-
-    function deleteClient(id) {
-      const client = clients.find(c => c.id === id);
-      if (!client) return;
-
-      const hasFactures = factures.some(f => f.clientNom.toLowerCase().trim() === client.nom.toLowerCase().trim());
-      if (hasFactures) {
-        alert('❌ Impossible de supprimer ce client car il est lie a des factures existantes. Supprime d\'abord ses factures.');
-        return;
-      }
-
-      openModal('Supprimer le client "' + client.nom + '" ?', () => {
-        clients = clients.filter(c => c.id !== id);
-        sauverClients();
-        populateClientSelect();
-        renderClients();
-        closeModal();
-        showAlert('Client supprime');
-      });
-    }
-
-    function exporterClientsCSV() {
-      if (clients.length === 0) { alert('Aucun client a exporter'); return; }
-      const csv = [
-        ['Nom', 'Email', 'Adresse', 'Telephone', 'Notes', 'Date creation'].join(';'),
-        ...clients.map(c => [
-          c.nom, c.email || '', (c.adresse || '').replace(/\n/g, ' '),
-          c.telephone || '', c.notes || '', c.createdAt ? c.createdAt.slice(0,10) : ''
-        ].join(';'))
-      ].join('\n');
-      downloadFile(csv, 'clients_noriot_' + new Date().toISOString().slice(0,10) + '.csv', 'text/csv');
     }
 
     function toggleSAP() {
@@ -1093,9 +722,9 @@
       const sapInfo = document.getElementById('sapEmetteurInfo');
       if (isSAP) {
         let html = '';
-        if (params.numeroSAP) html += 'N° SAP : ' + params.numeroSAP + ' ';
+        if (params.numeroSAP) html += 'N SAP : ' + params.numeroSAP + ' ';
         if (params.dateSAP) html += '(enregistre le ' + formatDate(params.dateSAP) + ')<br>';
-        if (params.numeroAgrement) html += 'N° agreement : ' + params.numeroAgrement + '<br>';
+        if (params.numeroAgrement) html += 'N agreement : ' + params.numeroAgrement + '<br>';
         if (params.numeroIntervenant) html += 'Intervenant : ' + params.nomIntervenant + ' (ID: ' + params.numeroIntervenant + ')';
         sapInfo.innerHTML = html || '<em>Infos SAP a completer dans les parametres</em>';
         sapInfo.style.display = 'block';
@@ -1169,23 +798,20 @@
       const numero = document.getElementById('numero').value.trim();
       const date = document.getElementById('date').value;
       const clientNom = document.getElementById('clientNom').value.trim();
-      const clientEmail = document.getElementById('clientEmail').value.trim();
       const clientAdresse = document.getElementById('clientAdresse').value.trim();
       const isSAP = document.getElementById('modeSAP').checked;
 
-      if (!numero) { alert('N° facture obligatoire'); return; }
+      if (!numero) { alert('N facture obligatoire'); return; }
       if (!date) { alert('Date obligatoire'); return; }
       if (!clientNom) { alert('Nom du client obligatoire'); return; }
       if (!clientAdresse) { alert('Adresse du client obligatoire'); return; }
 
       if (isSAP) {
         if (!document.getElementById('numeroSAP').value.trim() && !params.numeroSAP) {
-          alert('N° SAP obligatoire en mode Service a la Personne. Renseigne-le dans le formulaire ou dans les parametres.');
+          alert('N SAP obligatoire en mode Service a la Personne. Renseigne-le dans le formulaire ou dans les parametres.');
           return;
         }
       }
-
-      const client = getOrCreateClient(clientNom, clientEmail, clientAdresse);
 
       const total = calculerTotal();
       const facture = {
@@ -1194,7 +820,7 @@
         datePrestation: document.getElementById('datePrestation').value,
         dateEcheance: document.getElementById('dateEcheance').value,
         clientNom,
-        clientEmail,
+        clientEmail: document.getElementById('clientEmail').value,
         clientAdresse,
         lignes: JSON.parse(JSON.stringify(lignes)),
         total,
@@ -1220,7 +846,6 @@
       factures.push(facture);
       sauverDonnees();
       renderComptabilite();
-      populateAnnees();
       genererPDF(facture);
       showAlert('Facture enregistree !');
     }
@@ -1246,9 +871,9 @@
         sapBlock = `
           <div class="sap-mention">
             <h4>🏛️ Service a la Personne</h4>
-            ${f.numeroSAP ? '<p><strong>N° SAP :</strong> ' + f.numeroSAP + '</p>' : '<p><em>N° SAP a completer</em></p>'}
+            ${f.numeroSAP ? '<p><strong>N SAP :</strong> ' + f.numeroSAP + '</p>' : '<p><em>N SAP a completer</em></p>'}
             ${f.dateSAP ? '<p><strong>Enregistre le :</strong> ' + formatDate(f.dateSAP) + '</p>' : ''}
-            ${f.numeroAgrement ? '<p><strong>N° agreement :</strong> ' + f.numeroAgrement + '</p>' : ''}
+            ${f.numeroAgrement ? '<p><strong>N agreement :</strong> ' + f.numeroAgrement + '</p>' : ''}
             ${f.dateAgrement ? '<p><strong>Date agreement :</strong> ' + formatDate(f.dateAgrement) + '</p>' : ''}
             ${f.numeroIntervenant ? '<p><strong>Intervenant :</strong> ' + f.nomIntervenant + ' (ID: ' + f.numeroIntervenant + ')</p>' : '<p><em>ID intervenant a completer</em></p>'}
           </div>
@@ -1270,15 +895,12 @@
         `;
       }
 
-      const pdf Voici la suite et fin du code :
-
-```javascript
       const pdfHTML = `
         <div class="facture-pdf-header">
           <div>${emetteurHTML}</div>
           <div class="facture-num">
             <h3>FACTURE</h3>
-            <p style="margin-top:8px; color:var(--gris);">N° ${f.numero}</p>
+            <p style="margin-top:8px; color:var(--gris);">N ${f.numero}</p>
             <p style="color:var(--gris);">Emise le ${formatDate(f.date)}</p>
             ${f.datePrestation ? '<p style="color:var(--gris); font-size:0.85rem;">Prestation : ' + formatDate(f.datePrestation) + '</p>' : ''}
           </div>
@@ -1459,20 +1081,9 @@
     function dupliquerFacture(id) {
       const f = factures.find(f => f.id === id);
       if (!f) return;
-      
       document.getElementById('numero').value = '';
       document.getElementById('date').valueAsDate = new Date();
       document.getElementById('datePrestation').value = f.datePrestation || '';
-      document.getElementById('dateEcheance').value = f.dateEcheance || '';
-      
-      const client = clients.find(c => c.nom.toLowerCase().trim() === f.clientNom.toLowerCase().trim());
-      if (client) {
-        document.getElementById('selectClient').value = client.id;
-      } else {
-        document.getElementById('selectClient').value = '__new__';
-      }
-      onClientSelect();
-      
       document.getElementById('clientNom').value = f.clientNom;
       document.getElementById('clientEmail').value = f.clientEmail || '';
       document.getElementById('clientAdresse').value = f.clientAdresse || '';
@@ -1513,7 +1124,6 @@
         sauverDonnees();
         renderComptabilite();
         populateAnnees();
-        renderClients();
         closeModal();
       });
     }
@@ -1521,7 +1131,7 @@
     function exporterCSV() {
       const f = getCurrentFormData();
       const csv = [
-        ['N° Facture', 'Date', 'Client', 'Montant TTC', 'Statut', 'Type'].join(';'),
+        ['N Facture', 'Date', 'Client', 'Montant TTC', 'Statut', 'Type'].join(';'),
         [f.numero, f.date, f.clientNom, f.total.toFixed(2).replace('.', ','), document.getElementById('statutPaiement').value, f.isSAP ? 'SAP' : 'Standard'].join(';')
       ].join('\n');
       downloadFile(csv, 'facture_' + f.numero + '.csv', 'text/csv');
@@ -1530,7 +1140,7 @@
     function exporterToutesCSV() {
       if (factures.length === 0) { alert('Aucune facture a exporter'); return; }
       const csv = [
-        ['N° Facture', 'Date', 'Date Prestation', 'Client', 'Montant TTC', 'Statut', 'Type', 'Mode Paiement', 'N° SAP', 'Heures', 'Frais depl.'].join(';'),
+        ['N Facture', 'Date', 'Date Prestation', 'Client', 'Montant TTC', 'Statut', 'Type', 'Mode Paiement', 'N SAP', 'Heures', 'Frais depl.'].join(';'),
         ...factures.map(f => [
           f.numero, f.date, f.datePrestation || '', f.clientNom,
           f.total.toFixed(2).replace('.', ','), getStatutLabel(f.statut),
@@ -1542,7 +1152,7 @@
     }
 
     function exporterDonnees() {
-      const data = { factures, clients, params, exportDate: new Date().toISOString() };
+      const data = { factures, params, exportDate: new Date().toISOString() };
       downloadFile(JSON.stringify(data, null, 2), 'noriot_backup_' + new Date().toISOString().slice(0,10) + '.json', 'application/json');
     }
 
@@ -1560,12 +1170,6 @@
           if (data.factures) {
             factures = data.factures;
             sauverDonnees();
-          }
-          if (data.clients) {
-            clients = data.clients;
-            sauverClients();
-            populateClientSelect();
-            renderClients();
           }
           if (data.params) {
             params = { ...params, ...data.params };
@@ -1585,12 +1189,10 @@
     }
 
     function confirmerReset() {
-      openModal('⚠️ TOUT effacer ? Toutes les factures, clients et parametres seront perdus.', () => {
+      openModal('⚠️ TOUT effacer ? Toutes les factures et parametres seront perdus.', () => {
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(PARAMS_KEY);
-        localStorage.removeItem(CLIENTS_KEY);
         factures = [];
-        clients = [];
         location.reload();
       });
     }
@@ -1601,10 +1203,6 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      if (dateStr.includes('T')) {
-        const date = new Date(dateStr);
-        return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
-      }
       const date = new Date(dateStr + 'T00:00:00');
       return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
     }
@@ -1670,6 +1268,7 @@
       modalCallback = null;
     }
 
+    // ==================== LANCEMENT ====================
     init();
   </script>
 </body>
