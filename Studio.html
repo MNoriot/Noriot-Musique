@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio — Noriot Musique</title>
-  <meta name="description" content="Home-studio à Aix-en-Provence. Production musicale, co-création, enregistrement. Single complet de 500€ à 1000€.">
+  <meta name="description" content="Home-studio à Aix-en-Provence. Production musicale, co-création, enregistrement. 40€/heure.">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -12,7 +12,6 @@
   <style>
     /* Fond spécifique page Studio */
     body {
-      /* TODO MARTIN : Remplacer par une photo de ton studio ou équipement */
       background-image: url("https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1920&q=80");
       background-size: cover;
       background-position: center;
@@ -46,19 +45,49 @@
       color: var(--gris);
     }
 
-    .studio-visual {
-      /* TODO MARTIN : Remplacer par une photo de ton espace studio */
-      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
-      border-radius: var(--radius);
-      min-height: 300px;
+    /* ===== HERO BUTTONS — STYLE RICHE ===== */
+    .hero-buttons {
       display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .hero-buttons-row-primary {
+      display: flex;
       justify-content: center;
-      margin: 32px 0;
-      border: 2px dashed var(--rose);
-      color: var(--gris);
-      text-align: center;
-      padding: 40px;
+    }
+
+    .hero-buttons-row-primary .btn {
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .hero-buttons-row-secondary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .hero-buttons-row-secondary .btn {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 10px 18px;
+      transition: var(--transition);
+    }
+
+    .hero-buttons-row-secondary .btn:hover {
+      background: var(--orange);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
     }
 
     .feature-list {
@@ -83,18 +112,120 @@
       font-size: 1.4rem;
     }
 
+    /* ===== TARIFS — 40€/HEURE BIEN VISIBLE ===== */
     .price-highlight {
       background: linear-gradient(135deg, var(--orange-clair), var(--jaune-clair));
       border-radius: var(--radius);
-      padding: 32px;
+      padding: 40px 32px;
       text-align: center;
       margin: 32px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-highlight::before {
+      content: '⏱️';
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2rem;
+      opacity: 0.25;
+    }
+
+    .price-highlight .price-label {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--noir);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .price-highlight .price-big {
-      font-size: 3rem;
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      margin: 8px 0;
+      text-shadow: 2px 2px 0px rgba(230, 126, 34, 0.15);
+    }
+
+    .price-highlight .price-unit {
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .price-highlight .price-desc {
+      color: var(--gris);
+      font-size: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-item {
+      background: var(--blanc);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--noir);
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      color: var(--orange);
+    }
+
+    .faq-question .faq-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 24px 20px 24px;
+    }
+
+    .faq-answer p {
+      color: var(--gris);
+      line-height: 1.7;
+      font-size: 0.95rem;
     }
 
     .streaming-links {
@@ -122,6 +253,28 @@
       background: var(--orange);
       transform: translateY(-2px);
     }
+
+    /* CTA section style comme Cours */
+    .cta-section {
+      background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--gris);
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 
@@ -144,27 +297,24 @@
       Co-création et production musicale à Aix-en-Provence.<br>
       De l'idée au morceau fini, ensemble.
     </p>
-    <a href="mailto:martin@noriot.fr" class="btn btn-primary" style="margin-top:24px;">
-      📧 Discuter d'un projet
-    </a>
-  </section>
-
-  <!-- Visuel studio -->
-  <section class="section">
-    <div class="studio-visual reveal">
-      <div>
-        📸<br><br>
-        <strong>Photo de ton studio</strong><br>
-        <small>Espace, matériel, ambiance...</small><br><br>
-        <em style="font-size:0.85rem;">Remplace ce bloc par une vraie photo</em>
+    <div class="hero-buttons">
+      <div class="hero-buttons-row-primary">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">📧 Contactez-moi</a>
+      </div>
+      <div class="hero-buttons-row-secondary">
+        <a href="#methode" class="btn btn-ghost">🎛️ Méthode</a>
+        <a href="#pourqui" class="btn btn-ghost">🎤 Pour qui ?</a>
+        <a href="#tarifs" class="btn btn-ghost">💰 Tarifs</a>
+        <a href="#faq" class="btn btn-ghost">❓ FAQ</a>
+        <a href="#ecoutes" class="btn btn-ghost">🎵 Écoutes</a>
       </div>
     </div>
   </section>
 
   <!-- Présentation -->
-  <section class="section">
-    <h2 class="section-title">Co-création</h2>
-    <p class="section-subtitle">On définit ensemble un cahier des charges et on travaille jusqu'au résultat</p>
+  <section class="section" id="methode">
+    <h2 class="section-title">Méthode</h2>
+    <p class="section-subtitle">On définit ensemble un cahier des charges et on travaille jusqu'au résultat. Je fais l'interface entre ta vision artistique et le logiciel, en apportant mon savoir musical pour traduire tes idées en son.</p>
 
     <div class="card reveal">
       <p style="font-size:1.05rem; line-height:1.7; margin-bottom:20px;">
@@ -183,13 +333,13 @@
   </section>
 
   <!-- Pour qui -->
-  <section class="section">
+  <section class="section" id="pourqui">
     <h2 class="section-title">Pour qui ?</h2>
     <div class="cards-grid">
       <div class="card reveal" style="text-align:center;">
         <span style="font-size:2.5rem;">🎤</span>
         <h3 style="margin:12px 0 8px;">Chanteurs & Auteurs</h3>
-        <p style="color:var(--gris); font-size:0.95rem;">Tu as des textes, une voix — je construis l'instru autour</p>
+        <p style="color:var(--gris); font-size:0.95rem;">Tu as des textes, une voix — on construit l'instru autour</p>
       </div>
       <div class="card reveal" style="text-align:center;">
         <span style="font-size:2.5rem;">🎸</span>
@@ -205,30 +355,117 @@
   </section>
 
   <!-- Tarifs -->
-  <section class="section">
+  <section class="section" id="tarifs">
     <h2 class="section-title">Tarifs</h2>
-    <p class="section-subtitle">Facturation au projet selon temps et complexité</p>
+    <p class="section-subtitle">Facturation à l'heure selon temps et complexité</p>
 
     <div class="price-highlight reveal">
-      <p style="font-size:1.1rem; margin-bottom:16px;">Single complet</p>
-      <div class="price-big">500€ – 1000€</div>
-      <p style="color:var(--gris); margin-top:16px;">
-        Un morceau fini, cohérent et dont tu es fier.
+      <div class="price-label">Production & enregistrement</div>
+      <div class="price-big">40€</div>
+      <div class="price-unit">de l'heure</div>
+      <p class="price-desc">
+        Un morceau fini, cohérent et dont tu es fier. Chaque projet est unique — on évalue ensemble le temps nécessaire.
       </p>
     </div>
 
     <div class="card reveal" style="text-align:center;">
       <p style="font-size:1.05rem; margin-bottom:16px;">
-        💡 Chaque projet est unique. Contacte-moi pour qu'on évalue ensemble :
+        💡 Tu as un projet en tête ? Parlons-en :
       </p>
-      <a href="mailto:martin@noriot.fr" class="btn btn-primary">
-        📧 Demander un devis
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">
+        📧 Contactez-moi
       </a>
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <p class="section-subtitle">Les réponses aux questions que tu te poses peut-être</p>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>🎙️ Je n'ai jamais enregistré, est-ce que c'est un problème ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Absolument pas. Je t'accompagne étape par étape, de la prise de voix au mixage final. Pas besoin d'expérience technique, juste d'envie et de tes idées.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>⏱️ Combien de temps faut-il pour faire un single ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Ça dépend du projet. Un single simple peut prendre 3 à 5 séances, un projet plus complexe un peu plus. On évalue ensemble dès le premier contact.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>💻 Je peux venir avec mes propres fichiers ou ma prod ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Oui, totalement. Tu peux amener tes stems, tes maquettes, ou même juste une référence Spotify. On repart de ce que tu as et on construit ensemble.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>🎵 Je chante mal / je ne suis pas sûr de ma voix, ça va le faire ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>La confiance en soi ça se travaille. On prend le temps qu'il faut, on fait des essais, on corrige ce qui peut l'être. L'important c'est que tu te sentes bien.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>🎧 Qu'est-ce que je repars avec à la fin ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Tu repars avec un morceau finalisé, mixé et masterisé, prêt à être diffusé sur toutes les plateformes (Spotify, Apple Music, YouTube...). Les fichiers sources peuvent aussi être fournis sur demande.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>📍 Où se passe l'enregistrement ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Dans mon home-studio à Aix-en-Provence. Un espace calme, avec bonne acoustique et tout le matériel nécessaire. Je peux aussi me déplacer dans certains cas, on en discute.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>💰 Comment se passe la facturation ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>À l'heure, 40€/h. Pas de surprise, on fait un point régulier sur le temps passé. Pour les gros projets on peut aussi envisager un forfait, on en parle ensemble.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>🎸 Je joue d'un instrument, est-ce que je peux l'enregistrer ?</span>
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Bien sûr. Tu peux amener ton instrument ou utiliser ceux disponibles sur place (piano, guitare, basse, trompette...). On capte le son au mieux selon l'instrument.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Écoutes -->
-  <section class="section">
+  <section class="section" id="ecoutes">
     <h2 class="section-title">Écoutes</h2>
     <p class="section-subtitle">Découvre ce qui est déjà sorti du studio</p>
 
@@ -253,9 +490,21 @@
     </div>
   </section>
 
+  <!-- CTA final -->
+  <section class="cta-section reveal">
+    <h2>Un projet en tête ? 🎧</h2>
+    <p>
+      Parlons de ton idée, de tes inspirations et de ce que tu imagines. 
+      Premier contact sans engagement.
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.1rem; padding:16px 32px;">
+      📧 Contactez-moi
+    </a>
+  </section>
+
   <!-- CTA fixe mobile -->
   <div class="cta-fixed">
-    <a href="mailto:martin@noriot.fr" class="btn btn-primary">📧 Contacter</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWGBMHQhvXIhTCJpxF9NNtjeamklKCjDSTXmyojnPrmg9osw/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">📧 Contactez-moi</a>
     <a href="index.html" class="btn btn-secondary">🏠 Accueil</a>
   </div>
 
@@ -263,9 +512,12 @@
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-profile">
-        <div class="img-placeholder footer-profile-img" style="min-height:auto; width:64px; height:64px;">
-          📸
-        </div>
+        <img 
+          src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" 
+          alt="Martin Noriot - Professeur de musique" 
+          class="footer-profile-img"
+          style="width:64px; height:64px; border-radius:50%; object-fit:cover;"
+        />
         <div class="footer-profile-info">
           <h3>Martin Noriot</h3>
           <p>🎧 Studio & Production • Aix-en-Provence</p>
@@ -278,6 +530,8 @@
         <a href="https://www.instagram.com/noriot.music/" target="_blank" rel="noopener">📸 Instagram</a>
         <a href="https://www.youtube.com/channel/UCuq3PC-JYy0jdTXRPwsToIw" target="_blank" rel="noopener">▶️ YouTube</a>
         <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">🎵 Spotify</a>
+        <a href="https://link.deezer.com/s/33kvTlgMjgFxGXELQLVhm" target="_blank" rel="noopener">🎧 Deezer</a>
+        <a href="https://music.apple.com/fr/artist/noriot/1706085284" target="_blank" rel="noopener">🍎 Apple Music</a>
       </div>
     </div>
 
