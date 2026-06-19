@@ -1320,9 +1320,9 @@
           <td><span class="badge badge-${f.isSAP ? 'sap' : 'micro'}">${f.isSAP ? 'SAP' : 'Standard'}</span></td>
           <td class="actions-cell no-print">
             <button class="btn btn-icon btn-sm" onclick="voirFacture('${f.id}')" title="Voir">👁️</button>
-            <button class="btn btn-icon btn-sm" onclick="dupliquerFacture('${f.id}')" title="Dupliquer">ðŸ“‹</button>
+            <button class="btn btn-icon btn-sm" onclick="dupliquerFacture('${f.id}')" title="Dupliquer">📋</button>
             <button class="btn btn-icon btn-sm" onclick="changerStatut('${f.id}')" title="Statut">💳</button>
-            <button class="btn btn-icon btn-sm" style="color:var(--rouge);" onclick="supprimerFacture('${f.id}')" title="Supprimer">ðŸ—‘ï¸</button>
+            <button class="btn btn-icon btn-sm" style="color:var(--rouge);" onclick="supprimerFacture('${f.id}')" title="Supprimer">🗑️</button>
           </td>
         </tr>
       `).join('');
