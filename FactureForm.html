@@ -642,7 +642,11 @@
       iban: "FR76 1831 5100 0004 3576 6406 957",
       bic: "CEPAFRPP831",
       numeroSAP: "SAP105074496",
-      dateSAP: "19/06/2026",
+      dateSAP: "2026-06-19",
+      numeroAgrement: "",
+      dateAgrement: "",
+      numeroIntervenant: "",
+      nomIntervenant: "Martin Noriot"
     };
     let params = { ...defaultParams };
     parametres = params;
@@ -667,6 +671,21 @@
     }
 
     function normalizeId(id) { return String(id || ''); }
+    function getValue(id, fallback = '') {
+      const el = document.getElementById(id);
+      return el ? el.value : fallback;
+    }
+    function setValue(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.value = value || '';
+    }
+    function normalizeDateInput(value) {
+      if (!value) return '';
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+      const match = String(value).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (!match) return value;
+      return match[3] + '-' + match[2].padStart(2, '0') + '-' + match[1].padStart(2, '0');
+    }
     function getClientById(id) { return clients.find(c => normalizeId(c.id) === normalizeId(id)); }
     function clientName(f) { return (f.clientSnapshot && f.clientSnapshot.nom) || f.clientNom || ''; }
     function clientEmail(f) { return (f.clientSnapshot && f.clientSnapshot.email) || f.clientEmail || ''; }
@@ -680,13 +699,13 @@
         adresse: raw.clientAdresse || ''
       };
       let clientId = normalizeId(raw.clientId);
-      if (!clientId && clientSnapshot.nom) {
+      if (clientSnapshot.nom && (!clientId || !getClientById(clientId))) {
         const nomKey = clientSnapshot.nom.trim().toLowerCase();
         const emailKey = (clientSnapshot.email || '').trim().toLowerCase();
         let client = clients.find(c => c.nom.trim().toLowerCase() === nomKey && (c.email || '').trim().toLowerCase() === emailKey);
         if (!client) {
           client = {
-            id: uid('client'),
+            id: clientId || uid('client'),
             nom: clientSnapshot.nom,
             email: clientSnapshot.email || '',
             adresse: clientSnapshot.adresse || '',
@@ -735,11 +754,19 @@
           updatedAt: c.updatedAt || c.createdAt || new Date().toISOString()
         })) : [];
         factures = Array.isArray(appData.factures) ? appData.factures.map(migrateFacture) : [];
+        try {
+          const legacyFactures = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+          if (Array.isArray(legacyFactures) && legacyFactures.length > factures.length) {
+            factures = legacyFactures.map(migrateFacture);
+          }
+        } catch(e) { console.warn('Anciennes factures non migrées', e); }
         params = { ...defaultParams, ...(appData.parametres || appData.params || {}) };
+        params.dateSAP = normalizeDateInput(params.dateSAP);
       } else {
         try {
           const oldParams = localStorage.getItem(PARAMS_KEY);
           if (oldParams) params = { ...defaultParams, ...JSON.parse(oldParams) };
+          params.dateSAP = normalizeDateInput(params.dateSAP);
         } catch(e) { console.error('Erreur params', e); }
         try {
           const oldFactures = localStorage.getItem(STORAGE_KEY);
@@ -748,6 +775,7 @@
       }
       parametres = params;
       applyParamsToForm();
+      syncSapFieldsFromParams(false);
       sauverDonnees();
     }
 
@@ -768,16 +796,18 @@
       params.telephone = document.getElementById('paramTel').value;
       params.site = document.getElementById('paramSite').value;
       params.iban = document.getElementById('paramIban').value;
-      params.bic = document.getElementById('paramBic').value;
-      params.numeroSAP = document.getElementById('paramNumeroSAP').value;
-      params.dateSAP = document.getElementById('paramDateSAP').value;
-      params.numeroAgrement = document.getElementById('paramNumeroAgrement').value;
-      params.dateAgrement = document.getElementById('paramDateAgrement').value;
-      params.numeroIntervenant = document.getElementById('paramNumeroIntervenant').value;
-      params.nomIntervenant = document.getElementById('paramNomIntervenant').value;
+      params.bic = getValue('paramBic', params.bic);
+      params.numeroSAP = getValue('paramNumeroSAP', params.numeroSAP);
+      params.dateSAP = normalizeDateInput(getValue('paramDateSAP', params.dateSAP));
+      params.numeroAgrement = getValue('paramNumeroAgrement', params.numeroAgrement);
+      params.dateAgrement = normalizeDateInput(getValue('paramDateAgrement', params.dateAgrement));
+      params.numeroIntervenant = getValue('paramNumeroIntervenant', params.numeroIntervenant);
+      params.nomIntervenant = getValue('paramNomIntervenant', params.nomIntervenant);
       sauverDonnees();
       updateEmetteurDisplay();
-      showAlert('Parametres sauvegardes !');
+      syncSapFieldsFromParams(true);
+      toggleSAP();
+      showAlert('Paramètres sauvegardés !');
     }
 
     function applyParamsToForm() {
@@ -790,13 +820,28 @@
       document.getElementById('paramTel').value = params.telephone;
       document.getElementById('paramSite').value = params.site;
       document.getElementById('paramIban').value = params.iban;
-      document.getElementById('paramBic').value = params.bic;
-      document.getElementById('paramNumeroSAP').value = params.numeroSAP;
-      document.getElementById('paramDateSAP').value = params.dateSAP;
-      document.getElementById('paramNumeroAgrement').value = params.numeroAgrement;
-      document.getElementById('paramDateAgrement').value = params.dateAgrement;
-      document.getElementById('paramNumeroIntervenant').value = params.numeroIntervenant;
-      document.getElementById('paramNomIntervenant').value = params.nomIntervenant;
+      setValue('paramBic', params.bic);
+      setValue('paramNumeroSAP', params.numeroSAP);
+      setValue('paramDateSAP', normalizeDateInput(params.dateSAP));
+      setValue('paramNumeroAgrement', params.numeroAgrement);
+      setValue('paramDateAgrement', normalizeDateInput(params.dateAgrement));
+      setValue('paramNumeroIntervenant', params.numeroIntervenant);
+      setValue('paramNomIntervenant', params.nomIntervenant);
+    }
+
+    function syncSapFieldsFromParams(force) {
+      const mappings = [
+        ['numeroSAP', params.numeroSAP],
+        ['dateSAP', normalizeDateInput(params.dateSAP)],
+        ['numeroAgrement', params.numeroAgrement],
+        ['dateAgrement', normalizeDateInput(params.dateAgrement)],
+        ['numeroIntervenant', params.numeroIntervenant],
+        ['nomIntervenant', params.nomIntervenant]
+      ];
+      mappings.forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el && (force || !el.value)) el.value = value || '';
+      });
     }
 
     function updateEmetteurDisplay() {
@@ -832,6 +877,7 @@
 
     function toggleSAP() {
       const isSAP = document.getElementById('modeSAP').checked;
+      if (isSAP) syncSapFieldsFromParams(false);
       document.getElementById('sapFields').style.display = isSAP ? 'block' : 'none';
       document.getElementById('sapHoraire').style.display = isSAP ? 'block' : 'none';
       const sapInfo = document.getElementById('sapEmetteurInfo');
@@ -1001,7 +1047,7 @@
         <div class="ligne-presta">
           <div class="ligne-header">
             <span>Prestation ${index + 1}</span>
-            ${lignes.length > 1 ? `<button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne('${ligne.id}')" title="Supprimer">ðŸ—‘ï¸</button>` : ''}
+            ${lignes.length > 1 ? `<button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne('${ligne.id}')" title="Supprimer">🗑️</button>` : ''}
           </div>
           <div class="form-grid cols-3">
             <div class="form-group">
@@ -1087,12 +1133,12 @@
         modePaiement: document.getElementById('modePaiement').value,
         sapMode: isSAP,
         isSAP,
-        numeroSAP: document.getElementById('numeroSAP').value || params.numeroSAP,
-        dateSAP: document.getElementById('dateSAP').value || params.dateSAP,
-        numeroAgrement: document.getElementById('numeroAgrement').value || params.numeroAgrement,
-        dateAgrement: document.getElementById('dateAgrement').value || params.dateAgrement,
-        numeroIntervenant: document.getElementById('numeroIntervenant').value || params.numeroIntervenant,
-        nomIntervenant: document.getElementById('nomIntervenant').value || params.nomIntervenant,
+        numeroSAP: getValue('numeroSAP', params.numeroSAP) || params.numeroSAP,
+        dateSAP: normalizeDateInput(getValue('dateSAP', params.dateSAP) || params.dateSAP),
+        numeroAgrement: getValue('numeroAgrement', params.numeroAgrement) || params.numeroAgrement,
+        dateAgrement: normalizeDateInput(getValue('dateAgrement', params.dateAgrement) || params.dateAgrement),
+        numeroIntervenant: getValue('numeroIntervenant', params.numeroIntervenant) || params.numeroIntervenant,
+        nomIntervenant: getValue('nomIntervenant', params.nomIntervenant) || params.nomIntervenant,
         heuresRealisees: isSAP ? (document.getElementById('heuresRealisees').value || 0) : null,
         tauxHoraire: isSAP ? (document.getElementById('tauxHoraire').value || 0) : null,
         fraisDeplacement: isSAP ? (document.getElementById('fraisDeplacement').value || 0) : null,
@@ -1171,7 +1217,7 @@
       if (isSAP) {
         sapBlock = `
           <div class="sap-mention">
-            <h4>ðŸ›️ Service a la Personne</h4>
+            <h4>🏛️ Service a la Personne</h4>
             ${f.numeroSAP ? '<p><strong>N SAP :</strong> ' + escapeHTML(f.numeroSAP) + '</p>' : '<p><em>N SAP a completer</em></p>'}
             ${f.dateSAP ? '<p><strong>Enregistre le :</strong> ' + formatDate(f.dateSAP) + '</p>' : ''}
             ${f.numeroAgrement ? '<p><strong>N agrement :</strong> ' + escapeHTML(f.numeroAgrement) + '</p>' : ''}
