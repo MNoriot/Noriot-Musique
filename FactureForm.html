@@ -253,7 +253,7 @@
         <div class="info-box" id="infoEmetteur">
           <p><strong id="emetteurNom">Martin Noriot</strong> — <span id="emetteurCommercial">Noriot Musique</span></p>
           <p id="emetteurAdresse">22 rue Portalis, 13100 Aix-en-Provence</p>
-          <p>SIREN : <span id="emetteurSiren">105 074 496</span> • Code APE : <span id="emetteurApe">85.52Z</span></p>
+          <p>SIREN : <span id="emetteurSiren">105 074 496</span> • Code APE : <span id="emetteurApe">85.59B</span></p>
           <p id="sapEmetteurInfo" style="display:none;"></p>
           <p>📧 <span id="emetteurEmail">martin@noriot.fr</span> • 📞 <span id="emetteurTel">06 66 80 92 89</span></p>
         </div>
@@ -286,9 +286,6 @@
             <select id="clientSelect" onchange="selectionnerClient(this.value)">
               <option value="">Nouveau client / saisie libre</option>
             </select>
-            <div class="placeholder-info">
-              Sélectionner un client remplit les champs sans supprimer une saisie en cours. Les champs restent toujours modifiables.
-            </div>
           </div>
           <div class="form-group">
             <label for="clientNom">Nom complet / Denomination *</label>
@@ -316,35 +313,11 @@
             <div class="form-group">
               <label for="numeroSAP">N° SAP (déclaration) *</label>
               <input type="text" id="numeroSAP" placeholder="SAP-XXXX-XXXX">
-              <div class="placeholder-info">
-                💡 A renseigner quand tu recevras ton numéro de déclaration SAP sur servicesalapersonne.gouv.fr
               </div>
             </div>
             <div class="form-group">
               <label for="dateSAP">Date d'enregistrement SAP</label>
               <input type="date" id="dateSAP">
-            </div>
-            <div class="form-group">
-              <label for="numeroAgrement">N° d'agrément qualité (si applicable)</label>
-              <input type="text" id="numeroAgrement" placeholder="AQ-XXXX-XXXX">
-              <div class="placeholder-info">
-                💡 Seulement si tu demandes un agreement pour publics fragiles. Laisse vide si simple declaration.
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="dateAgrement">Date d'agrément</label>
-              <input type="date" id="dateAgrement">
-            </div>
-            <div class="form-group">
-              <label for="numeroIntervenant">N° d'immatriculation de l'intervenant *</label>
-              <input type="text" id="numeroIntervenant" placeholder="ID-XXXX-XXXX">
-              <div class="placeholder-info">
-                💡 Numéro d'identification dans le registre des intervenants SAP. A demander lors de l'inscription.
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="nomIntervenant">Nom de l'intervenant</label>
-              <input type="text" id="nomIntervenant" value="Martin Noriot">
             </div>
           </div>
         </div>
@@ -605,35 +578,10 @@
           <div class="form-group">
             <label>N° SAP (déclaration)</label>
             <input type="text" id="paramNumeroSAP" placeholder="SAP-XXXX-XXXX">
-            <div class="placeholder-info">
-              💡 Tu recevras ce numero apres validation de ta declaration sur servicesalapersonne.gouv.fr
-            </div>
           </div>
           <div class="form-group">
             <label>Date d'enregistrement SAP</label>
             <input type="date" id="paramDateSAP">
-          </div>
-          <div class="form-group">
-            <label>N° d'agrément qualité (optionnel)</label>
-            <input type="text" id="paramNumeroAgrement" placeholder="AQ-XXXX-XXXX">
-            <div class="placeholder-info">
-              💡 Seulement si tu demandes un agreement pour publics fragiles (handicap, personnes agees...)
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Date d'agrement</label>
-            <input type="date" id="paramDateAgrement">
-          </div>
-          <div class="form-group">
-            <label>N° d'immatriculation intervenant</label>
-            <input type="text" id="paramNumeroIntervenant" placeholder="ID-XXXX-XXXX">
-            <div class="placeholder-info">
-              💡 Numéro d'identification dans le registre des intervenants SAP
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Nom de l'intervenant</label>
-            <input type="text" id="paramNomIntervenant" value="Martin Noriot">
           </div>
         </div>
 
@@ -688,18 +636,14 @@
       commercial: "Noriot Musique",
       adresse: "22 rue Portalis\n13100 Aix-en-Provence",
       siren: "105 074 496",
-      ape: "85.52Z",
+      ape: "85.59B",
       email: "martin@noriot.fr",
       telephone: "06 66 80 92 89",
       site: "mnoriot.github.io/Noriot-Musique",
       iban: "FR76 1831 5100 0004 3576 6406 957",
       bic: "CEPAFRPP831",
-      numeroSAP: "",
-      dateSAP: "",
-      numeroAgrement: "",
-      dateAgrement: "",
-      numeroIntervenant: "",
-      nomIntervenant: "Martin Noriot"
+      numeroSAP: "SAP105074496",
+      dateSAP: "19/06/2026",
     };
     let params = { ...defaultParams };
     parametres = params;
