@@ -407,8 +407,11 @@
 
         <!-- Actions -->
         <div class="action-buttons">
-          <button type="button" class="btn" style="background:var(--orange); color:white;" onclick="genererEtEnregistrer()">
-            💾 Enregistrer & Imprimer
+          <button type="button" class="btn" style="background:var(--orange); color:white;" onclick="generer()">
+            💾 Enregistrer
+          </button>
+          <button type="button" class="btn btn-ghost" onclick="genererEtEnregistrer()">
+            💾 Enregistrer & Imprime
           </button>
           <button type="button" class="btn btn-ghost" onclick="preparerMail()">
             📧 Preparer le mail
@@ -1163,6 +1166,26 @@
       if (!facture.lignes.length || facture.lignes.some(l => !String(l.description || '').trim())) return 'Chaque prestation doit avoir une description.';
       if (facture.isSAP && !facture.numeroSAP) return 'N SAP obligatoire en mode Service a la Personne. Renseigne-le dans le formulaire ou dans les parametres.';
       return '';
+    }
+
+    function generer() {
+      const facture = buildFactureFromForm();
+      const erreur = validateFacture(facture);
+      if (erreur) { alert(erreur); return; }
+      if (!facture.clientId) {
+        const client = upsertClient(facture.clientSnapshot, '');
+        facture.clientId = client.id;
+        selectedClientId = client.id;
+        renderClientSelect();
+        document.getElementById('clientSelect').value = client.id;
+      }
+      factures.push(facture);
+      sauverDonnees();
+      renderComptabilite();
+      populateAnnees();
+      showAlert('Facture enregistree !');
+      document.getElementById('numero').value = '';
+      autoNumeroFacture();
     }
 
     function genererEtEnregistrer() {
