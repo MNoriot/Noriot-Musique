@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cours de Musique — Noriot Musique</title>
-  <meta name="description" content="Cours de piano, trompette, guitare, basse à Aix-en-Provence, Marseille et alentours. Pédagogie adaptée, improvisation, tous niveaux. Premier cours d'essai gratuit.">
+  <meta name="description" content="Cours de piano, trompette, guitare, basse à domicile à Aix-en-Provence, Marseille et alentours. Service à la Personne : 50% de crédit d'impôt. Pédagogie adaptée, improvisation, tous niveaux. Premier cours d'essai gratuit.">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -54,7 +54,7 @@
       margin: 0 auto 32px;
     }
 
-    /* ===== BOUTONS HERO — NOUVELLE STRUCTURE ===== */
+    /* ===== BOUTONS HERO ===== */
     .hero-buttons {
       display: flex;
       flex-direction: column;
@@ -72,6 +72,194 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
+    }
+
+    /* ============================================
+       BANDEAU SERVICE À LA PERSONNE
+       ============================================ */
+
+    .sap-banner {
+      background: linear-gradient(135deg, #1a5f2a 0%, #2e8b3a 50%, #3cb043 100%);
+      color: white;
+      padding: 32px 24px;
+      border-radius: var(--radius);
+      margin: 0 20px 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 8px 32px rgba(30, 100, 40, 0.25);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .sap-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+
+    .sap-banner-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sap-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .sap-logo {
+      height: 60px;
+      width: auto;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .sap-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .sap-highlight {
+      background: #ffd700;
+      color: #1a5f2a;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    .sap-savings {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .sap-savings-main {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffd700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .sap-savings-sub {
+      font-size: 1rem;
+      opacity: 0.95;
+      margin-top: 4px;
+    }
+
+    .sap-cta {
+      margin-top: 20px;
+    }
+
+    .sap-cta .btn {
+      background: white;
+      color: #1a5f2a;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 28px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .sap-cta .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .sap-note {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       SECTION AVANTAGES SAP
+       ============================================ */
+
+    .sap-section {
+      background: var(--blanc);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      margin: 0 20px 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .sap-section h2 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: var(--noir);
+    }
+
+    .sap-section .subtitle {
+      text-align: center;
+      color: var(--gris);
+      margin-bottom: 28px;
+    }
+
+    .sap-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .sap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f8fff8, #f0f9f0);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid #2e8b3a;
+      transition: var(--transition);
+    }
+
+    .sap-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow);
+    }
+
+    .sap-item-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .sap-item h4 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      color: var(--noir);
+    }
+
+    .sap-item p {
+      font-size: 0.9rem;
+      color: var(--gris);
+      line-height: 1.5;
+      margin: 0;
     }
 
     /* Section offre */
@@ -200,6 +388,55 @@
       border-bottom: none;
     }
 
+    /* ===== PRIX AVEC AVANTAGE FISCAL ===== */
+    .price-original {
+      font-size: 0.9rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .price-after-tax {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #2e8b3a;
+    }
+
+    .price-after-tax-label {
+      font-size: 0.85rem;
+      color: #2e8b3a;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .price-tag {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--orange);
+    }
+
+    .price-sap-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      color: #1a5f2a;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .price-sap-badge img {
+      height: 18px;
+      width: auto;
+    }
+
     /* CTA section */
     .cta-section {
       background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
@@ -260,7 +497,7 @@
     }
 
     /* ============================================
-       SECTION AVIS GOOGLE — PÉRIMÈTRE AIX/MARSEILLE
+       SECTION AVIS GOOGLE
        ============================================ */
 
     .reviews-section {
@@ -406,6 +643,31 @@
       color: #999;
     }
 
+    /* Footer SAP mention */
+    .footer-sap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+    }
+
+    .footer-sap img {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .footer-sap span {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
     /* Responsive */
     @media (min-width: 768px) {
       .method-visual {
@@ -418,6 +680,14 @@
 
       .professor-atouts {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sap-title {
+        font-size: 1.5rem;
       }
 
       .map-area-container iframe {
@@ -449,6 +719,10 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
+      .sap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .map-area-container iframe {
         height: 500px;
       }
@@ -470,11 +744,11 @@
 
   <!-- Hero -->
   <section class="hero-cours">
-    <h1>Cours de Musique 🎵</h1>
+    <h1>Cours de Musique à Domicile 🎵</h1>
     <p>
-      Développe ton jeu musical, de l'apprentissage des bases à l'improvisation.
+      Développe ton jeu musical, de l'apprentissage des bases à l'improvisation. À Aix-en-Provence, Marseille et alentours.
     </p>
-    <!-- ===== NOUVELLE STRUCTURE BOUTONS ===== -->
+    <!-- ===== BOUTONS HERO ===== -->
     <div class="hero-buttons">
       <div class="hero-buttons-row-primary">
         <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver un essai gratuit</a>
@@ -484,6 +758,84 @@
         <a href="#professeur" class="btn btn-ghost">Le professeur</a>
         <a href="#tarifs" class="btn btn-ghost">Les tarifs</a>
         <a href="#avis" class="btn btn-ghost">Les avis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BANDEAU SERVICE À LA PERSONNE
+       ============================================ -->
+  <div class="sap-banner">
+    <div class="sap-banner-content">
+      <div class="sap-badge-row">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service à la Personne" class="sap-logo">
+        <div class="sap-title">
+          Cours de musique à domicile<br>éligibles au <span class="sap-highlight">Service à la Personne</span>
+        </div>
+      </div>
+
+      <div class="sap-savings">
+        <div class="sap-savings-main">–50% de crédit d'impôt</div>
+        <div class="sap-savings-sub">Vos cours reviennent à partir de <strong>20€/h</strong> après avantage fiscal*</div>
+      </div>
+
+      <div class="sap-cta">
+        <a href="#tarifs" class="btn">💶 Voir les tarifs réduits</a>
+      </div>
+
+      <p class="sap-note">* Sous conditions selon les règles en vigueur du dispositif SAP / NOVA</p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION AVANTAGES SAP
+       ============================================ -->
+  <section class="sap-section" id="sap-avantages">
+    <h2>🎯 Pourquoi choisir mes cours ?</h2>
+    <p class="subtitle">L'apprentissage musical chez vous, avec des avantages concrets</p>
+
+    <div class="sap-grid">
+      <div class="sap-item">
+        <div class="sap-item-icon">🏠</div>
+        <div>
+          <h4>Cours à domicile</h4>
+          <p>Apprentissage dans votre environnement, sans déplacement. Votre instrument, votre espace, votre confort.</p>
+        </div>
+      </div>
+      <div class="sap-item">
+        <div class="sap-item-icon">💶</div>
+        <div>
+          <h4>50% de crédit d'impôt</h4>
+          <p>Grâce au Service à la Personne, bénéficiez d'un crédit d'impôt de 50% sur vos cours de musique à domicile.</p>
+        </div>
+      </div>
+      <div class="sap-item">
+        <div class="sap-item-icon">👨‍👩‍👧</div>
+        <div>
+          <h4>Idéal pour toute la famille</h4>
+          <p>Enfants, ados, adultes : tous les âges et tous les niveaux sont les bienvenus.</p>
+        </div>
+      </div>
+      <div class="sap-item">
+        <div class="sap-item-icon">🎸</div>
+        <div>
+          <h4>Instruments variés</h4>
+          <p>Piano, trompette, guitare, basse, MAO, théorie musicale et improvisation sur tous instruments.</p>
+        </div>
+      </div>
+      <div class="sap-item">
+        <div class="sap-item-icon">🎁</div>
+        <div>
+          <h4>Premier cours d'essai gratuit</h4>
+          <p>50 minutes pour découvrir la méthode et voir si on est faits pour travailler ensemble. Sans engagement.</p>
+        </div>
+      </div>
+      <div class="sap-item">
+        <div class="sap-item-icon">✅</div>
+        <div>
+          <h4>Organisme déclaré NOVA</h4>
+          <p>Activité déclarée auprès des services compétents. Accès aux avantages fiscaux associés sous conditions.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -597,7 +949,7 @@
     </div>
   </div>
 </section>
-  
+
   <!-- Tarifs -->
   <section class="section" id="tarifs">
     <h2 class="section-title">Tarifs</h2>
@@ -606,56 +958,81 @@
     <div class="prices-grid">
       <div class="price-card reveal">
         <h3>Individuel</h3>
-        <div class="price-tag">40€</div>
-        <p class="price-period">la séance</p>
+        <div class="price-original">40€ la séance</div>
+        <div class="price-after-tax">20€</div>
+        <p class="price-period">la séance après crédit d'impôt*</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 150€</li>
-          <li>📦 Pack 10 séances : 350€</li>
+          <li>📅 Mensuel (4x) : 150€ → <strong>75€</strong> après crédit d'impôt</li>
+          <li>📦 Pack 10 séances : 350€ → <strong>175€</strong> après crédit d'impôt</li>
           <li>🎯 100% personnalisé</li>
         </ul>
+        <div class="price-sap-badge">
+          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+          Service à la Personne
+        </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card featured reveal">
         <h3>Duo</h3>
-        <div class="price-tag">25€</div>
-        <p class="price-period">/ pers / séance</p>
+        <div class="price-original">25€ / pers / séance</div>
+        <div class="price-after-tax">12,50€</div>
+        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 90€ / pers</li>
-          <li>📦 Pack 10 : 220€ / pers</li>
+          <li>📅 Mensuel (4x) : 90€ → <strong>45€</strong> / pers après crédit d'impôt</li>
+          <li>📦 Pack 10 : 220€ → <strong>110€</strong> / pers après crédit d'impôt</li>
           <li>🤝 Apprendre à deux</li>
         </ul>
+        <div class="price-sap-badge">
+          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+          Service à la Personne
+        </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card reveal">
         <h3>Trio</h3>
-        <div class="price-tag">22€</div>
-        <p class="price-period">/ pers / séance</p>
+        <div class="price-original">22€ / pers / séance</div>
+        <div class="price-after-tax">11€</div>
+        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 80€ / pers</li>
-          <li>📦 Pack 10 : 200€ / pers</li>
+          <li>📅 Mensuel (4x) : 80€ → <strong>40€</strong> / pers après crédit d'impôt</li>
+          <li>📦 Pack 10 : 200€ → <strong>100€</strong> / pers après crédit d'impôt</li>
           <li>🎵 Dynamique de groupe</li>
         </ul>
+        <div class="price-sap-badge">
+          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+          Service à la Personne
+        </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card reveal">
         <h3>Quatuor+</h3>
-        <div class="price-tag">20€</div>
-        <p class="price-period">/ pers / séance</p>
+        <div class="price-original">20€ / pers / séance</div>
+        <div class="price-after-tax">10€</div>
+        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 75€ / pers</li>
-          <li>📦 Pack 10 : 180€ / pers</li>
+          <li>📅 Mensuel (4x) : 75€ → <strong>37,50€</strong> / pers après crédit d'impôt</li>
+          <li>📦 Pack 10 : 180€ → <strong>90€</strong> / pers après crédit d'impôt</li>
           <li>🎉 Ambiance garantie</li>
         </ul>
+        <div class="price-sap-badge">
+          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+          Service à la Personne
+        </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
     </div>
+
+    <p style="text-align:center; color:var(--gris); font-size:0.85rem; margin-top:20px;">
+      * Le crédit d'impôt de 50% s'applique sous conditions selon les règles du dispositif Service à la Personne (SAP) / NOVA en vigueur. 
+      Consultez votre conseiller fiscal pour votre situation personnelle.
+    </p>
   </section>
 
   <!-- ============================================
-       SECTION AVIS GOOGLE — ZONE AIX/MARSEILLE/ALENTOURS
+       SECTION AVIS GOOGLE
        ============================================ -->
     <section class="section" id="avis">
     <div class="reviews-section">
@@ -677,7 +1054,7 @@
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
-        
+
         <!-- Overlay zone d'activité — HAUT À DROITE -->
         <div class="map-overlay">
           <h4>📍 Zone d'intervention</h4>
@@ -761,7 +1138,7 @@
         />
         <div class="footer-profile-info">
           <h3>Martin Noriot</h3>
-          <p>🎺 Professeur de musique • Aix-en-Provence</p>
+          <p>🎺 Professeur de musique à domicile • Aix-en-Provence</p>
         </div>
       </div>
 
@@ -773,6 +1150,11 @@
         <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">🎵 Spotify</a>
         <a href="https://link.deezer.com/s/33kvTlgMjgFxGXELQLVhm" target="_blank" rel="noopener">🎧 Deezer</a>
         <a href="https://music.apple.com/fr/artist/noriot/1706085284" target="_blank" rel="noopener">🍎 Apple Music</a>
+      </div>
+
+      <div class="footer-sap">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service à la Personne">
+        <span>Organisme déclaré Service à la Personne — Crédit d'impôt de 50% sous conditions</span>
       </div>
     </div>
 
