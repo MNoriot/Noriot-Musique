@@ -390,53 +390,53 @@
       border-bottom: none;
     }
 
-    /* ===== PRIX AVEC AVANTAGE FISCAL ===== */
-    .price-original {
-      font-size: 0.9rem;
-      color: #999;
-      text-decoration: line-through;
-      margin-bottom: 2px;
-    }
-
-    .price-after-tax {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #2e8b3a;
-    }
-
-    .price-after-tax-label {
-      font-size: 0.85rem;
-      color: #2e8b3a;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
+    /* ===== PRIX PRINCIPAL EN ORANGE (plein tarif) ===== */
     .price-tag {
       font-size: 2.2rem;
       font-weight: 800;
       color: var(--orange);
     }
 
-    .price-sap-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-      color: #1a5f2a;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-top: 8px;
+    .price-period {
+      color: var(--gris);
+      font-size: 0.95rem;
     }
 
-    .price-sap-badge img {
+    /* ===== AVANTAGE SAP EN DESSOUS ===== */
+    .price-sap-box {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .price-sap-box .sap-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a5f2a;
+      margin-bottom: 2px;
+    }
+
+    .price-sap-box .sap-label img {
       height: 18px;
       width: auto;
+    }
+
+    .price-sap-box .sap-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #2e8b3a;
+    }
+
+    .price-sap-box .sap-note {
+      font-size: 0.8rem;
+      color: #1a5f2a;
+      opacity: 0.8;
     }
 
     /* CTA section */
@@ -961,68 +961,80 @@
     <div class="prices-grid">
       <div class="price-card reveal">
         <h3>Individuel</h3>
-        <div class="price-original">40€ la séance</div>
-        <div class="price-after-tax">20€</div>
-        <p class="price-period">la séance après crédit d'impôt*</p>
+        <div class="price-tag">40€</div>
+        <p class="price-period">la séance</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 150€ → <strong>75€</strong> après crédit d'impôt</li>
-          <li>📦 Pack 10 séances : 350€ → <strong>175€</strong> après crédit d'impôt</li>
+          <li>📅 Mensuel (4x) : 150€</li>
+          <li>📦 Pack 10 séances : 350€</li>
           <li>🎯 100% personnalisé</li>
         </ul>
-        <div class="price-sap-badge">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
-          Service à la Personne
+        <div class="price-sap-box">
+          <div class="sap-label">
+            <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+            Avec Service à la Personne
+          </div>
+          <div class="sap-price">20€</div>
+          <div class="sap-note">la séance après crédit d'impôt*</div>
         </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card featured reveal">
         <h3>Duo</h3>
-        <div class="price-original">25€ / pers / séance</div>
-        <div class="price-after-tax">12,50€</div>
-        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
+        <div class="price-tag">25€</div>
+        <p class="price-period">/ pers / séance</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 90€ → <strong>45€</strong> / pers après crédit d'impôt</li>
-          <li>📦 Pack 10 : 220€ → <strong>110€</strong> / pers après crédit d'impôt</li>
+          <li>📅 Mensuel (4x) : 90€ / pers</li>
+          <li>📦 Pack 10 : 220€ / pers</li>
           <li>🤝 Apprendre à deux</li>
         </ul>
-        <div class="price-sap-badge">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
-          Service à la Personne
+        <div class="price-sap-box">
+          <div class="sap-label">
+            <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+            Avec Service à la Personne
+          </div>
+          <div class="sap-price">12,50€</div>
+          <div class="sap-note">/ pers / séance après crédit d'impôt*</div>
         </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card reveal">
         <h3>Trio</h3>
-        <div class="price-original">22€ / pers / séance</div>
-        <div class="price-after-tax">11€</div>
-        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
+        <div class="price-tag">22€</div>
+        <p class="price-period">/ pers / séance</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 80€ → <strong>40€</strong> / pers après crédit d'impôt</li>
-          <li>📦 Pack 10 : 200€ → <strong>100€</strong> / pers après crédit d'impôt</li>
+          <li>📅 Mensuel (4x) : 80€ / pers</li>
+          <li>📦 Pack 10 : 200€ / pers</li>
           <li>🎵 Dynamique de groupe</li>
         </ul>
-        <div class="price-sap-badge">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
-          Service à la Personne
+        <div class="price-sap-box">
+          <div class="sap-label">
+            <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+            Avec Service à la Personne
+          </div>
+          <div class="sap-price">11€</div>
+          <div class="sap-note">/ pers / séance après crédit d'impôt*</div>
         </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
 
       <div class="price-card reveal">
         <h3>Quatuor+</h3>
-        <div class="price-original">20€ / pers / séance</div>
-        <div class="price-after-tax">10€</div>
-        <p class="price-period">/ pers / séance après crédit d'impôt*</p>
+        <div class="price-tag">20€</div>
+        <p class="price-period">/ pers / séance</p>
         <ul class="price-details">
-          <li>📅 Mensuel (4x) : 75€ → <strong>37,50€</strong> / pers après crédit d'impôt</li>
-          <li>📦 Pack 10 : 180€ → <strong>90€</strong> / pers après crédit d'impôt</li>
+          <li>📅 Mensuel (4x) : 75€ / pers</li>
+          <li>📦 Pack 10 : 180€ / pers</li>
           <li>🎉 Ambiance garantie</li>
         </ul>
-        <div class="price-sap-badge">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
-          Service à la Personne
+        <div class="price-sap-box">
+          <div class="sap-label">
+            <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP">
+            Avec Service à la Personne
+          </div>
+          <div class="sap-price">10€</div>
+          <div class="sap-note">/ pers / séance après crédit d'impôt*</div>
         </div>
         <a href="Réserver.html" class="btn btn-primary" style="width:100%; margin-top:12px;">Réserver</a>
       </div>
