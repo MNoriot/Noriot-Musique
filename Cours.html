@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cours de Musique — Noriot Musique</title>
-  <meta name="description" content="Cours de piano, trompette, guitare, basse à domicile à Aix-en-Provence, Marseille et alentours. Service à la Personne : 50% de crédit d'impôt. Pédagogie adaptée, improvisation, tous niveaux. Premier cours d'essai gratuit.">
+  <meta name="description" content="Cours de piano, trompette, guitare, basse a domicile a Aix-en-Provence, Marseille et alentours. Service a la Personne : 50% de credit d'impot. Pédagogie adaptee, improvisation, tous niveaux. Premier cours d'essai gratuit.">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
     /* ============================================
-       STYLES SPÉCIFIQUES PAGE COURS
+       STYLES SPECIFIQUES PAGE COURS
        ============================================ */
 
-    /* Fond spécifique page Cours */
     body {
       background-image: url("https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Fond.png");
       background-size: cover;
@@ -23,61 +22,257 @@
       background-attachment: fixed;
     }
 
-    /* Hero section cours */
+    /* ============================================
+       HERO REWORKED
+       ============================================ */
+        /* ============================================
+       HERO REWORKED - Design moderne
+       ============================================ */
     .hero-cours {
-      padding: 80px 20px 40px;
+      padding: 60px 16px 32px;
       text-align: center;
     }
 
     .hero-cours-card {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius);
-      padding: 40px 32px;
-      max-width: 720px;
+      background: linear-gradient(145deg, #fff8f5 0%, #fff0eb 30%, #fef6f0 60%, #fff8f0 100%);
+      backdrop-filter: blur(16px);
+      border-radius: 28px;
+      padding: 48px 28px 40px;
+      max-width: 680px;
       margin: 0 auto;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow:
+        0 4px 24px rgba(224, 122, 95, 0.08),
+        0 16px 48px rgba(224, 122, 95, 0.12),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cours-card::before {
+      content: "\1F3B5";
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      opacity: 0.15;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .hero-cours-card::after {
+      content: "\1F3B8";
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      font-size: 2rem;
+      opacity: 0.12;
+      transform: rotate(-10deg);
+      pointer-events: none;
     }
 
     .hero-cours-card h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--noir);
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 2;
     }
 
-    .hero-cours-card p {
-      font-size: 1.15rem;
-      color: var(--gris);
-      max-width: 560px;
-      margin: 0 auto 32px;
+    .hero-music-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: linear-gradient(135deg, #e07a5f, #f2cc8f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 4px rgba(224, 122, 95, 0.2));
+      position: relative;
+      z-index: 2;
     }
-    /* ===== BOUTONS HERO ===== */
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 520px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-slogan-wrapper {
+      display: inline-block;
+      background: linear-gradient(135deg, #fff 0%, #fff8f0 100%);
+      border: 2px solid #f2cc8f;
+      border-radius: 50px;
+      padding: 14px 28px;
+      margin: 0 auto 32px;
+      box-shadow:
+        0 4px 16px rgba(242, 204, 143, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-slogan-wrapper::before {
+      content: "\2728";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 1.2rem;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .hero-slogan-wrapper::after {
+      content: "\1F3B6";
+      position: absolute;
+      top: -8px;
+      right: 18px;
+      font-size: 1.1rem;
+      animation: twinkle 2.5s ease-in-out infinite 0.5s;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+      50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+    }
+
+    .hero-slogan {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .hero-slogan .highlight {
+      color: #e07a5f;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .hero-slogan .highlight::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f2cc8f, #e07a5f);
+      border-radius: 2px;
+      opacity: 0.4;
+    }
+
     .hero-buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-buttons-row-primary {
       display: flex;
       justify-content: center;
+      width: 100%;
+    }
+
+    .hero-buttons-row-primary .btn {
+      background: linear-gradient(135deg, #e07a5f 0%, #d4694f 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 16px 32px;
+      border-radius: 50px;
+      border: none;
+      box-shadow:
+        0 4px 16px rgba(224, 122, 95, 0.35),
+        0 8px 32px rgba(224, 122, 95, 0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-buttons-row-primary .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 8px 24px rgba(224, 122, 95, 0.45),
+        0 12px 40px rgba(224, 122, 95, 0.25);
     }
 
     .hero-buttons-row-secondary {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* ============================================
-       BANDEAU SERVICE À LA PERSONNE
-       ============================================ */
+    .hero-buttons-row-secondary .btn {
+      background: rgba(255,255,255,0.7);
+      color: #555;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 1.5px solid;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
 
-    .sap-banner {
+    .hero-buttons-row-secondary .btn:nth-child(1) {
+      border-color: #ffb3ba;
+      color: #c94a6a;
+    }
+    .hero-buttons-row-secondary .btn:nth-child(1):hover {
+      background: #ffb3ba;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-buttons-row-secondary .btn:nth-child(2) {
+      border-color: #ffdfba;
+      color: #d4893a;
+    }
+    .hero-buttons-row-secondary .btn:nth-child(2):hover {
+      background: #ffdfba;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-buttons-row-secondary .btn:nth-child(3) {
+      border-color: #bae1ff;
+      color: #4a90c9;
+    }
+    .hero-buttons-row-secondary .btn:nth-child(3):hover {
+      background: #bae1ff;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-buttons-row-secondary .btn:nth-child(4) {
+      border-color: #baffc9;
+      color: #4a9c6a;
+    }
+    .hero-buttons-row-secondary .btn:nth-child(4):hover {
+      background: #baffc9;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+.sap-banner {
       background: linear-gradient(135deg, #c94a6a 0%, #e07a5f 50%, #f2cc8f 100%);
       color: white;
       padding: 32px 24px;
@@ -203,6 +398,7 @@
       margin-left: auto;
       margin-right: auto;
       box-shadow: var(--shadow);
+      border: 1.5px solid #e8e8e8;
     }
 
     .sap-section h2 {
@@ -232,6 +428,7 @@
       background: linear-gradient(135deg, #fff8f8, #fff0f0);
       border-radius: var(--radius-sm);
       border-left: 4px solid var(--rose);
+      border: 1.5px solid #e8e8e8;
       transition: var(--transition);
     }
 
@@ -266,44 +463,219 @@
       margin: 0;
     }
 
-    /* Section offre */
-    .offer-card {
+    /* ============================================
+       POSITIONNEMENT GLOBAL
+       ============================================ */
+    .positioning-section {
+      background: linear-gradient(135deg, var(--noir), #2d2d2d);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      margin: 0 20px 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .positioning-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+
+    .positioning-section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .positioning-section p {
+      font-size: 1.15rem;
+      color: #ccc;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .positioning-section .highlight {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* ============================================
+       SECTION OFFRE PAR PROFIL
+       ============================================ */
+    .offer-profile-section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .offer-profile-section .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--noir);
+      text-align: center;
+    }
+
+    .offer-profile-section .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--gris);
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .profile-card {
       background: var(--blanc);
       border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 20px;
+      padding: 32px;
       box-shadow: var(--shadow);
       transition: var(--transition);
       border-left: 4px solid var(--orange);
+      border: 1.5px solid #e8e8e8;
+      position: relative;
+      overflow: hidden;
     }
 
-    .offer-card:hover {
-      transform: translateX(8px);
+    .profile-card:hover {
+      transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
     }
 
-    .offer-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--jaune));
     }
 
-    .offer-card p {
+    .profile-card .profile-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .profile-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--noir);
+    }
+
+    .profile-card .profile-subtitle {
+      font-size: 0.95rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .profile-card p {
       color: var(--gris);
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
 
-    .offer-card .tags {
-      margin-top: 12px;
+    .profile-card .profile-for {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+
+    .profile-card .profile-for-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .profile-card .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
 
-    /* Méthode visuelle */
+    /* ============================================
+       INSTRUMENTS & COMPETENCES
+       ============================================ */
+    .skills-section {
+      background: var(--blanc);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      margin: 0 20px 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1.5px solid #e8e8e8;
+    }
+
+    .skills-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 28px;
+      color: var(--noir);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .skill-category {
+      padding: 24px;
+      background: var(--gris-clair);
+      border-radius: var(--radius-sm);
+      text-align: left;
+      border: 1.5px solid #e8e8e8;
+    }
+
+    .skill-category h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--noir);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-category p {
+      font-size: 0.95rem;
+      color: var(--gris);
+      margin: 0;
+    }
+
+    /* Methode visuelle */
     .method-visual {
       display: grid;
       grid-template-columns: 1fr;
@@ -317,6 +689,7 @@
       padding: 32px;
       text-align: center;
       box-shadow: var(--shadow);
+      border: 1.5px solid #e8e8e8;
       position: relative;
       overflow: hidden;
     }
@@ -370,6 +743,7 @@
       transition: var(--transition);
       padding: 28px;
       text-align: center;
+      border: 1.5px solid #e8e8e8;
     }
 
     .price-card:hover {
@@ -398,7 +772,6 @@
       transform: rotate(45deg);
     }
 
-    /* Bénéfice élégant sous le titre */
     .price-benefit {
       font-size: 0.85rem;
       font-weight: 500;
@@ -419,7 +792,6 @@
       margin-bottom: 4px;
     }
 
-    /* ===== BOÎTE SAP COMPACTE ===== */
     .price-sap-box {
       background: linear-gradient(135deg, #c94a6a 0%, #e07a5f 50%, #f2cc8f 100%);
       border-radius: var(--radius-sm);
@@ -480,7 +852,6 @@
       z-index: 1;
     }
 
-    /* ===== ZONE PACKS - DISCRET ===== */
     .packs-area {
       margin-bottom: 14px;
       display: flex;
@@ -490,7 +861,7 @@
 
     .pack-box {
       background: #fff;
-      border: 1.5px solid #ddd;
+      border: 1.5px solid #e8e8e8;
       border-radius: var(--radius-sm);
       padding: 12px 14px;
       text-align: center;
@@ -540,6 +911,7 @@
       padding: 48px 32px;
       text-align: center;
       margin: 48px 0;
+      border: 1.5px solid #e8e8e8;
     }
 
     .cta-section h2 {
@@ -555,7 +927,6 @@
       margin-right: auto;
     }
 
-    /* Section professeur - atouts pédagogiques */
     .professor-atouts {
       display: grid;
       grid-template-columns: 1fr;
@@ -601,9 +972,9 @@
       border-radius: var(--radius);
       padding: 40px 32px;
       text-align: center;
+      border: 1.5px solid #e8e8e8;
     }
 
-    /* Note moyenne */
     .rating-display {
       margin: 24px 0;
     }
@@ -626,7 +997,6 @@
       color: var(--gris);
     }
 
-    /* Carte périmètre Aix/Marseille et alentours */
     .map-area-container {
       position: relative;
       border-radius: var(--radius-sm);
@@ -643,7 +1013,6 @@
       filter: grayscale(10%);
     }
 
-    /* Overlay zone d'activité — HAUT À DROITE */
     .map-overlay {
       position: absolute;
       top: 12px;
@@ -684,7 +1053,6 @@
       font-weight: 600;
     }
 
-    /* Lien fiche Google en bas de carte */
     .map-cta {
       position: absolute;
       bottom: 0;
@@ -696,13 +1064,12 @@
       z-index: 10;
     }
 
-    /* Fallback si pas d'avis */
     .reviews-empty {
       background: var(--blanc);
       border-radius: var(--radius-sm);
       padding: 48px 32px;
       margin: 24px 0;
-      border: 2px dashed var(--rose);
+      border: 1.5px solid #e8e8e8;
     }
 
     .reviews-empty-icon {
@@ -723,7 +1090,6 @@
       line-height: 1.6;
     }
 
-    /* CTA laisser un avis */
     .review-cta {
       margin-top: 24px;
     }
@@ -739,7 +1105,6 @@
       color: #999;
     }
 
-    /* Footer SAP mention */
     .footer-sap {
       display: flex;
       align-items: center;
@@ -764,595 +1129,463 @@
       opacity: 0.9;
     }
 
-    /* Responsive */
     @media (min-width: 768px) {
-      .method-visual {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .prices-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .professor-atouts {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .sap-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .sap-title {
-        font-size: 1.5rem;
-      }
-
-      .map-area-container iframe {
-        height: 450px;
-      }
-
-      .map-overlay {
-        top: 16px;
-        right: 16px;
-        padding: 16px 22px;
-        max-width: 260px;
-      }
-
-      .map-overlay h4 {
-        font-size: 0.95rem;
-      }
-
-      .map-overlay p {
-        font-size: 0.85rem;
-      }
+      .method-visual { grid-template-columns: repeat(3, 1fr); }
+      .prices-grid { grid-template-columns: repeat(2, 1fr); }
+      .professor-atouts { grid-template-columns: repeat(2, 1fr); }
+      .sap-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .sap-title { font-size: 1.5rem; }
+      .map-area-container iframe { height: 450px; }
+      .map-overlay { top: 16px; right: 16px; padding: 16px 22px; max-width: 260px; }
+      .map-overlay h4 { font-size: 0.95rem; }
+      .map-overlay p { font-size: 0.85rem; }
     }
 
     @media (min-width: 1024px) {
-      .prices-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .professor-atouts {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .sap-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .map-area-container iframe {
-        height: 500px;
-      }
+      .prices-grid { grid-template-columns: repeat(4, 1fr); }
+      .professor-atouts { grid-template-columns: repeat(3, 1fr); }
+      .sap-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-area-container iframe { height: 500px; }
     }
   </style>
 </head>
-
 <body>
-  <!-- Barre de progression -->
   <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Navigation flottante retour accueil -->
-  <a href="index.html" class="nav-float" aria-label="Retour à l'accueil">
+  <a href="index.html" class="nav-float" aria-label="Retour a l'accueil">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
       <polyline points="9 22 9 12 15 12 15 22"></polyline>
     </svg>
   </a>
 
-  <!-- Hero -->
-  <section class="hero-cours">
+    <section class="hero-cours">
     <div class="hero-cours-card">
-      <h1>Cours de Musique à Domicile 🎵</h1>
-      <p>
-        Développe ton jeu musical, de l'apprentissage des bases à l'improvisation. À Aix-en-Provence, Marseille et alentours.
+      <h1>Apprendre la musique autrement</h1>
+      <div class="hero-music-icon">&#9836;</div>
+      <p class="hero-subtitle">
+        Développez votre musicalité : technique, oreille, improvisation et expression.<br>
+        Une pédagogie personnalisée pour tous niveaux, à domicile autour d'Aix-en-Provence et Marseille.
       </p>
-      <!-- ===== BOUTONS HERO ===== -->
+      <div class="hero-slogan-wrapper">
+        <p class="hero-slogan">
+          Développe ton <span class="highlight">jeu musical</span>, de l'apprentissage des <span class="highlight">bases</span> à l'<span class="highlight">improvisation</span>.
+        </p>
+      </div>
       <div class="hero-buttons">
         <div class="hero-buttons-row-primary">
-          <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver un essai gratuit</a>
+          <a href="Reserver.html" class="btn">&#128197; Réserver un essai gratuit</a>
         </div>
         <div class="hero-buttons-row-secondary">
-          <a href="#offre" class="btn btn-ghost">Découvrir l'offre</a>
-          <a href="#professeur" class="btn btn-ghost">Le professeur</a>
-          <a href="#tarifs" class="btn btn-ghost">Les tarifs</a>
-          <a href="#avis" class="btn btn-ghost">Les avis</a>
+          <a href="#offre" class="btn">&#127928; Les parcours</a>
+          <a href="#professeur" class="btn">&#128100; Le professeur</a>
+          <a href="#tarifs" class="btn">&#128176; Les tarifs</a>
+          <a href="#avis" class="btn">&#11088; Les avis</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================
-       BANDEAU SERVICE À LA PERSONNE
-       ============================================ -->
+
   <div class="sap-banner reveal">
     <div class="sap-banner-content">
       <div class="sap-badge-row">
-        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service à la Personne" class="sap-logo">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service a la Personne" class="sap-logo">
         <div class="sap-title">
-          Cours de musique à domicile<br>éligibles au <span class="sap-highlight">Service à la Personne</span>
+          Cours de musique a domicile<br>eligibles au <span class="sap-highlight">Service a la Personne</span>
         </div>
       </div>
-
       <div class="sap-savings">
-        <div class="sap-savings-main">–50% de crédit d'impôt</div>
-        <div class="sap-savings-sub">Vos cours reviennent à partir de <strong>20€/h</strong> après avantage fiscal*</div>
+        <div class="sap-savings-main">-50% de credit d'impot</div>
+        <div class="sap-savings-sub">Vos cours reviennent a partir de <strong>20€/h</strong> apres avantage fiscal*</div>
       </div>
-
       <div class="sap-cta">
-        <a href="#tarifs" class="btn">💶 Voir les tarifs réduits</a>
+        <a href="#tarifs" class="btn">&#128178; Voir les tarifs reduits</a>
       </div>
-
-      <p class="sap-note">* Sous conditions selon les règles en vigueur du dispositif SAP / NOVA</p>
+      <p class="sap-note">* Sous conditions selon les regles en vigueur du dispositif SAP / NOVA</p>
     </div>
   </div>
 
-  <!-- ============================================
-       SECTION AVANTAGES SAP
-       ============================================ -->
   <section class="sap-section reveal" id="sap-avantages">
-    <h2>🎯 Pourquoi choisir mes cours ?</h2>
+    <h2>&#127919; Pourquoi choisir mes cours ?</h2>
     <p class="subtitle">Une approche moderne et personnalisée de l'apprentissage musical</p>
-
     <div class="sap-grid">
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🧠</div>
+        <div class="sap-item-icon">&#129504;</div>
         <div>
-          <h4>Comprendre plutôt qu'apprendre par cœur</h4>
-          <p>Développez votre oreille, votre rythme et votre compréhension de la musique sans dépendre uniquement de la partition.</p>
+          <h4>Comprendre plutot qu'apprendre par coeur</h4>
+          <p>Développez votre oreille, votre rythme et votre comprehension de la musique sans dependre uniquement de la partition.</p>
         </div>
       </div>
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🎤</div>
+        <div class="sap-item-icon">&#127908;</div>
         <div>
-          <h4>Improviser dès les premiers mois</h4>
-          <p>L'objectif n'est pas seulement de reproduire, mais de comprendre, créer, s'exprimer et gagner en liberté musicale.</p>
+          <h4>Improviser des les premiers mois</h4>
+          <p>L'objectif n'est pas seulement de reproduire, mais de comprendre, creer, s'exprimer et gagner en liberte musicale.</p>
         </div>
       </div>
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🎯</div>
+        <div class="sap-item-icon">&#127919;</div>
         <div>
-          <h4>Cours adaptés à votre façon d'apprendre</h4>
-          <p>Chaque élève progresse différemment. Les exercices et objectifs sont ajustés à votre profil.</p>
+          <h4>Cours adaptes a votre facon d'apprendre</h4>
+          <p>Chaque eleve progresse differemment. Les exercices et objectifs sont ajustes a votre profil.</p>
         </div>
       </div>
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🎸</div>
+        <div class="sap-item-icon">&#127928;</div>
         <div>
-          <h4>Tous instruments, même langage musical</h4>
-          <p>Les principes enseignés sont transférables entre piano, guitare, basse, trompette et bien d'autres instruments.</p>
+          <h4>Tous instruments, meme langage musical</h4>
+          <p>Les principes enseignes sont transferables entre piano, guitare, basse, trompette et bien d'autres instruments.</p>
         </div>
       </div>
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🏠</div>
+        <div class="sap-item-icon">&#127968;</div>
         <div>
-          <h4>À domicile, sans contrainte</h4>
-          <p>Vous apprenez dans votre environnement, avec votre matériel et à votre rythme.</p>
+          <h4>A domicile, sans contrainte</h4>
+          <p>Vous apprenez dans votre environnement, avec votre materiel et a votre rythme.</p>
         </div>
       </div>
       <div class="sap-item reveal">
-        <div class="sap-item-icon">🎁</div>
+        <div class="sap-item-icon">&#127873;</div>
         <div>
           <h4>Premier cours d'essai gratuit</h4>
-          <p>50 minutes pour définir vos objectifs et découvrir la méthode sans engagement.</p>
+          <p>50 minutes pour definir vos objectifs et découvrir la méthode sans engagement.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Offre pédagogique -->
-  <section class="section" id="offre">
-    <h2 class="section-title">L'offre</h2>
-    <p class="section-subtitle">Quatre formats selon ton niveau et tes envies</p>
-
-    <div class="offer-card reveal">
-      <h3>🎸 Apprendre autrement</h3>
-      <p>Initiation sans surcharge solfégique. Travail de l'oreille, du rythme, réflexes musicaux.</p>
-      <div class="tags">
-        <span class="tag">Débutant</span>
-        <span class="tag">Intermédiaire</span>
-        <span class="tag">Enfant</span>
-        <span class="tag">Adulte</span>
+    <section class="offer-profile-section" id="offre">
+    <h2 class="section-title">Des cours adaptes a votre objectif</h2>
+    <p class="section-subtitle">Quel que soit votre niveau, il y a une porte d'entree</p>
+    <div class="profile-grid">
+      <div class="profile-card reveal">
+        <div class="profile-icon">&#127928;</div>
+        <h3>Debuter et apprendre a jouer</h3>
+        <p class="profile-subtitle">Piano &#8226; Guitare &#8226; Basse &#8226; Trompette</p>
+        <p>Tu débutes ? Apprends les bases sans etre noye sous la théorie. Travail de l'oreille, du rythme et des morceaux que tu as envie de jouer.</p>
+        <div class="profile-for">
+          <div class="profile-for-label">Pour :</div>
+          <div class="tags">
+            <span class="tag">Debutants</span>
+            <span class="tag">Enfants</span>
+            <span class="tag">Adultes</span>
+          </div>
+        </div>
       </div>
-      <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="tag tag-piano">🎹 Piano</span>
-        <span class="tag tag-trompette">🎺 Trompette</span>
-        <span class="tag tag-guitare">🎸 Guitare</span>
-        <span class="tag tag-basse">🎸 Basse</span>
-        <span class="tag tag-impro">🎤 Improvisation</span>
-        <span class="tag tag-mao">🎛️ MAO</span>
-        <span class="tag tag-theorie">🎼 Théorie musicale</span>
+      <div class="profile-card reveal">
+        <div class="profile-icon">&#128640;</div>
+        <h3>Progresser et gagner en liberte musicale</h3>
+        <p class="profile-subtitle">Improvisation &#8226; Theorie &#8226; Creativite</p>
+        <p>Tu connais deja ton instrument mais tu bloques ? Apprends a improviser, comprendre les gammes, construire tes solos et jouer avec plus d'aisance.</p>
+        <div class="profile-for">
+          <div class="profile-for-label">Pour :</div>
+          <div class="tags">
+            <span class="tag">Intermediaires</span>
+            <span class="tag">Confirmes</span>
+            <span class="tag tag-tous-instruments">&#127912; Tous instruments</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="offer-card reveal">
-      <h3>🎹 Improvisation & Théorie</h3>
-      <p>Tu maîtrises les bases mais tu bloques sur l'impro ? Gammes modales, construction de solos, lâcher-prise. Tous instruments.</p>
-      <div class="tags">
-        <span class="tag">Intermédiaire</span>
-        <span class="tag">Confirmé</span>
-        <span class="tag tag-tous-instruments">🎨 Tous instruments</span>
+      <div class="profile-card reveal">
+        <div class="profile-icon">&#127925;</div>
+        <h3>Jouer en groupe</h3>
+        <p class="profile-subtitle">Jazz &#8226; Pop &#8226; Improvisation</p>
+        <p>La musique prend une autre dimension a plusieurs. Travail du répertoire, ecoute, interaction, mise en place et expression.</p>
+        <div class="profile-for">
+          <div class="profile-for-label">Pour :</div>
+          <div class="tags">
+            <span class="tag">Musiciens autonomes</span>
+            <span class="tag">Groupes constitués</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="offer-card reveal">
-      <h3>🎵 Groupe jazz/pop/impro</h3>
-      <p>Répertoire défini ensemble, répétitions, animations. Jeu collectif, écoute, codes d'ensemble. Mise en avant de l'expression.</p>
-      <div class="tags">
-        <span class="tag">Intermédiaire</span>
-        <span class="tag">Confirmé</span>
-        <span class="tag">Groupe</span>
-        <span class="tag">Jazz</span>
-        <span class="tag">Pop</span>
-        <span class="tag tag-tous-instruments">🎨 Tous instruments</span>
-      </div>
-    </div>
-    <div class="offer-card reveal">
-      <h3>🌱 Éveil musical (4–7 ans)</h3>
-      <p>Jeux rythmiques, chant, percussions. Découverte des instruments et solfège progressif. Petits groupes de 3-5 enfants.</p>
-      <div class="tags">
-        <span class="tag">4-7 ans</span>
-        <span class="tag">Groupe</span>
+      <div class="profile-card reveal">
+        <div class="profile-icon">&#127793;</div>
+        <h3>Eveil musical</h3>
+        <p class="profile-subtitle">4-7 ans</p>
+        <p>Decouvrir la musique en s'amusant. Jeux rythmiques, chant, percussions, découverte des instruments et premières notions musicales.</p>
+        <div class="profile-for">
+          <div class="profile-for-label">Format :</div>
+          <div class="tags">
+            <span class="tag">Petits groupes de 3 a 5 enfants</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Méthode en 3 étapes -->
+  <section class="skills-section reveal">
+    <h3>Ce que l'on peut aborder ensemble</h3>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h4>&#127929; Instruments</h4>
+        <p>Piano &#8226; Guitare &#8226; Basse &#8226; Trompette</p>
+      </div>
+      <div class="skill-category">
+        <h4>&#129504; Développer sa musicalité</h4>
+        <p>Improvisation &#8226; Oreille &#8226; Rythme &#8226; Theorie</p>
+      </div>
+      <div class="skill-category">
+        <h4>&#127899; Creer</h4>
+        <p>MAO &#8226; Composition</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <h2 class="section-title">La méthode</h2>
-    <p class="section-subtitle">Trois étapes pour débloquer et progresser</p>
-
+    <p class="section-subtitle">Trois etapes pour debloquer et progresser</p>
     <div class="method-visual">
       <div class="method-step reveal">
         <span class="step-number">1</span>
-        <h3>🔓 Débloque</h3>
+        <h3>&#128275; Debloque</h3>
         <p>On identifie ce qui te bloque (technique ? théorie ? confiance ?) et on travaille dessus sans pression.</p>
       </div>
       <div class="method-step reveal">
         <span class="step-number">2</span>
-        <h3>🧠 Comprends</h3>
-        <p>Théorie musicale universelle, transposable à tout instrument, avec un solfège réduit au minimum essentiel.</p>
+        <h3>&#129504; Comprends</h3>
+        <p>Theorie musicale universelle, transposable a tout instrument, avec un solfege reduit au minimum essentiel.</p>
       </div>
       <div class="method-step reveal">
         <span class="step-number">3</span>
-        <h3>🎤 Exprime-toi</h3>
+        <h3>&#127908; Exprime-toi</h3>
         <p>Improvisation, composition, jeu d'ensemble. Tu deviens autonome et tu prends du plaisir.</p>
       </div>
     </div>
   </section>
-
- <!-- Photo du professeur -->
 <section class="section reveal" id="professeur">
   <h2 class="section-title">Le professeur</h2>
-  <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
-    <img 
-      src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" 
-      alt="Martin Noriot - Professeur de trompette" 
-      style="width:200px; height:200px; border-radius:50%; object-fit:cover;"
-    />
+  <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center; border: 1.5px solid #e8e8e8;">
+    <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" alt="Martin Noriot - Professeur de trompette" style="width:200px; height:200px; border-radius:50%; object-fit:cover;"/>
     <div>
-      <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot 🎺</h3>
-      <p style="color:var(--gris); max-width:500px;">
-        Musicien passionné. 9 ans de conservatoire (classique & jazz), 
-        un an aux États-Unis pour découvrir l'improvisation. 
-        Ingénieur et Master en management — rigueur et pédagogie au service de la musique.
-      </p>
+      <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot &#127930;</h3>
+      <p style="color:var(--gris); max-width:500px;">Musicien passionné. 9 ans de conservatoire (classique & jazz), un an aux Etats-Unis pour découvrir l'improvisation. Ingenieur et Master en management - rigueur et pédagogie au service de la musique.</p>
       <div class="professor-atouts">
-        <span class="atout-tag"><span class="emoji">🧠</span> Pédagogie adaptée</span>
-        <span class="atout-tag"><span class="emoji">🤝</span> Bienveillance & empathie</span>
-        <span class="atout-tag"><span class="emoji">🎯</span> Rigueur structurée</span>
-        <span class="atout-tag"><span class="emoji">🌍</span> Anglais bilingue</span>
-        <span class="atout-tag"><span class="emoji">🎨</span> Créativité & expression</span>
-        <span class="atout-tag"><span class="emoji">🧘</span> Gestion du stress</span>
-        <span class="atout-tag"><span class="emoji">🎭</span> Improvisation artistique</span>
-        <span class="atout-tag"><span class="emoji">👥</span> Animation de groupes</span>
-        <span class="atout-tag"><span class="emoji">🔧</span> Esprit d'initiative</span>
+        <span class="atout-tag"><span class="emoji">&#129504;</span> Pédagogie adaptee</span>
+        <span class="atout-tag"><span class="emoji">&#129309;</span> Bienveillance & empathie</span>
+        <span class="atout-tag"><span class="emoji">&#127919;</span> Rigueur structurée</span>
+        <span class="atout-tag"><span class="emoji">&#127758;</span> Anglais bilingue</span>
+        <span class="atout-tag"><span class="emoji">&#127912;</span> Creativite & expression</span>
+        <span class="atout-tag"><span class="emoji">&#129496;</span> Gestion du stress</span>
+        <span class="atout-tag"><span class="emoji">&#127917;</span> Improvisation artistique</span>
+        <span class="atout-tag"><span class="emoji">&#128101;</span> Animation de groupes</span>
+        <span class="atout-tag"><span class="emoji">&#128295;</span> Esprit d'initiative</span>
       </div>
     </div>
   </div>
 </section>
 
-  <!-- Tarifs -->
-  <section class="section" id="tarifs">
-    <h2 class="section-title">Tarifs</h2>
-    <p class="section-subtitle">Séances d'1h réservée (50 min effectives). Premier cours d'essai gratuit.</p>
-
-    <div class="prices-grid">
-      <!-- === INDIVIDUEL === -->
-      <div class="price-card reveal">
-        <h3>Individuel</h3>
-        <p class="price-benefit">🎯 Programme 100% personnalisé</p>
-        <div class="price-tag">40€</div>
-        <p class="price-period">la séance</p>
-
-        <div class="price-sap-box">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
-          <div class="sap-label">Coût réel après crédit d'impôt</div>
-          <div class="sap-price">20€</div>
-          <div class="sap-note">la séance</div>
-        </div>
-
-        <div class="packs-area">
-          <div class="pack-box">
-            <div class="pack-box-label">📅 MENSUEL (4x)</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">160€</span>
-              <span class="pack-box-new">150€</span>
-            </div>
-          </div>
-          <div class="pack-box">
-            <div class="pack-box-label">📦 PACK 10 SÉANCES</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">400€</span>
-              <span class="pack-box-new">350€</span>
-            </div>
-          </div>
-        </div>
-
-        <a href="Réserver.html" class="btn btn-primary price-btn">Réserver</a>
+<section class="section" id="tarifs">
+  <h2 class="section-title">Tarifs</h2>
+  <p class="section-subtitle">Séances d'1h reservee (50 min effectives). Premier cours d'essai gratuit.</p>
+  <div class="prices-grid">
+    <div class="price-card reveal">
+      <h3>Individuel</h3>
+      <p class="price-benefit">&#127919; Programme 100% personnalisé</p>
+      <div class="price-tag">40€</div>
+      <p class="price-period">la séance</p>
+      <div class="price-sap-box">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
+        <div class="sap-label">Cout reel apres credit d'impot</div>
+        <div class="sap-price">20€</div>
+        <div class="sap-note">la séance</div>
       </div>
-
-      <!-- === DUO === -->
-      <div class="price-card featured reveal">
-        <h3>Duo</h3>
-        <p class="price-benefit">🤝 Motivation à deux</p>
-        <div class="price-tag">25€</div>
-        <p class="price-period">/ pers / séance</p>
-
-        <div class="price-sap-box">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
-          <div class="sap-label">Coût réel après crédit d'impôt</div>
-          <div class="sap-price">12,50€</div>
-          <div class="sap-note">/ pers / séance</div>
+      <div class="packs-area">
+        <div class="pack-box">
+          <div class="pack-box-label">&#128197; MENSUEL (4x)</div>
+          <div class="pack-box-prices"><span class="pack-box-old">160€</span><span class="pack-box-new">150€</span></div>
         </div>
-
-        <div class="packs-area">
-          <div class="pack-box">
-            <div class="pack-box-label">📅 MENSUEL (4x)</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">100€</span>
-              <span class="pack-box-new">90€</span>
-            </div>
-          </div>
-          <div class="pack-box">
-            <div class="pack-box-label">📦 PACK 10 SÉANCES</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">250€</span>
-              <span class="pack-box-new">220€</span>
-            </div>
-          </div>
+        <div class="pack-box">
+          <div class="pack-box-label">&#128230; PACK 10 SEANCES</div>
+          <div class="pack-box-prices"><span class="pack-box-old">400€</span><span class="pack-box-new">350€</span></div>
         </div>
-
-        <a href="Réserver.html" class="btn btn-primary price-btn">Réserver</a>
       </div>
-
-      <!-- === TRIO === -->
-      <div class="price-card reveal">
-        <h3>Trio</h3>
-        <p class="price-benefit">⚡ Énergie du groupe</p>
-        <div class="price-tag">22€</div>
-        <p class="price-period">/ pers / séance</p>
-
-        <div class="price-sap-box">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
-          <div class="sap-label">Coût réel après crédit d'impôt</div>
-          <div class="sap-price">11€</div>
-          <div class="sap-note">/ pers / séance</div>
-        </div>
-
-        <div class="packs-area">
-          <div class="pack-box">
-            <div class="pack-box-label">📅 MENSUEL (4x)</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">88€</span>
-              <span class="pack-box-new">80€</span>
-            </div>
-          </div>
-          <div class="pack-box">
-            <div class="pack-box-label">📦 PACK 10 SÉANCES</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">230€</span>
-              <span class="pack-box-new">200€</span>
-            </div>
-          </div>
-        </div>
-
-        <a href="Réserver.html" class="btn btn-primary price-btn">Réserver</a>
-      </div>
-
-      <!-- === QUATUOR+ === -->
-      <div class="price-card reveal">
-        <h3>Quatuor+</h3>
-        <p class="price-benefit">💰 Prix le plus avantageux</p>
-        <div class="price-tag">20€</div>
-        <p class="price-period">/ pers / séance</p>
-
-        <div class="price-sap-box">
-          <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
-          <div class="sap-label">Coût réel après crédit d'impôt</div>
-          <div class="sap-price">10€</div>
-          <div class="sap-note">/ pers / séance</div>
-        </div>
-
-        <div class="packs-area">
-          <div class="pack-box">
-            <div class="pack-box-label">📅 MENSUEL (4x)</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">80€</span>
-              <span class="pack-box-new">75€</span>
-            </div>
-          </div>
-          <div class="pack-box">
-            <div class="pack-box-label">📦 PACK 10 SÉANCES</div>
-            <div class="pack-box-prices">
-              <span class="pack-box-old">210€</span>
-              <span class="pack-box-new">180€</span>
-            </div>
-          </div>
-        </div>
-
-        <a href="Réserver.html" class="btn btn-primary price-btn">Réserver</a>
-      </div>
+      <a href="Reserver.html" class="btn btn-primary price-btn">Reserver</a>
     </div>
-
-    <p style="text-align:center; color:var(--gris); font-size:0.85rem; margin-top:20px;">
-      * Le crédit d'impôt de 50% s'applique sous conditions selon les règles du dispositif Service à la Personne (SAP) / NOVA en vigueur.
-      Consultez votre conseiller fiscal pour votre situation personnelle.
-    </p>
-  </section><!-- ============================================
-       SECTION AVIS GOOGLE
-       ============================================ -->
-    <section class="section" id="avis">
-    <div class="reviews-section">
-      <h2 class="section-title" style="margin-bottom:8px;">Avis des élèves ⭐</h2>
-      <p style="color:var(--gris);">Ce que disent ceux qui ont franchi le pas</p>
-
-      <!-- Note moyenne affichée -->
-      <div class="rating-display">
-        <div class="rating-score">5.0</div>
-        <div class="rating-stars">⭐⭐⭐⭐⭐</div>
-        <div class="rating-count">1 avis Google vérifié</div>
+    <div class="price-card featured reveal">
+      <h3>Duo</h3>
+      <p class="price-benefit">&#129309; Motivation a deux</p>
+      <div class="price-tag">25€</div>
+      <p class="price-period">/ pers / séance</p>
+      <div class="price-sap-box">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
+        <div class="sap-label">Cout reel apres credit d'impot</div>
+        <div class="sap-price">12,50€</div>
+        <div class="sap-note">/ pers / séance</div>
       </div>
-
-      <!-- Carte périmètre Aix/Marseille et alentours (~30 min) -->
-      <div class="map-area-container">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188933.19787728732!2d5.3698!3d43.4131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1716540000000!5m2!1sfr!2sfr" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-
-        <!-- Overlay zone d'activité — HAUT À DROITE -->
-        <div class="map-overlay">
-          <h4>📍 Zone d'intervention</h4>
-          <p>Aix-en-Provence, Marseille & alentours</p>
-          <span class="zone-tag">~30 min en voiture max</span>
+      <div class="packs-area">
+        <div class="pack-box">
+          <div class="pack-box-label">&#128197; MENSUEL (4x)</div>
+          <div class="pack-box-prices"><span class="pack-box-old">100€</span><span class="pack-box-new">90€</span></div>
         </div>
-
-        <!-- CTA vers fiche Google -->
-        <div class="map-cta">
-          <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;">
-            📍 Voir la fiche sur Google Maps
-          </a>
+        <div class="pack-box">
+          <div class="pack-box-label">&#128230; PACK 10 SEANCES</div>
+          <div class="pack-box-prices"><span class="pack-box-old">250€</span><span class="pack-box-new">220€</span></div>
         </div>
       </div>
-
-      <!-- Avis Google -->
-      <div class="reviews-grid" style="display:grid; gap:16px; margin:24px 0;">
-        <div class="review-card" style="background:var(--blanc); border-radius:var(--radius-sm); padding:20px; text-align:left; box-shadow:var(--shadow); position:relative;">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--jaune)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">C.</div>
-            <div>
-              <div style="font-weight:600;">Cybilhe C.</div>
-              <div style="font-size:0.8rem; color:var(--gris);">le 30/05/2026 · ⭐⭐⭐⭐⭐</div>
-            </div>
-          </div>
-          <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">
-            "Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une méthode qui était adaptée à ma façon d'apprendre et de retenir les choses. Je recommande que vous soyez débutants ou déjà pratiquants, avoir un prof à l'écoute et qui s'adapte ça change tout ⭐"
-          </p>
-          <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
-            <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">🎸 Basse</span>
-            <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">Débutant</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- message pour inciter à donner son avis -->
-      <div class="reviews-empty">
-        <div class="reviews-empty-icon">📝</div>
-        <h3>Tu as suivi des cours ? Donne ton avis !</h3>
-        <p>
-          Partage ton expérience pour aider les futurs élèves à se lancer. Ça prend 30 secondes et ça fait toute la différence.
-        </p>
-        <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:1rem; padding:14px 28px;">
-          ⭐ Laisser un avis sur Google
-        </a>
-        <p class="review-note" style="margin-top:12px; font-size:0.85rem; color:#999;">
-          🔗 Redirection vers Google Maps — rapide et sécurisé
-        </p>
-      </div>
-
+      <a href="Reserver.html" class="btn btn-primary price-btn">Reserver</a>
     </div>
-  </section>
-
-  <!-- CTA final -->
-  <section class="cta-section reveal">
-    <h2>Premier cours d'essai gratuit 🎁</h2>
-    <p>
-      50 minutes pour découvrir la méthode, discuter de tes objectifs 
-      et voir si on est faits pour travailler ensemble. Sans engagement.
-    </p>
-    <a href="Réserver.html" class="btn btn-primary" style="font-size:1.1rem; padding:16px 32px;">
-      🗓️ Je réserve mon essai
-    </a>
-  </section>
-
-  <!-- CTA fixe mobile -->
-  <div class="cta-fixed">
-    <a href="Réserver.html" class="btn btn-primary">🗓️ Réserver</a>
-    <a href="index.html" class="btn btn-secondary">🏠 Accueil</a>
+    <div class="price-card reveal">
+      <h3>Trio</h3>
+      <p class="price-benefit">&#9889; Energie du groupe</p>
+      <div class="price-tag">22€</div>
+      <p class="price-period">/ pers / séance</p>
+      <div class="price-sap-box">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
+        <div class="sap-label">Cout reel apres credit d'impot</div>
+        <div class="sap-price">11€</div>
+        <div class="sap-note">/ pers / séance</div>
+      </div>
+      <div class="packs-area">
+        <div class="pack-box">
+          <div class="pack-box-label">&#128197; MENSUEL (4x)</div>
+          <div class="pack-box-prices"><span class="pack-box-old">88€</span><span class="pack-box-new">80€</span></div>
+        </div>
+        <div class="pack-box">
+          <div class="pack-box-label">&#128230; PACK 10 SEANCES</div>
+          <div class="pack-box-prices"><span class="pack-box-old">230€</span><span class="pack-box-new">200€</span></div>
+        </div>
+      </div>
+      <a href="Reserver.html" class="btn btn-primary price-btn">Reserver</a>
+    </div>
+    <div class="price-card reveal">
+      <h3>Quatuor+</h3>
+      <p class="price-benefit">&#128176; Prix le plus avantageux</p>
+      <div class="price-tag">20€</div>
+      <p class="price-period">/ pers / séance</p>
+      <div class="price-sap-box">
+        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
+        <div class="sap-label">Cout reel apres credit d'impot</div>
+        <div class="sap-price">10€</div>
+        <div class="sap-note">/ pers / séance</div>
+      </div>
+      <div class="packs-area">
+        <div class="pack-box">
+          <div class="pack-box-label">&#128197; MENSUEL (4x)</div>
+          <div class="pack-box-prices"><span class="pack-box-old">80€</span><span class="pack-box-new">75€</span></div>
+        </div>
+        <div class="pack-box">
+          <div class="pack-box-label">&#128230; PACK 10 SEANCES</div>
+          <div class="pack-box-prices"><span class="pack-box-old">210€</span><span class="pack-box-new">180€</span></div>
+        </div>
+      </div>
+      <a href="Reserver.html" class="btn btn-primary price-btn">Reserver</a>
+    </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-profile">
-        <img 
-          src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" 
-          alt="Martin Noriot - Professeur de musique" 
-          class="footer-profile-img"
-          style="width:64px; height:64px; border-radius:50%; object-fit:cover;"
-        />
-        <div class="footer-profile-info">
-          <h3>Martin Noriot</h3>
-          <p>🎺 Professeur de musique à domicile • Aix-en-Provence</p>
+  <p style="text-align:center; color:var(--gris); font-size:0.85rem; margin-top:20px;">* Le credit d'impot de 50% s'applique sous conditions selon les regles du dispositif Service a la Personne (SAP) / NOVA en vigueur. Consultez votre conseiller fiscal pour votre situation personnelle.</p>
+</section>
+<section class="section" id="avis">
+  <div class="reviews-section">
+    <h2 class="section-title" style="margin-bottom:8px;">Avis des élèves &#11088;</h2>
+    <p style="color:var(--gris);">Ce que disent ceux qui ont franchi le pas</p>
+    <div class="rating-display">
+      <div class="rating-score">5.0</div>
+      <div class="rating-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+      <div class="rating-count">1 avis Google vérifié</div>
+    </div>
+    <div class="map-area-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188933.19787728732!2d5.3698!3d43.4131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1716540000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-overlay">
+        <h4>&#128205; Zone d'intervention</h4>
+        <p>Aix-en-Provence, Marseille & alentours</p>
+        <span class="zone-tag">~30 min en voiture max</span>
+      </div>
+      <div class="map-cta">
+        <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;">&#128205; Voir la fiche sur Google Maps</a>
+      </div>
+    </div>
+    <div class="reviews-grid" style="display:grid; gap:16px; margin:24px 0;">
+      <div class="review-card" style="background:var(--blanc); border-radius:var(--radius-sm); padding:20px; text-align:left; box-shadow:var(--shadow); border: 1.5px solid #e8e8e8; position:relative;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--jaune)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">C.</div>
+          <div>
+            <div style="font-weight:600;">Cybilhe C.</div>
+            <div style="font-size:0.8rem; color:var(--gris);">le 30/05/2026 &#8226; &#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          </div>
+        </div>
+        <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">"Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une méthode qui etait adaptee a ma facon d'apprendre et de retenir les choses. Je recommande que vous soyez debutants ou deja pratiquants, avoir un prof a l'ecoute et qui s'adapte ca change tout &#11088;"</p>
+        <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+          <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">&#127928; Basse</span>
+          <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">Debutant</span>
         </div>
       </div>
+    </div>
+    <div class="reviews-empty">
+      <div class="reviews-empty-icon">&#128221;</div>
+      <h3>Tu as suivi des cours ? Donne ton avis !</h3>
+      <p>Partage ton expérience pour aider les futurs élèves a se lancer. Ca prend 30 secondes et ca fait toute la difference.</p>
+      <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:1rem; padding:14px 28px;">&#11088; Laisser un avis sur Google</a>
+      <p class="review-note" style="margin-top:12px; font-size:0.85rem; color:#999;">&#128279; Redirection vers Google Maps - rapide et sécurisé</p>
+    </div>
+  </div>
+</section>
 
-      <div class="footer-links">
-        <a href="mailto:martin@noriot.fr">📧 martin@noriot.fr</a>
-        <a href="tel:0666809289">📞 06 66 80 92 89</a>
-        <a href="https://www.instagram.com/noriot.music/" target="_blank" rel="noopener">📸 Instagram</a>
-        <a href="https://www.youtube.com/channel/UCuq3PC-JYy0jdTXRPwsToIw" target="_blank" rel="noopener">▶️ YouTube</a>
-        <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">🎵 Spotify</a>
-        <a href="https://link.deezer.com/s/33kvTlgMjgFxGXELQLVhm" target="_blank" rel="noopener">🎧 Deezer</a>
-        <a href="https://music.apple.com/fr/artist/noriot/1706085284" target="_blank" rel="noopener">🍎 Apple Music</a>
-      </div>
+<section class="cta-section reveal">
+  <h2>Premier cours d'essai gratuit &#127873;</h2>
+  <p>50 minutes pour découvrir la méthode, discuter de tes objectifs et voir si on est faits pour travailler ensemble. Sans engagement.</p>
+  <a href="Reserver.html" class="btn btn-primary" style="font-size:1.1rem; padding:16px 32px;">&#128197; Je reserve mon essai</a>
+</section>
 
-      <div class="footer-sap">
-        <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service à la Personne">
-        <span>Organisme déclaré Service à la Personne — Crédit d'impôt de 50% sous conditions</span>
+<div class="cta-fixed">
+  <a href="Reserver.html" class="btn btn-primary">&#128197; Reserver</a>
+  <a href="index.html" class="btn btn-secondary">&#127968; Accueil</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-profile">
+      <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" alt="Martin Noriot - Professeur de musique" class="footer-profile-img" style="width:64px; height:64px; border-radius:50%; object-fit:cover;"/>
+      <div class="footer-profile-info">
+        <h3>Martin Noriot</h3>
+        <p>&#127930; Professeur de musique a domicile &#8226; Aix-en-Provence</p>
       </div>
     </div>
-
-    <div class="footer-bottom">
-      © 2026 Noriot Musique — Tous droits réservés • Pédagogie musicale moderne
+    <div class="footer-links">
+      <a href="mailto:martin@noriot.fr">&#128231; martin@noriot.fr</a>
+      <a href="tel:0666809289">&#128222; 06 66 80 92 89</a>
+      <a href="https://www.instagram.com/noriot.music/" target="_blank" rel="noopener">&#128247; Instagram</a>
+      <a href="https://www.youtube.com/channel/UCuq3PC-JYy0jdTXRPwsToIw" target="_blank" rel="noopener">&#9654; YouTube</a>
+      <a href="https://open.spotify.com/intl-fr/artist/7A9ut0IB85UeBdX1S4g4QG?si=3EaWRW-eR52tXi6nfEiizw" target="_blank" rel="noopener">&#127925; Spotify</a>
+      <a href="https://link.deezer.com/s/33kvTlgMjgFxGXELQLVhm" target="_blank" rel="noopener">&#127911; Deezer</a>
+      <a href="https://music.apple.com/fr/artist/noriot/1706085284" target="_blank" rel="noopener">&#127822; Apple Music</a>
     </div>
-  </footer>
+    <div class="footer-sap">
+      <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="Service a la Personne">
+      <span>Organisme declare Service a la Personne - Credit d'impot de 50% sous conditions</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Noriot Musique - Tous droits réservés - Pédagogie musicale moderne
+  </div>
+</footer>
 
-  <!-- Scripts -->
-  <script>
-    // Barre de progression au scroll
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('progressBar').style.width = scrolled + '%';
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+  });
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
     });
+  }, observerOptions);
 
-    // Animation au scroll (reveal)
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
