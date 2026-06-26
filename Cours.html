@@ -4,16 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cours de Musique — Noriot Musique</title>
-  <meta name="description" content="Cours de piano, trompette, guitare, basse a domicile a Aix-en-Provence, Marseille et alentours. Service a la Personne : 50% de credit d'impot. Pédagogie adaptee, improvisation, tous niveaux. Premier cours d'essai gratuit.">
+  <meta name="description" content="Cours de piano, trompette, guitare, basse a domicile a Aix-en-Provence, Marseille et alentours. Service a la Personne : 50% de credit d'impot. Pedagogie adaptee, improvisation, tous niveaux. Premier cours d'essai gratuit.">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ============================================
-       STYLES SPECIFIQUES PAGE COURS
-       ============================================ */
-
     body {
       background-image: url("https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Fond.png");
       background-size: cover;
@@ -22,12 +18,6 @@
       background-attachment: fixed;
     }
 
-    /* ============================================
-       HERO REWORKED
-       ============================================ */
-        /* ============================================
-       HERO REWORKED - Design moderne
-       ============================================ */
     .hero-cours {
       padding: 60px 16px 32px;
       text-align: center;
@@ -49,27 +39,7 @@
       overflow: hidden;
     }
 
-    .hero-cours-card::before {
-      content: "\1F3B5";
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2.5rem;
-      opacity: 0.15;
-      transform: rotate(15deg);
-      pointer-events: none;
-    }
 
-    .hero-cours-card::after {
-      content: "\1F3B8";
-      position: absolute;
-      bottom: 25px;
-      left: 25px;
-      font-size: 2rem;
-      opacity: 0.12;
-      transform: rotate(-10deg);
-      pointer-events: none;
-    }
 
     .hero-cours-card h1 {
       font-size: clamp(1.8rem, 5vw, 2.6rem);
@@ -120,23 +90,8 @@
       z-index: 2;
     }
 
-    .hero-slogan-wrapper::before {
-      content: "\2728";
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      font-size: 1.2rem;
-      animation: twinkle 2s ease-in-out infinite;
-    }
 
-    .hero-slogan-wrapper::after {
-      content: "\1F3B6";
-      position: absolute;
-      top: -8px;
-      right: 18px;
-      font-size: 1.1rem;
-      animation: twinkle 2.5s ease-in-out infinite 0.5s;
-    }
+
 
     @keyframes twinkle {
       0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
@@ -272,7 +227,7 @@
       transform: translateY(-2px);
     }
 
-.sap-banner {
+    .sap-banner {
       background: linear-gradient(135deg, #c94a6a 0%, #e07a5f 50%, #f2cc8f 100%);
       color: white;
       padding: 32px 24px;
@@ -385,10 +340,6 @@
       margin-top: 12px;
     }
 
-    /* ============================================
-       SECTION AVANTAGES SAP
-       ============================================ */
-
     .sap-section {
       background: var(--blanc);
       border-radius: var(--radius);
@@ -463,9 +414,6 @@
       margin: 0;
     }
 
-    /* ============================================
-       POSITIONNEMENT GLOBAL
-       ============================================ */
     .positioning-section {
       background: linear-gradient(135deg, var(--noir), #2d2d2d);
       border-radius: var(--radius);
@@ -516,9 +464,6 @@
       font-weight: 600;
     }
 
-    /* ============================================
-       SECTION OFFRE PAR PROFIL
-       ============================================ */
     .offer-profile-section {
       padding: 60px 20px;
       max-width: 900px;
@@ -623,9 +568,6 @@
       gap: 6px;
     }
 
-    /* ============================================
-       INSTRUMENTS & COMPETENCES
-       ============================================ */
     .skills-section {
       background: var(--blanc);
       border-radius: var(--radius);
@@ -675,7 +617,6 @@
       margin: 0;
     }
 
-    /* Methode visuelle */
     .method-visual {
       display: grid;
       grid-template-columns: 1fr;
@@ -722,10 +663,6 @@
       color: var(--gris);
       font-size: 0.95rem;
     }
-
-    /* ============================================
-       TARIFS
-       ============================================ */
 
     .prices-grid {
       display: grid;
@@ -904,7 +841,6 @@
       font-weight: 600;
     }
 
-    /* CTA section */
     .cta-section {
       background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
       border-radius: var(--radius);
@@ -927,45 +863,271 @@
       margin-right: auto;
     }
 
-    .professor-atouts {
+    /* ============================================
+       SECTION PROFESSEUR — NOUVEAU DESIGN VISUEL
+       ============================================ */
+    .prof-section {
+      padding: 60px 20px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .prof-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--noir);
+      margin-bottom: 40px;
+    }
+
+    .prof-hero-card {
+      background: linear-gradient(135deg, #fff8f5 0%, #fff0eb 50%, #fef6f0 100%);
+      border-radius: 28px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      box-shadow:
+        0 4px 24px rgba(224, 122, 95, 0.08),
+        0 16px 48px rgba(224, 122, 95, 0.12);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+
+
+    .prof-photo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .prof-photo-wrap img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 32px rgba(224, 122, 95, 0.25);
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-photo-ring {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #e07a5f, #f2cc8f, #e07a5f);
+      z-index: 1;
+      animation: ringSpin 8s linear infinite;
+    }
+
+    @keyframes ringSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .prof-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-tagline {
+      font-size: 1rem;
+      color: #e07a5f;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-intro {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-story-cards {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 16px;
-      width: 100%;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      gap: 16px;
+      margin-bottom: 32px;
     }
 
-    .atout-tag {
-      display: inline-flex;
+    .prof-story-card {
+      background: var(--blanc);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid #e8e8e8;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .prof-story-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .prof-story-card .story-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .prof-story-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--noir);
+      margin-bottom: 10px;
+    }
+
+    .prof-story-card p {
+      font-size: 0.95rem;
+      color: var(--gris);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .prof-story-card .story-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .prof-story-card:nth-child(1) .story-accent {
+      background: linear-gradient(90deg, #e07a5f, #f2cc8f);
+    }
+    .prof-story-card:nth-child(2) .story-accent {
+      background: linear-gradient(90deg, #f2cc8f, #c94a6a);
+    }
+    .prof-story-card:nth-child(3) .story-accent {
+      background: linear-gradient(90deg, #c94a6a, #e07a5f);
+    }
+
+    .prof-objectif-box {
+      background: linear-gradient(135deg, #e07a5f 0%, #d4694f 100%);
+      border-radius: 20px;
+      padding: 28px 24px;
+      color: white;
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(224, 122, 95, 0.3);
+    }
+
+    .prof-objectif-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+
+    .prof-objectif-box h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-objectif-box p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prof-atouts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .prof-atout-pill {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
+      gap: 10px;
+      padding: 12px 16px;
       background: var(--blanc);
       border-radius: 50px;
+      border: 2px solid;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--noir);
-      border: 2px solid var(--orange);
       transition: var(--transition);
-      justify-content: center;
+      cursor: default;
     }
 
-    .atout-tag:hover {
-      background: var(--orange);
+    .prof-atout-pill:hover {
+      transform: translateY(-3px) scale(1.02);
       color: white;
-      transform: translateY(-2px);
     }
 
-    .atout-tag .emoji {
-      font-size: 1.1rem;
+    .prof-atout-pill .atout-emoji {
+      font-size: 1.3rem;
+      flex-shrink: 0;
     }
 
-    /* ============================================
-       SECTION AVIS GOOGLE
-       ============================================ */
+    .prof-atout-pill:nth-child(1) { border-color: #ffb3ba; color: #c94a6a; }
+    .prof-atout-pill:nth-child(1):hover { background: #ffb3ba; }
+
+    .prof-atout-pill:nth-child(2) { border-color: #ffdfba; color: #d4893a; }
+    .prof-atout-pill:nth-child(2):hover { background: #ffdfba; }
+
+    .prof-atout-pill:nth-child(3) { border-color: #bae1ff; color: #4a90c9; }
+    .prof-atout-pill:nth-child(3):hover { background: #bae1ff; }
+
+    .prof-atout-pill:nth-child(4) { border-color: #baffc9; color: #4a9c6a; }
+    .prof-atout-pill:nth-child(4):hover { background: #baffc9; }
+
+    .prof-atout-pill:nth-child(5) { border-color: #e2baff; color: #8a4ac9; }
+    .prof-atout-pill:nth-child(5):hover { background: #e2baff; }
+
+    .prof-atout-pill:nth-child(6) { border-color: #ffbae1; color: #c94a90; }
+    .prof-atout-pill:nth-child(6):hover { background: #ffbae1; }
+
+    .prof-atout-pill:nth-child(7) { border-color: #baffff; color: #4a90a0; }
+    .prof-atout-pill:nth-child(7):hover { background: #baffff; }
+
+    .prof-atout-pill:nth-child(8) { border-color: #ffd1ba; color: #c96a4a; }
+    .prof-atout-pill:nth-child(8):hover { background: #ffd1ba; }
+
+    .prof-atout-pill:nth-child(9) { border-color: #d1baff; color: #6a4ac9; }
+    .prof-atout-pill:nth-child(9):hover { background: #d1baff; }
+
+    @media (min-width: 768px) {
+      .prof-story-cards { grid-template-columns: repeat(3, 1fr); }
+      .prof-atouts-grid { grid-template-columns: repeat(3, 1fr); }
+      .prof-photo-wrap img { width: 180px; height: 180px; }
+    }
 
     .reviews-section {
       background: linear-gradient(135deg, var(--rose-clair), var(--jaune-clair));
@@ -1132,7 +1294,6 @@
     @media (min-width: 768px) {
       .method-visual { grid-template-columns: repeat(3, 1fr); }
       .prices-grid { grid-template-columns: repeat(2, 1fr); }
-      .professor-atouts { grid-template-columns: repeat(2, 1fr); }
       .sap-grid { grid-template-columns: repeat(2, 1fr); }
       .profile-grid { grid-template-columns: repeat(2, 1fr); }
       .skills-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1145,7 +1306,6 @@
 
     @media (min-width: 1024px) {
       .prices-grid { grid-template-columns: repeat(4, 1fr); }
-      .professor-atouts { grid-template-columns: repeat(3, 1fr); }
       .sap-grid { grid-template-columns: repeat(2, 1fr); }
       .profile-grid { grid-template-columns: repeat(2, 1fr); }
       .map-area-container iframe { height: 500px; }
@@ -1164,20 +1324,24 @@
 
     <section class="hero-cours">
     <div class="hero-cours-card">
+      <span style="position:absolute;top:20px;right:30px;font-size:2.5rem;opacity:0.15;transform:rotate(15deg);pointer-events:none;z-index:1;">&#127925;</span>
+      <span style="position:absolute;top:80px;left:20px;font-size:2rem;opacity:0.12;transform:rotate(-10deg);pointer-events:none;z-index:1;">&#127928;</span>
       <h1>Apprendre la musique autrement</h1>
       <div class="hero-music-icon">&#9836;</div>
       <p class="hero-subtitle">
-        Développez votre musicalité : technique, oreille, improvisation et expression.<br>
-        Une pédagogie personnalisée pour tous niveaux, à domicile autour d'Aix-en-Provence et Marseille.
+        Developpez votre musicalite : technique, oreille, improvisation et expression.<br>
+        Une pedagogie personnalisee pour tous niveaux, a domicile autour d'Aix-en-Provence et Marseille.
       </p>
-      <div class="hero-slogan-wrapper">
+      <div class="hero-slogan-wrapper" style="position:relative;">
+        <span style="position:absolute;top:-10px;left:20px;font-size:1.2rem;animation:twinkle 2s ease-in-out infinite;z-index:3;">&#10024;</span>
+        <span style="position:absolute;top:-8px;right:18px;font-size:1.1rem;animation:twinkle 2.5s ease-in-out infinite 0.5s;z-index:3;">&#127926;</span>
         <p class="hero-slogan">
-          Développe ton <span class="highlight">jeu musical</span>, de l'apprentissage des <span class="highlight">bases</span> à l'<span class="highlight">improvisation</span>.
+          Developpe ton <span class="highlight">jeu musical</span>, de l'apprentissage des <span class="highlight">bases</span> a l'<span class="highlight">improvisation</span>.
         </p>
       </div>
       <div class="hero-buttons">
         <div class="hero-buttons-row-primary">
-          <a href="Reserver.html" class="btn">&#128197; Réserver un essai gratuit</a>
+          <a href="Reserver.html" class="btn">&#128197; Reserver un essai gratuit</a>
         </div>
         <div class="hero-buttons-row-secondary">
           <a href="#offre" class="btn">&#127928; Les parcours</a>
@@ -1211,13 +1375,13 @@
 
   <section class="sap-section reveal" id="sap-avantages">
     <h2>&#127919; Pourquoi choisir mes cours ?</h2>
-    <p class="subtitle">Une approche moderne et personnalisée de l'apprentissage musical</p>
+    <p class="subtitle">Une approche moderne et personnalisee de l'apprentissage musical</p>
     <div class="sap-grid">
       <div class="sap-item reveal">
         <div class="sap-item-icon">&#129504;</div>
         <div>
           <h4>Comprendre plutot qu'apprendre par coeur</h4>
-          <p>Développez votre oreille, votre rythme et votre comprehension de la musique sans dependre uniquement de la partition.</p>
+          <p>Developpez votre oreille, votre rythme et votre comprehension de la musique sans dependre uniquement de la partition.</p>
         </div>
       </div>
       <div class="sap-item reveal">
@@ -1252,7 +1416,7 @@
         <div class="sap-item-icon">&#127873;</div>
         <div>
           <h4>Premier cours d'essai gratuit</h4>
-          <p>50 minutes pour definir vos objectifs et découvrir la méthode sans engagement.</p>
+          <p>50 minutes pour definir vos objectifs et decouvrir la methode sans engagement.</p>
         </div>
       </div>
     </div>
@@ -1265,8 +1429,8 @@
       <div class="profile-card reveal">
         <div class="profile-icon">&#127928;</div>
         <h3>Debuter et apprendre a jouer</h3>
-        <p class="profile-subtitle">Piano &#8226; Guitare &#8226; Basse &#8226; Trompette</p>
-        <p>Tu débutes ? Apprends les bases sans etre noye sous la théorie. Travail de l'oreille, du rythme et des morceaux que tu as envie de jouer.</p>
+        <p class="profile-subtitle">Piano &middot; Guitare &middot; Basse &middot; Trompette</p>
+        <p>Tu debutes ? Apprends les bases sans etre noye sous la theorie. Travail de l'oreille, du rythme et des morceaux que tu as envie de jouer.</p>
         <div class="profile-for">
           <div class="profile-for-label">Pour :</div>
           <div class="tags">
@@ -1279,7 +1443,7 @@
       <div class="profile-card reveal">
         <div class="profile-icon">&#128640;</div>
         <h3>Progresser et gagner en liberte musicale</h3>
-        <p class="profile-subtitle">Improvisation &#8226; Theorie &#8226; Creativite</p>
+        <p class="profile-subtitle">Improvisation &middot; Theorie &middot; Creativite</p>
         <p>Tu connais deja ton instrument mais tu bloques ? Apprends a improviser, comprendre les gammes, construire tes solos et jouer avec plus d'aisance.</p>
         <div class="profile-for">
           <div class="profile-for-label">Pour :</div>
@@ -1293,13 +1457,13 @@
       <div class="profile-card reveal">
         <div class="profile-icon">&#127925;</div>
         <h3>Jouer en groupe</h3>
-        <p class="profile-subtitle">Jazz &#8226; Pop &#8226; Improvisation</p>
-        <p>La musique prend une autre dimension a plusieurs. Travail du répertoire, ecoute, interaction, mise en place et expression.</p>
+        <p class="profile-subtitle">Jazz &middot; Pop &middot; Improvisation</p>
+        <p>La musique prend une autre dimension a plusieurs. Travail du repertoire, ecoute, interaction, mise en place et expression.</p>
         <div class="profile-for">
           <div class="profile-for-label">Pour :</div>
           <div class="tags">
             <span class="tag">Musiciens autonomes</span>
-            <span class="tag">Groupes constitués</span>
+            <span class="tag">Groupes constitues</span>
           </div>
         </div>
       </div>
@@ -1307,7 +1471,7 @@
         <div class="profile-icon">&#127793;</div>
         <h3>Eveil musical</h3>
         <p class="profile-subtitle">4-7 ans</p>
-        <p>Decouvrir la musique en s'amusant. Jeux rythmiques, chant, percussions, découverte des instruments et premières notions musicales.</p>
+        <p>Decouvrir la musique en s'amusant. Jeux rythmiques, chant, percussions, decouverte des instruments et premieres notions musicales.</p>
         <div class="profile-for">
           <div class="profile-for-label">Format :</div>
           <div class="tags">
@@ -1323,27 +1487,27 @@
     <div class="skills-grid">
       <div class="skill-category">
         <h4>&#127929; Instruments</h4>
-        <p>Piano &#8226; Guitare &#8226; Basse &#8226; Trompette</p>
+        <p>Piano &middot; Guitare &middot; Basse &middot; Trompette</p>
       </div>
       <div class="skill-category">
-        <h4>&#129504; Développer sa musicalité</h4>
-        <p>Improvisation &#8226; Oreille &#8226; Rythme &#8226; Theorie</p>
+        <h4>&#129504; Developper sa musicalite</h4>
+        <p>Improvisation &middot; Oreille &middot; Rythme &middot; Theorie</p>
       </div>
       <div class="skill-category">
         <h4>&#127899; Creer</h4>
-        <p>MAO &#8226; Composition</p>
+        <p>MAO &middot; Composition</p>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">La méthode</h2>
+    <h2 class="section-title">La methode</h2>
     <p class="section-subtitle">Trois etapes pour debloquer et progresser</p>
     <div class="method-visual">
       <div class="method-step reveal">
         <span class="step-number">1</span>
         <h3>&#128275; Debloque</h3>
-        <p>On identifie ce qui te bloque (technique ? théorie ? confiance ?) et on travaille dessus sans pression.</p>
+        <p>On identifie ce qui te bloque (technique ? theorie ? confiance ?) et on travaille dessus sans pression.</p>
       </div>
       <div class="method-step reveal">
         <span class="step-number">2</span>
@@ -1357,44 +1521,111 @@
       </div>
     </div>
   </section>
-<section class="section reveal" id="professeur">
+
+<!-- ============================================
+     SECTION PROFESSEUR — NOUVEAU DESIGN VISUEL
+     ============================================ -->
+<section class="prof-section reveal" id="professeur">
   <h2 class="section-title">Le professeur</h2>
-  <div class="card" style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center; border: 1.5px solid #e8e8e8;">
-    <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" alt="Martin Noriot - Professeur de trompette" style="width:200px; height:200px; border-radius:50%; object-fit:cover;"/>
-    <div>
-      <h3 style="font-size:1.4rem; margin-bottom:12px;">Martin Noriot &#127930;</h3>
-      <p style="color:var(--gris); max-width:500px;">Après 9 années de conservatoire en classique, puis une année aux États-Unis à découvrir le jazz et l'improvisation, j'ai compris qu'il n'existait pas une seule façon d'apprendre la musique. Étant moi-même neurodivergent, les méthodes d'enseignement très académiques ne répondaient pas toujours à ma curiosité ni à mon besoin de comprendre avant de mémoriser.
-C'est cette expérience qui a façonné ma pédagogie : une approche flexible, adaptée à chaque élève, centrée sur l'instrument, la compréhension et l'expression plutôt que sur le par cœur ou la performance.
-Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquoi vous le jouez, découvrir la théorie qui vous sera réellement utile et développer les réflexes d'écoute, de rythme et de créativité qui vous permettront de progresser durablement. Parce qu'au fond, apprendre la musique, c'est avant tout retrouver le plaisir de jouer.</p>
-      <div class="professor-atouts">
-        <span class="atout-tag"><span class="emoji">&#129504;</span> Pédagogie adaptee</span>
-        <span class="atout-tag"><span class="emoji">&#129309;</span> Bienveillance & empathie</span>
-        <span class="atout-tag"><span class="emoji">&#127919;</span> Rigueur structurée</span>
-        <span class="atout-tag"><span class="emoji">&#127758;</span> Anglais bilingue</span>
-        <span class="atout-tag"><span class="emoji">&#127912;</span> Creativite & expression</span>
-        <span class="atout-tag"><span class="emoji">&#129496;</span> Gestion du stress</span>
-        <span class="atout-tag"><span class="emoji">&#127917;</span> Improvisation artistique</span>
-        <span class="atout-tag"><span class="emoji">&#128101;</span> Animation de groupes</span>
-        <span class="atout-tag"><span class="emoji">&#128295;</span> Esprit d'initiative</span>
-      </div>
+
+  <!-- Carte hero avec photo et intro -->
+  <div class="prof-hero-card">
+    <span style="position:absolute;top:16px;right:24px;font-size:2rem;opacity:0.12;transform:rotate(15deg);pointer-events:none;z-index:1;">&#127925;</span>
+    <span style="position:absolute;bottom:16px;left:20px;font-size:1.8rem;opacity:0.1;transform:rotate(-10deg);pointer-events:none;z-index:1;">&#127926;</span>
+    <div class="prof-photo-wrap">
+      <div class="prof-photo-ring"></div>
+      <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" alt="Martin Noriot - Professeur de musique">
+    </div>
+    <div class="prof-name">Martin Noriot &#127930;</div>
+    <div class="prof-tagline">Pedagogie flexible &middot; Comprehension avant memorisation &middot; Plaisir de jouer</div>
+    <p class="prof-intro">
+      Chaque musicien apprend différemment. Je t’accompagne avec une pédagogie adaptée à ton profil pour construire des bases solides, développer ta créativité et prendre plaisir à jouer.
+    </p>
+  </div>
+
+  <!-- Cartes parcours -->
+  <div class="prof-story-cards">
+    <div class="prof-story-card reveal">
+      <div class="story-accent"></div>
+      <div class="story-icon">&#127891;</div>
+      <h4>Formation classique</h4>
+      <p>9 ans de conservatoire qui m'ont donne une base technique solide et une rigueur musicale.</p>
+    </div>
+    <div class="prof-story-card reveal">
+      <div class="story-accent"></div>
+      <div class="story-icon">&#127758;</div>
+      <h4>Eveil a l'improvisation</h4>
+      <p>Une annee aux Etats-Unis pour decouvrir le jazz, la liberte creative et une autre vision de la musique.</p>
+    </div>
+    <div class="prof-story-card reveal">
+      <div class="story-accent"></div>
+      <div class="story-icon">&#129504;</div>
+      <h4>Neurodivergence & pedagogie</h4>
+      <p>Etant moi-meme neurodivergent, j'ai appris a adapter l'enseignement a chaque facon d'apprendre.</p>
+    </div>
+  </div>
+
+  <!-- Objectif -->
+  <div class="prof-objectif-box reveal">
+    <h4>&#127919; Mon objectif : te rendre autonome</h4>
+    <p>Comprendre ce que tu joues, pourquoi tu le joues, decouvrir la theorie qui te sera reellement utile et developper les reflexes d'ecoute, de rythme et de creativite qui te permettront de progresser durablement.</p>
+  </div>
+
+  <!-- Atouts -->
+  <div class="prof-atouts-grid">
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#129504;</span>
+      <span>Pedagogie adaptee</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#129309;</span>
+      <span>Bienveillance & empathie</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#127919;</span>
+      <span>Rigueur structuree</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#127758;</span>
+      <span>Anglais bilingue</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#127912;</span>
+      <span>Creativite & expression</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#129496;</span>
+      <span>Gestion du stress</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#127917;</span>
+      <span>Improvisation artistique</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#128101;</span>
+      <span>Animation de groupes</span>
+    </div>
+    <div class="prof-atout-pill reveal">
+      <span class="atout-emoji">&#128295;</span>
+      <span>Esprit d'initiative</span>
     </div>
   </div>
 </section>
 
 <section class="section" id="tarifs">
   <h2 class="section-title">Tarifs</h2>
-  <p class="section-subtitle">Séances d'1h reservee (50 min effectives). Premier cours d'essai gratuit.</p>
+  <p class="section-subtitle">Seances d'1h reservee (50 min effectives). Premier cours d'essai gratuit.</p>
   <div class="prices-grid">
     <div class="price-card reveal">
       <h3>Individuel</h3>
-      <p class="price-benefit">&#127919; Programme 100% personnalisé</p>
+      <p class="price-benefit">&#127919; Programme 100% personnalise</p>
       <div class="price-tag">40€</div>
-      <p class="price-period">la séance</p>
+      <p class="price-period">la seance</p>
       <div class="price-sap-box">
         <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
         <div class="sap-label">Cout reel apres credit d'impot</div>
         <div class="sap-price">20€</div>
-        <div class="sap-note">la séance</div>
+        <div class="sap-note">la seance</div>
       </div>
       <div class="packs-area">
         <div class="pack-box">
@@ -1412,12 +1643,12 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
       <h3>Duo</h3>
       <p class="price-benefit">&#129309; Motivation a deux</p>
       <div class="price-tag">25€</div>
-      <p class="price-period">/ pers / séance</p>
+      <p class="price-period">/ pers / seance</p>
       <div class="price-sap-box">
         <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
         <div class="sap-label">Cout reel apres credit d'impot</div>
         <div class="sap-price">12,50€</div>
-        <div class="sap-note">/ pers / séance</div>
+        <div class="sap-note">/ pers / seance</div>
       </div>
       <div class="packs-area">
         <div class="pack-box">
@@ -1435,12 +1666,12 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
       <h3>Trio</h3>
       <p class="price-benefit">&#9889; Energie du groupe</p>
       <div class="price-tag">22€</div>
-      <p class="price-period">/ pers / séance</p>
+      <p class="price-period">/ pers / seance</p>
       <div class="price-sap-box">
         <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
         <div class="sap-label">Cout reel apres credit d'impot</div>
         <div class="sap-price">11€</div>
-        <div class="sap-note">/ pers / séance</div>
+        <div class="sap-note">/ pers / seance</div>
       </div>
       <div class="packs-area">
         <div class="pack-box">
@@ -1458,12 +1689,12 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
       <h3>Quatuor+</h3>
       <p class="price-benefit">&#128176; Prix le plus avantageux</p>
       <div class="price-tag">20€</div>
-      <p class="price-period">/ pers / séance</p>
+      <p class="price-period">/ pers / seance</p>
       <div class="price-sap-box">
         <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Traceur_SAP_buro_rvb_png.png" alt="SAP" class="sap-logo-small">
         <div class="sap-label">Cout reel apres credit d'impot</div>
         <div class="sap-price">10€</div>
-        <div class="sap-note">/ pers / séance</div>
+        <div class="sap-note">/ pers / seance</div>
       </div>
       <div class="packs-area">
         <div class="pack-box">
@@ -1480,14 +1711,15 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
   </div>
   <p style="text-align:center; color:var(--gris); font-size:0.85rem; margin-top:20px;">* Le credit d'impot de 50% s'applique sous conditions selon les regles du dispositif Service a la Personne (SAP) / NOVA en vigueur. Consultez votre conseiller fiscal pour votre situation personnelle.</p>
 </section>
+
 <section class="section" id="avis">
   <div class="reviews-section">
-    <h2 class="section-title" style="margin-bottom:8px;">Avis des élèves &#11088;</h2>
+    <h2 class="section-title" style="margin-bottom:8px;">Avis des eleves &#11088;</h2>
     <p style="color:var(--gris);">Ce que disent ceux qui ont franchi le pas</p>
     <div class="rating-display">
       <div class="rating-score">5.0</div>
       <div class="rating-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-      <div class="rating-count">1 avis Google vérifié</div>
+      <div class="rating-count">1 avis Google verifie</div>
     </div>
     <div class="map-area-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188933.19787728732!2d5.3698!3d43.4131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1716540000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1506,10 +1738,10 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
           <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--jaune)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">C.</div>
           <div>
             <div style="font-weight:600;">Cybilhe C.</div>
-            <div style="font-size:0.8rem; color:var(--gris);">le 30/05/2026 &#8226; &#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <div style="font-size:0.8rem; color:var(--gris);">le 30/05/2026 &middot; &#11088;&#11088;&#11088;&#11088;&#11088;</div>
           </div>
         </div>
-        <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">"Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une méthode qui etait adaptee a ma facon d'apprendre et de retenir les choses. Je recommande que vous soyez debutants ou deja pratiquants, avoir un prof a l'ecoute et qui s'adapte ca change tout &#11088;"</p>
+        <p style="color:var(--noir); line-height:1.6; margin:0; font-size:0.95rem;">"Je n'avais aucune technique et le premier cours m'a permis de prendre confiance en moi avec une methode qui etait adaptee a ma facon d'apprendre et de retenir les choses. Je recommande que vous soyez debutants ou deja pratiquants, avoir un prof a l'ecoute et qui s'adapte ca change tout &#11088;"</p>
         <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
           <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">&#127928; Basse</span>
           <span style="font-size:0.75rem; color:var(--gris); background:#f0f0f0; padding:4px 10px; border-radius:999px;">Debutant</span>
@@ -1519,16 +1751,16 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
     <div class="reviews-empty">
       <div class="reviews-empty-icon">&#128221;</div>
       <h3>Tu as suivi des cours ? Donne ton avis !</h3>
-      <p>Partage ton expérience pour aider les futurs élèves a se lancer. Ca prend 30 secondes et ca fait toute la difference.</p>
+      <p>Partage ton experience pour aider les futurs eleves a se lancer. Ca prend 30 secondes et ca fait toute la difference.</p>
       <a href="https://share.google/nTb2fB9ME1Ji8RHIR" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:1rem; padding:14px 28px;">&#11088; Laisser un avis sur Google</a>
-      <p class="review-note" style="margin-top:12px; font-size:0.85rem; color:#999;">&#128279; Redirection vers Google Maps - rapide et sécurisé</p>
+      <p class="review-note" style="margin-top:12px; font-size:0.85rem; color:#999;">&#128279; Redirection vers Google Maps - rapide et securise</p>
     </div>
   </div>
 </section>
 
 <section class="cta-section reveal">
   <h2>Premier cours d'essai gratuit &#127873;</h2>
-  <p>50 minutes pour découvrir la méthode, discuter de tes objectifs et voir si on est faits pour travailler ensemble. Sans engagement.</p>
+  <p>50 minutes pour decouvrir la methode, discuter de tes objectifs et voir si on est faits pour travailler ensemble. Sans engagement.</p>
   <a href="Reserver.html" class="btn btn-primary" style="font-size:1.1rem; padding:16px 32px;">&#128197; Je reserve mon essai</a>
 </section>
 
@@ -1543,7 +1775,7 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
       <img src="https://raw.githubusercontent.com/MNoriot/Noriot-Musique/main/Nono.jpeg" alt="Martin Noriot - Professeur de musique" class="footer-profile-img" style="width:64px; height:64px; border-radius:50%; object-fit:cover;"/>
       <div class="footer-profile-info">
         <h3>Martin Noriot</h3>
-        <p>&#127930; Professeur de musique a domicile &#8226; Aix-en-Provence</p>
+        <p>&#127930; Professeur de musique a domicile &middot; Aix-en-Provence</p>
       </div>
     </div>
     <div class="footer-links">
@@ -1561,7 +1793,7 @@ Mon objectif est de vous rendre autonome : comprendre ce que vous jouez, pourquo
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2026 Noriot Musique - Tous droits réservés - Pédagogie musicale moderne
+    &copy; 2026 Noriot Musique - Tous droits reserves - Pedagogie musicale moderne
   </div>
 </footer>
 
